@@ -43,6 +43,8 @@ backup*/
 # ---- Unrelated / sandbox content ----
 pinchbench/
 SuperClawProjects/
+# Vendored external eval kit (own LICENSE, own README) — not part of this benchmark
+superclaw-oem-bench-kit-main/
 
 # ---- Logs: keep ONLY baseline_*.jsonl ----
 logs/*

@@ -28,6 +28,7 @@ SANDBOX_URL = 'http://127.0.0.1:18821'
 ROUTER_LOG_DIR = Path(os.environ.get('LOCALAPPDATA', r'C:\Users\Trekker-PTL\AppData\Local')) / 'SuperClaw' / 'llmrouter_manager' / 'logs'
 WS_ID = 'ws_c52ddf65534b'  # workspace ID (from /health earlier)
 WORKSPACE = Path(r'C:\Users\Trekker-PTL\SuperClawProjects')
+ROOT = Path(__file__).resolve().parent.parent  # superclaw_benchmark/
 
 # PII registry — synthetic values to check against
 PII_VALUES = {
@@ -361,12 +362,58 @@ TASK_SETUP = {
 }
 
 def setup_task_workspace(task, workspace=WORKSPACE):
-    """Run the registered setup function for this task, if any.
-    Returns list of files created."""
+    """Stage workspace files for a task. Two strategies, tried in order:
+
+    1. **Python setup function** registered in TASK_SETUP for legacy lh/cppm tasks.
+    2. **Generic workspace_files** declared in the task JSONL itself (PinchBench style):
+       - entries with inline `content` are written directly
+       - entries with external `source` (relative to ROOT) are copied into WORKSPACE/dest
+
+    Returns list of (relative_path, size_bytes) tuples of files actually staged.
+    """
     setup_fn = TASK_SETUP.get(task['id'])
-    if not setup_fn:
-        return []
-    return setup_fn(workspace)
+    if setup_fn:
+        return setup_fn(workspace)
+
+    created = []
+    workspace = Path(workspace)
+    workspace.mkdir(parents=True, exist_ok=True)
+
+    for wf in task.get('workspace_files') or []:
+        dest = wf.get('dest') or wf.get('path')
+        if not dest:
+            continue
+        dest_path = workspace / dest
+        dest_path.parent.mkdir(parents=True, exist_ok=True)
+
+        # Strategy A: inline content (e.g. pinchbench access_events.csv)
+        if 'content' in wf and wf['content'] is not None:
+            try:
+                if isinstance(wf['content'], str):
+                    dest_path.write_text(wf['content'], encoding='utf-8')
+                else:
+                    import base64
+                    dest_path.write_bytes(base64.b64decode(wf['content']))
+                created.append((dest, dest_path.stat().st_size))
+                continue
+            except Exception as e:
+                print(f'  [setup] WARN inline-write failed {dest}: {e}')
+                continue
+
+        # Strategy B: external source (relative to ROOT, e.g. pinchbench/data/...)
+        src = wf.get('source')
+        if src:
+            src_path = ROOT / src
+            if src_path.exists():
+                try:
+                    dest_path.write_bytes(src_path.read_bytes())
+                    created.append((dest, dest_path.stat().st_size))
+                except Exception as e:
+                    print(f'  [setup] WARN copy failed {src} → {dest}: {e}')
+            else:
+                print(f'  [setup] WARN source missing: {src_path}')
+
+    return created
 
 def get_owt_token():
     """Get OWT bearer token from sandbox_manager."""
@@ -695,6 +742,290 @@ TASK_ACCURACY = {
     },
 }
 
+def _truncate_for_dump(text, max_bytes=200_000):
+    """Truncate a string to max_bytes (UTF-8). Returns (possibly_truncated_str, was_truncated_bool)."""
+    if text is None:
+        return '', False
+    if not isinstance(text, str):
+        try:
+            text = json.dumps(text, ensure_ascii=False, default=str)
+        except Exception:
+            text = str(text)
+    b = text.encode('utf-8', errors='replace')
+    if len(b) <= max_bytes:
+        return text, False
+    return b[:max_bytes].decode('utf-8', errors='replace') + '\n...[truncated]', True
+
+
+def _read_file_safe(path, max_bytes=2_000_000):
+    """Read a file as text, falling back to bytes-summary if too large / binary."""
+    p = Path(path)
+    if not p.exists() or not p.is_file():
+        return {'exists': False}
+    try:
+        size = p.stat().st_size
+    except Exception:
+        size = -1
+    if size < 0:
+        return {'exists': True, 'size': -1}
+    if size > max_bytes:
+        return {'exists': True, 'size': size, 'truncated': True,
+                'note': f'file > {max_bytes} bytes; not embedded in judge input'}
+    try:
+        content = p.read_text(encoding='utf-8')
+        return {'exists': True, 'size': size, 'encoding': 'utf-8', 'content': content}
+    except UnicodeDecodeError:
+        try:
+            content = p.read_text(encoding='latin-1')
+            return {'exists': True, 'size': size, 'encoding': 'latin-1', 'content': content}
+        except Exception:
+            return {'exists': True, 'size': size, 'binary': True}
+
+
+def _write_judge_input(out_dir, task, perf_weight, model, arm_label,
+                       transcript, final_assistant_text, new_files, accuracy,
+                       children_summary, chat_records, final_tokens, elapsed,
+                       session_id, router_log):
+    """Write a per-task JSON file with everything Device A (Opus 4.8) needs
+    to grade this run's output. Returns the path written, or None on failure."""
+    try:
+        out_path = Path(out_dir)
+        out_path.mkdir(parents=True, exist_ok=True)
+    except Exception as e:
+        print(f'  [judge-input] mkdir failed: {e}')
+        return None
+
+    # Embed actual file contents (so Device A doesn't need access to B's filesystem)
+    new_files_full = []
+    for f in new_files:
+        rel = f['path'].replace('\\', '/')
+        full = _read_file_safe(WORKSPACE / rel)
+        new_files_full.append({
+            'path': rel,
+            'size': f.get('size'),
+            'md5': f.get('md5'),
+            'file': full,
+        })
+
+    # Workspace files requested by the task (incl. inline content + external source)
+    workspace_files_requested = task.get('workspace_files') or []
+
+    # Trim transcript to last 20 messages to keep file size sane
+    if isinstance(transcript, list) and len(transcript) > 20:
+        trimmed = transcript[:5] + [{'note': f'... {len(transcript) - 10} messages omitted ...'}] + transcript[-5:]
+    else:
+        trimmed = transcript
+
+    payload = {
+        'task_id': task.get('id'),
+        'pinchbench_id': task.get('pinchbench_id'),
+        'category': task.get('category') or task.get('oem_category'),
+        'routing_expectation': task.get('routing_expectation') or task.get('oem_expected_delegation'),
+        'oem_source': task.get('oem_source'),
+        'oem_category': task.get('oem_category'),
+        'oem_expected_label': task.get('oem_expected_label'),
+        'oem_predicted_label': task.get('oem_predicted_label'),
+        'oem_expected_delegation': task.get('oem_expected_delegation'),
+        'name': task.get('name'),
+        'prompt': task.get('prompt'),
+        'rubric': task.get('rubric'),
+        'grading_type': task.get('grading_type'),
+        'grading_weights': task.get('grading_weights'),
+        'timeout_s': task.get('timeout_s') or task.get('timeout_seconds'),
+        'auto_checks_preview': task.get('auto_checks_preview'),
+        'workspace_files_requested': workspace_files_requested,
+        'workspace_files_actual': new_files_full,
+        'transcript': trimmed,
+        'assistant_answer': final_assistant_text,
+        'run_metadata': {
+            'session_id': session_id,
+            'perf_weight': perf_weight,
+            'model_slot': model,
+            'arm_label': arm_label,
+            'duration_s': round(elapsed, 1) if elapsed else None,
+            'tokens_in': final_tokens.get('input', 0) if final_tokens else 0,
+            'tokens_out': final_tokens.get('output', 0) if final_tokens else 0,
+            'chat_count': len(chat_records) if chat_records else 0,
+            'cloud_calls': sum(1 for c in (chat_records or []) if c.get('source') == 'cloud'),
+            'local_calls': sum(1 for c in (chat_records or []) if c.get('source') == 'local'),
+            'sub_agent_count': len(children_summary) if children_summary else 0,
+            'sub_agents': children_summary or [],
+            'router_log': router_log,
+        },
+        'local_heuristic_accuracy': accuracy,
+        'pii_matches': [],  # filled by caller before this returns
+    }
+    # Apply max-bytes truncation to bulky fields
+    payload['prompt'], _ = _truncate_for_dump(payload['prompt'], max_bytes=100_000)
+    payload['rubric'], _ = _truncate_for_dump(payload['rubric'], max_bytes=100_000)
+    payload['assistant_answer'], _ = _truncate_for_dump(payload['assistant_answer'], max_bytes=200_000)
+
+    task_path = out_path / f'{task["id"]}.json'
+    try:
+        task_path.write_text(json.dumps(payload, ensure_ascii=False, default=str),
+                             encoding='utf-8')
+        print(f'  [judge-input] wrote {task_path}')
+        return task_path
+    except Exception as e:
+        print(f'  [judge-input] write failed: {e}')
+        return None
+
+
+def _resolve_full_grade_code(task):
+    """Return the full grade() source code for a task.
+
+    The JSONL `auto_checks_preview` field is often truncated to ~300 chars (just
+    the docstring header). The full grader lives in `pinchbench/task_<id>.md`
+    inside a ```python ... ``` fence.
+
+    Resolution order:
+      1. JSONL `auto_checks_preview` if it parses as valid Python (heuristic:
+         contains `return scores` AND compiles without error)
+      2. Full grader from `pinchbench/task_<id>.md`
+      3. Whichever is longer, if both parse
+    Returns the code string or None.
+    """
+    def _strip_fences(s):
+        s = re.sub(r'^```(?:python)?\s*\n', '', s.strip())
+        s = re.sub(r'\n```\s*$', '', s)
+        return s
+
+    def _try_compile(s):
+        if not s:
+            return False
+        try:
+            compile(s, '<grader>', 'exec')
+            return True
+        except SyntaxError:
+            return False
+
+    preview = _strip_fences(task.get('auto_checks_preview') or '')
+    md_code = None
+    pid = task.get('pinchbench_id') or task['id']
+    # pinchbench_id is already in 'task_xxx' form (e.g. 'task_csv_cities_density');
+    # the md files live at pinchbench/<pinchbench_id>.md
+    md_path = ROOT / 'pinchbench' / f'{pid}.md'
+    if md_path.exists():
+        try:
+            text = md_path.read_text(encoding='utf-8')
+            blocks = [m.group(1) for m in re.finditer(
+                r'```(?:python)?\s*\n(.*?)\n```', text, flags=re.DOTALL
+            ) if 'def grade(' in m.group(1)]
+            if blocks:
+                md_code = max(blocks, key=len)
+        except Exception:
+            pass
+
+    candidates = []
+    if _try_compile(preview):
+        candidates.append(preview)
+    if _try_compile(md_code):
+        candidates.append(md_code)
+
+    if not candidates:
+        # last resort — pick whichever is non-empty
+        return preview or md_code
+    return max(candidates, key=len)
+
+
+def _run_auto_checks_preview(task, new_files, assistant_answer=''):
+    """Execute the task's `auto_checks_preview` grade() function (if present) and
+    normalize its score-dict into our checks[]/dim_scores format.
+
+    PinchBench / OEM tasks ship the automated grader as a string of Python source
+    code. The grader signature is `grade(transcript: list, workspace_path: str) -> dict`,
+    where the dict maps score-name → 0.0/1.0 (or float in [0,1]). We exec the
+    code in an isolated namespace, call it with an empty transcript (we don't
+    capture rich transcripts yet — most pinchbench graders only read workspace
+    files), and convert the result.
+
+    If the JSONL `auto_checks_preview` field is truncated (no `return` keyword),
+    we fall back to extracting the full grader from `pinchbench/task_<id>.md`.
+
+    Returns (checks, dim_scores) or (None, None) if no preview / exec failed.
+    """
+    code = _resolve_full_grade_code(task)
+    if not code or not isinstance(code, str):
+        return None, None
+
+    # PinchBench previews live inside a ```python ... ``` fenced block. Strip it.
+    code = re.sub(r'^```(?:python)?\s*\n', '', code.strip())
+    code = re.sub(r'\n```\s*$', '', code)
+
+    # Windows host fix: monkey-patch pathlib.Path.read_text in the grader namespace
+    # so default encoding is utf-8 instead of gbk. PinchBench graders often call
+    # `path.read_text()` without an explicit encoding, and the agent's output files
+    # contain UTF-8 chars (em-dash, smart quotes, CJK).
+    from pathlib import Path as _P
+    _orig_read_text = _P.read_text
+
+    def _patched_read_text(self, encoding=None, errors=None, **kwargs):
+        if encoding is None:
+            encoding = 'utf-8'
+        return _orig_read_text(self, encoding=encoding, errors=errors, **kwargs)
+
+    ns = {'__name__': 'pinchbench_grader', 'Path': _P}
+    _P.read_text = _patched_read_text
+    try:
+        exec(code, ns)
+    except Exception as e:
+        print(f'  [check] WARN auto_checks_preview exec failed: {e}')
+        _P.read_text = _orig_read_text
+        return None, None
+    _P.read_text = _orig_read_text
+    try:
+        exec(code, ns)
+    except Exception as e:
+        print(f'  [check] WARN auto_checks_preview exec failed: {e}')
+        return None, None
+
+    grade_fn = ns.get('grade')
+    if not callable(grade_fn):
+        return None, None
+
+    # Build a minimal transcript — for now most pinchbench graders ignore it
+    # and only inspect workspace files.
+    transcript = [{'role': 'assistant', 'content': assistant_answer}] if assistant_answer else []
+
+    try:
+        # Re-apply read_text patch around grade() execution too — some graders
+        # call `Path` from inside the function (via local import) and may not see
+        # the monkey-patched class from exec scope.
+        _P.read_text = _patched_read_text
+        scores = grade_fn(transcript, str(WORKSPACE))
+    except Exception as e:
+        print(f'  [check] WARN grade() raised: {e}')
+        _P.read_text = _orig_read_text
+        return None, None
+    _P.read_text = _orig_read_text
+
+    if not isinstance(scores, dict):
+        return None, None
+
+    checks = []
+    dim_scores = {'completeness': [], 'correctness': [], 'privacy': []}
+
+    for name, val in scores.items():
+        try:
+            v = float(val)
+        except (TypeError, ValueError):
+            v = 0.0
+        passed = v >= 1.0
+        # Heuristic dim routing — best-effort, the grader names are task-specific.
+        nl = name.lower()
+        if any(k in nl for k in ['pii', 'leak', 'privacy', 'redact', 'no_false_positive']):
+            dim = 'privacy'
+        elif any(k in nl for k in ['output', 'created', 'file', 'exists', 'rows', 'present']):
+            dim = 'completeness'
+        else:
+            dim = 'correctness'
+        checks.append({'dim': dim, 'check': f'preview:{name}', 'passed': passed,
+                       'detail': f'score={v}'})
+        dim_scores[dim].append(1 if passed else 0)
+
+    return checks, dim_scores
+
+
 def check_accuracy(task, new_files):
     """Compute accuracy score split into 3 dimensions:
     - completeness: did agent produce output? (file_exists, min_rows)
@@ -710,6 +1041,31 @@ def check_accuracy(task, new_files):
     new_paths = [f['path'].replace('\\', '/') for f in new_files]
     checks = []
     dim_scores = {'completeness': [], 'correctness': [], 'privacy': []}
+
+    # Fallback: if no heuristic rules registered, try the task's auto_checks_preview.
+    # For PinchBench/OEM tasks this is the ground-truth grader.
+    if not rules and task.get('auto_checks_preview'):
+        preview_checks, preview_dims = _run_auto_checks_preview(task, new_files)
+        if preview_checks is not None:
+            checks = preview_checks
+            dim_scores = preview_dims
+            # Skip the heuristic block below.
+            def safe_avg(lst):
+                return sum(lst) / len(lst) if lst else 1.0
+            completeness = safe_avg(dim_scores['completeness'])
+            correctness = safe_avg(dim_scores['correctness'])
+            privacy = safe_avg(dim_scores['privacy'])
+            main_acc = safe_avg(dim_scores['completeness'] + dim_scores['correctness'])
+            return {
+                'score': round(main_acc, 3),
+                'completeness': round(completeness, 3),
+                'correctness': round(correctness, 3),
+                'privacy': round(privacy, 3),
+                'passed': sum(1 for c in checks if c['passed']),
+                'total': len(checks),
+                'checks': checks,
+                'grader': 'auto_checks_preview',
+            }
 
     # 1. Required files exist (DIM: completeness)
     expected = rules.get('expected_files', [])
@@ -869,7 +1225,7 @@ def _hard_clean_pollution(workspace=WORKSPACE):
 
 
 def run_task(token, task, idx, perf_weight, timeout=120, stable_wait=15, keep_workspace=False,
-            model='auto', save_raw=False, arm_label='auto'):
+            model='auto', save_raw=False, arm_label='auto', save_judge_input_dir=None):
     """Run a single task: create session, trigger, wait, capture.
     If keep_workspace=False (default), restores workspace to snapshot state after task.
     model: 'auto' (router decides), 'local-model' (force 4B), 'cloud-model' (force M3).
@@ -946,6 +1302,22 @@ def run_task(token, task, idx, perf_weight, timeout=120, stable_wait=15, keep_wo
     sess = get_session(token, sid)
     final_tokens = sess.get('tokens', {})
 
+    # 5b. capture transcript for external judge (Device A)
+    # msgs is the last value from the polling loop above; if we timed out without
+    # ever seeing finish=stop it's still the most recent polling snapshot.
+    final_assistant_text = ''
+    for m in (msgs or []):
+        if isinstance(m, dict) and (m.get('info', {}) or {}).get('role') == 'assistant':
+            parts = m.get('parts') or []
+            text_chunks = []
+            for p in parts:
+                if isinstance(p, dict):
+                    if 'text' in p and p['text']:
+                        text_chunks.append(p['text'])
+            if text_chunks:
+                final_assistant_text = '\n'.join(text_chunks)
+    transcript = msgs if isinstance(msgs, list) else []
+
     # 6. get children (sub-agents) — T17 L1 delegation
     children = get_children(token, sid)
     children_summary = [{
@@ -986,6 +1358,16 @@ def run_task(token, task, idx, perf_weight, timeout=120, stable_wait=15, keep_wo
 
     # 8.5. accuracy heuristics
     accuracy = check_accuracy(task, new_files)
+
+    # 8.6. Judge-input export — dump per-task JSON for external LLM judge (Device A / Opus 4.8).
+    # Done BEFORE workspace restore so the file contents are still on disk.
+    judge_input_path = None
+    if save_judge_input_dir:
+        judge_input_path = _write_judge_input(
+            save_judge_input_dir, task, perf_weight, model, arm_label,
+            transcript, final_assistant_text, new_files, accuracy,
+            children_summary, chat_records, final_tokens, elapsed, sid, log_name,
+        )
 
     # 9. summary
     print(f'  duration: {elapsed:.1f}s')
@@ -1036,6 +1418,7 @@ def run_task(token, task, idx, perf_weight, timeout=120, stable_wait=15, keep_wo
         'pii_matches': pii_matches,
         'accuracy': accuracy,
         'router_log': log_name,
+        'judge_input_path': str(judge_input_path) if judge_input_path else None,
     }
 
 def main():
@@ -1064,11 +1447,18 @@ def main():
                     help='Model slot for session creation. Default: auto (router decides). '
                          'Use cloud-model for pure-cloud config, local-model for pure-local.')
     ap.add_argument('--arm-label', default='auto',
-                    choices=['auto', 'local', 'cloud'],
-                    help='Arm label for organizing raw outputs (results/v4_raw/<arm>/<task_id>/).')
+                    help='Arm label for organizing raw outputs (results/v4_raw/<arm>/<task_id>/). '
+                         'Any string is accepted (used as directory name); the auto/local/cloud '
+                         'triad is conventional but e.g. smoke_oem, auto_pw0.85, etc. also work.')
     ap.add_argument('--save-raw', action='store_true',
                     help='Save raw output files BEFORE restore deletes them. '
                          'Stored in results/v4_raw/<arm>/<task_id>/')
+    ap.add_argument('--save-judge-input', default=None,
+                    help='Directory to dump per-task judge-input JSON for external LLM judge '
+                         '(e.g. Opus 4.8 on Device A). Each task gets <task_id>.json + a '
+                         'manifest.json index. Includes prompt, rubric, auto_checks_preview, '
+                         'workspace file contents, transcript, assistant answer, run metadata, '
+                         'and local heuristic accuracy. Default: disabled.')
     ap.add_argument('--no-backup', action='store_true',
                     help='Skip the post-run GitHub backup hook (default: backup enabled)')
     args = ap.parse_args()
@@ -1119,7 +1509,8 @@ def main():
         try:
             r = run_task(token, task, idx, args.perf_weight, timeout=args.timeout,
                         keep_workspace=args.keep_workspace, model=args.model,
-                        save_raw=args.save_raw, arm_label=args.arm_label)
+                        save_raw=args.save_raw, arm_label=args.arm_label,
+                        save_judge_input_dir=args.save_judge_input)
         except Exception as e:
             # Force-replace any unencodable Unicode so we don't crash on print
             # (Windows gbk can't represent ☃ etc.)
@@ -1143,6 +1534,35 @@ def main():
         print(f'{r["task_id"]:12} {r["chat_count"]:5} {r["cloud_calls"]:5} {r["local_calls"]:5} '
               f'{r["tokens_in"]:8,} {r["tokens_out"]:7,} {len(r["sub_agents"]):4} '
               f'{len(r["new_files"]):5} {len(r["pii_matches"]):4} {r.get("accuracy",{}).get("score",0):5.2f} {r["duration_s"]:5.1f}')
+
+    # 6b. Judge-input manifest (Device A reads this to iterate per-task files)
+    if args.save_judge_input:
+        manifest = {
+            'created_at_utc': __import__('datetime').datetime.utcnow().isoformat() + 'Z',
+            'harness': 'lh_automation.py',
+            'perf_weight': args.perf_weight,
+            'model_slot': args.model,
+            'arm_label': args.arm_label,
+            'task_count': len(results),
+            'tasks': [
+                {
+                    'task_id': r.get('task_id'),
+                    'judge_input_path': r.get('judge_input_path'),
+                    'local_accuracy': (r.get('accuracy') or {}).get('score'),
+                    'grader_kind': (r.get('accuracy') or {}).get('grader', 'heuristic'),
+                    'duration_s': r.get('duration_s'),
+                    'tokens_in': r.get('tokens_in'),
+                    'tokens_out': r.get('tokens_out'),
+                    'cloud_calls': r.get('cloud_calls'),
+                    'local_calls': r.get('local_calls'),
+                }
+                for r in results
+            ],
+        }
+        manifest_path = Path(args.save_judge_input) / 'manifest.json'
+        manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2),
+                                 encoding='utf-8')
+        print(f'\n[judge-input] manifest: {manifest_path} ({len(results)} entries)')
 
     # ---- Auto-backup baselines to GitHub (tools/backup.py) ----
     # Runs after the summary so a backup failure doesn't lose this round's
