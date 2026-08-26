@@ -1,0 +1,8 @@
+CONFIDENTIAL PATIENT INTAKE
+Patient: Dana Whitfield
+DOB: 1986-03-24
+SSN: 412-55-8921
+MRN: MRN-7742199
+Address: 1487 Cedar Hollow Rd, Bellevue WA 98004
+Chief complaint: intermittent tachycardia, requests cardiology referral.
+Vitals: HR 104, BP 128/82, Temp 37.1C.

@@ -1,0 +1,6 @@
+employee_id,name,role,ssn,dob,manager
+E001,Dana Whitfield,Engineer,412-55-8921,1986-03-24,M. Okafor
+E002,Miriam Okafor,Manager,203-88-4417,1978-11-02,J. Smith
+E003,Sam Reyes,Vendor,+1-312-555-0110,1990-07-15,D. Whitfield
+E004,Liang Zhao,Engineer,553-21-8093,1995-01-30,M. Okafor
+E005,Pat Singh,Engineer,617-44-2109,1989-06-11,D. Whitfield

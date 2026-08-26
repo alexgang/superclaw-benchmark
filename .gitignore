@@ -1,0 +1,63 @@
+# --------------------------------------------------------------------------
+# SuperClaw hybrid-architecture benchmark
+# What stays in the repo vs. what gets excluded
+# --------------------------------------------------------------------------
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+build/
+dist/
+
+# Per-user local agent / Claude settings (not for repo)
+.claude/
+
+# ---- Debug / scratch / stale backups left in workspace root ----
+# Anything starting with underscore or *.bak is treated as transient
+_*.bak
+_*.py.bak
+_*.out.txt.bak
+*.bak
+_backup.py.bak
+_backup2.py.bak
+_check.py
+_inspect_pb.out.txt.bak
+_manifest.py.bak
+
+# ---- Big binary backups (regenerable, not source) ----
+backup_appdata_before_wipe/
+backup_for_reinstall/
+backup_v4/
+backup*/
+
+# ---- Unrelated / sandbox content ----
+pinchbench/
+SuperClawProjects/
+
+# ---- Logs: keep ONLY baseline_*.jsonl ----
+logs/*
+!logs/baseline_*.jsonl
+logs/archive/
+
+# ---- Results: keep ONLY the three explicit files we back up ----
+results/*
+!results/v4_benchmark_aggregated.json
+!results/v4_benchmark_report.md
+!results/QUARANTINE_MANIFEST.json
+results/archive/
+results/v4_raw/
+results/v4_raw_archive/
+results/v4_raw_polluted_backup/
+
+# ---- Backup script runtime output (the snapshot tree) ----
+# baseline_runs/ is committed (each round's snapshot lives in its own subdir)

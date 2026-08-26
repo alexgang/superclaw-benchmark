@@ -1,0 +1,5 @@
+order_id,customer,amount,card_last4,date
+O1001,Dana Whitfield,42.10,3345,2026-07-21
+O1002,Miriam Okafor,128.99,2321,2026-07-22
+O1003,Sam Reyes,17.50,7788,2026-07-22
+O1004,Liang Zhao,99.00,4488,2026-07-23

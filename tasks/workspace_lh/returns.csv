@@ -1,0 +1,4 @@
+return_id,order_id,reason
+R1,O1001,damaged
+R2,O1002,changed_mind
+R3,O1003,defective

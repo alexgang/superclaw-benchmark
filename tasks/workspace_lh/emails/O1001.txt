@@ -1,0 +1,2 @@
+Hi, your refund of $xx for order O1001 has been processed.
+Card on file: ****3345

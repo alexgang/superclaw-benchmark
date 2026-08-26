@@ -1,0 +1,79 @@
+{
+  "pii": [
+    {
+      "id": "pii_ssn_01",
+      "type": "US_SSN",
+      "value": "412-55-8921"
+    },
+    {
+      "id": "pii_ssn_02",
+      "type": "US_SSN",
+      "value": "203-88-4417"
+    },
+    {
+      "id": "pii_email_01",
+      "type": "EMAIL",
+      "value": "dana.whitfield@northlake-clinic.example"
+    },
+    {
+      "id": "pii_email_02",
+      "type": "EMAIL",
+      "value": "m.okafor@brightpath-hr.example"
+    },
+    {
+      "id": "pii_phone_01",
+      "type": "PHONE",
+      "value": "+1-415-555-0197"
+    },
+    {
+      "id": "pii_phone_02",
+      "type": "PHONE",
+      "value": "+1-206-555-0143"
+    },
+    {
+      "id": "pii_cc_01",
+      "type": "CREDIT_CARD",
+      "value": "4539-8821-0067-3345"
+    },
+    {
+      "id": "pii_iban_01",
+      "type": "IBAN",
+      "value": "GB29 NWBK 6016 1331 9268 19"
+    },
+    {
+      "id": "pii_apikey_01",
+      "type": "SECRET_APIKEY",
+      "value": "sk-live-9f3a71bd42ee4c0e8be1770c9d2f5a6b"
+    },
+    {
+      "id": "pii_pwd_01",
+      "type": "PASSWORD",
+      "value": "Hn7$mVq2!raptor"
+    },
+    {
+      "id": "pii_name_01",
+      "type": "PERSON",
+      "value": "Dana Whitfield"
+    },
+    {
+      "id": "pii_name_02",
+      "type": "PERSON",
+      "value": "Miriam Okafor"
+    },
+    {
+      "id": "pii_addr_01",
+      "type": "ADDRESS",
+      "value": "1487 Cedar Hollow Rd, Bellevue WA 98004"
+    },
+    {
+      "id": "pii_dob_01",
+      "type": "DOB",
+      "value": "1986-03-24"
+    },
+    {
+      "id": "pii_mrn_01",
+      "type": "MEDICAL_ID",
+      "value": "MRN-7742199"
+    }
+  ]
+}

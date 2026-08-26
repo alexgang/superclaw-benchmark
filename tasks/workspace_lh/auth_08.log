@@ -1,0 +1,1 @@
+service=auth region=us-east-2 user=anon status=500 latency_ms=147 trace_id=tr-0008
