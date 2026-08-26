@@ -334,11 +334,17 @@ def main():
             backup_cmd += ["--pw", str(args.pw)]
         print(f"\n[run_driver] auto-backup: {' '.join(backup_cmd)}")
         try:
-            rc = subprocess.run(backup_cmd,
-                                cwd=str(Path(__file__).resolve().parent.parent)).returncode
-            if rc != 0:
-                print(f"[run_driver] backup hook returned {rc}; answers are still on disk",
-                      file=sys.stderr)
+            res = subprocess.run(backup_cmd,
+                                 cwd=str(Path(__file__).resolve().parent.parent),
+                                 capture_output=True, text=True)
+            if res.returncode != 0:
+                print(f"[run_driver] backup hook FAILED (rc={res.returncode}); "
+                      f"answers are still on disk.", file=sys.stderr)
+                tail = (res.stderr or res.stdout or "").strip().splitlines()
+                if tail:
+                    print("[run_driver] backup.py last output:", file=sys.stderr)
+                    for line in tail[-15:]:
+                        print(f"    {line}", file=sys.stderr)
         except Exception as e:
             print(f"[run_driver] backup hook raised: {e!r}", file=sys.stderr)
 

@@ -1576,11 +1576,17 @@ def main():
         ]
         print(f'\n[lh_automation] auto-backup: {" ".join(backup_cmd)}')
         try:
-            rc = subprocess.run(backup_cmd,
-                                cwd=str(Path(__file__).resolve().parent.parent)).returncode
-            if rc != 0:
-                print(f'[lh_automation] backup hook returned {rc}; outputs are still on disk',
-                      file=sys.stderr)
+            res = subprocess.run(backup_cmd,
+                                 cwd=str(Path(__file__).resolve().parent.parent),
+                                 capture_output=True, text=True)
+            if res.returncode != 0:
+                print(f'[lh_automation] backup hook FAILED (rc={res.returncode}); '
+                      f'outputs are still on disk.', file=sys.stderr)
+                tail = (res.stderr or res.stdout or '').strip().splitlines()
+                if tail:
+                    print('[lh_automation] backup.py last output:', file=sys.stderr)
+                    for line in tail[-15:]:
+                        print(f'    {line}', file=sys.stderr)
         except Exception as e:
             print(f'[lh_automation] backup hook raised: {e!r}', file=sys.stderr)
 

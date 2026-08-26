@@ -69,10 +69,44 @@ def _sha256(p: Path) -> str:
     return h.hexdigest()
 
 
+def _find_git() -> str:
+    """Locate git.exe, even when the current Python's PATH doesn't include it.
+
+    Order of resolution:
+      1. ``shutil.which('git')`` on the inherited PATH
+      2. Common Windows install locations
+      3. ``GIT_BIN`` env var (override)
+    """
+    override = os.environ.get("GIT_BIN", "").strip()
+    if override and Path(override).is_file():
+        return override
+    found = shutil.which("git")
+    if found:
+        return found
+    candidates = [
+        r"C:\Program Files\Git\bin\git.exe",
+        r"C:\Program Files\Git\cmd\git.exe",
+        r"C:\Program Files (x86)\Git\bin\git.exe",
+    ]
+    for c in candidates:
+        if Path(c).is_file():
+            return c
+    raise FileNotFoundError(
+        "git executable not found. Install Git for Windows "
+        "(https://git-scm.com/download/win) or set $env:GIT_BIN."
+    )
+
+
+_GIT_BIN: str | None = None
+
+
 def _git(*args: str, check: bool = True, capture: bool = True) -> subprocess.CompletedProcess:
     """Run a git command in REPO_ROOT. Returns CompletedProcess."""
+    global _GIT_BIN
+    if _GIT_BIN is None:
+        _GIT_BIN = _find_git()
     return subprocess.run(
-        ["git", "-C", str(REPO_ROOT), *args],
+        [_GIT_BIN, "-C", str(REPO_ROOT), *args],
         check=check,
         capture_output=capture,
         text=True,
