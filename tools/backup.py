@@ -203,9 +203,26 @@ def main() -> int:
         print("[backup] --dry-run set; skipping copy/git/commit/push")
         return 0
 
-    # ---- Stage the snapshot dir ----
-    add_target = str((SNAP_DIR / rid).relative_to(REPO_ROOT)).replace("\\", "/")
-    r = _git("add", "--", add_target)
+    # ---- Stage: snapshot dir + canonical baseline/result files (so the
+    # authoritative results/ and logs/baseline_*.jsonl in the repo always
+    # reflect the latest run, not a 1-round-stale snapshot). ----
+    add_targets: list[str] = [
+        str((SNAP_DIR / rid).relative_to(REPO_ROOT)).replace("\\", "/"),
+    ]
+    # Canonical files (whitelist; explicit so we never accidentally pick up junk)
+    canonical_globs: list[str] = [
+        "logs/baseline_*.jsonl",
+        "results/v4_benchmark_aggregated.json",
+        "results/v4_benchmark_report.md",
+        "results/QUARANTINE_MANIFEST.json",
+    ]
+    # Resolve globs against the working tree (the .gitignore allows exactly these)
+    for pat in canonical_globs:
+        for p in REPO_ROOT.glob(pat):
+            rel = p.relative_to(REPO_ROOT).as_posix()
+            if rel not in add_targets:
+                add_targets.append(rel)
+    r = _git("add", "--", *add_targets)
     if r.returncode != 0:
         print(f"[backup] git add failed:\n{r.stderr}", file=sys.stderr)
         return r.returncode
