@@ -240,7 +240,7 @@ Same task, same pw — output varies 2-3× in file count, all depend on cloud ro
 - `baseline_pw0.85_auto_lh.jsonl` (8 tasks)
 - `baseline_pw0.85_auto_cppm.jsonl` (3 tasks)
 - `baseline_pw0.85_cloud_lh.jsonl` (8 tasks)
-- `baseline_pw0.85_cloud_cppm.jsonl` (3 tasks)
+- `baseline_pw0.85_cloud_all11.jsonl` (11 rows: cppm01–03 used here, plus an earlier lh01–08 cloud run not used in aggregation — see NAMING_AUDIT.md)
 - `baseline_pw0.85_local_lh.jsonl` (8 tasks)
 - `baseline_pw0.85_local_cppm.jsonl` (3 tasks)
 - `pb_top3_pw0.85_auto_v5.jsonl` (84 tasks)
@@ -255,7 +255,7 @@ Same task, same pw — output varies 2-3× in file count, all depend on cloud ro
 
 ### v4_raw (live + archive)
 
-- `results/v4_raw/local/`: 36 task dirs (PB + lh + cppm)
+- `results/v4_raw/local_STALE_MIXED/`: 36 task dirs (PB + lh + cppm) — **stale/mixed, do not cite**; see `NAMING_AUDIT.md`
 - `results/v4_raw/cloud/`: 9 task dirs (lh + cppm)
 - `results/v4_raw/auto/`: 41 task dirs (lh + cppm + 30 PB) — **NOTE**: mostly overwritten by latest runs
 - `results/v4_raw_polluted_backup/20260825_113440_*/`: 18 polluted dirs (preserved)
