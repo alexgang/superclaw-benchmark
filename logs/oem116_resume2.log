@@ -1,0 +1,1993 @@
+OEM PinchBench rerun ¡ª auto, pw=0.85
+  tasks file: tasks_pinchbench_oem.jsonl (116 cases)
+  python:     C:\Users\Trekker-PTL\miniforge3\python.exe
+  harness:    lh_automation.py
+  output:     oem116_auto_pw085.jsonl
+  arm-label:  oem_auto_pw0.85
+  timeout:    240s/task (v3 lh baseline)
+  estimated:  ~3.5h wall-clock (mean 110s/task; 116 tasks)
+
+NOTE: oem116_auto_pw085.jsonl already exists with 23 rows.
+  Resuming from index 23 (append mode).
+cmd: C:\Users\Trekker-PTL\miniforge3\python.exe C:\Users\Trekker-PTL\superclaw_benchmark\harness\lh_automation.py --perf-weight 0.85 --model auto ... (truncated)
+env: LH_TASKS_FILE=tasks_pinchbench_oem.jsonl, HTTP(S)_PROXY unset
+
+starting at 2026-08-27 11:10:50 ...
+perf_weight set to 0.85 (via --perf-weight arg)
+OWT token: owt_2460833aceaf411a...
+loaded 93 tasks
+output: C:\Users\Trekker-PTL\superclaw_benchmark\logs\oem116_auto_pw085.jsonl
+
+pristine workspace baseline: 15 files
+
+
+============================================================
+[0] pb_csv_pension_risk (pw=0.85, model=auto, prompt=1926 chars)
+============================================================
+  setup: created 1 data files: [('us_pension_by_state.csv', 24518)]
+  session: ses_fbecd1670ffee85CWPaUAXhm8N
+  trigger: HTTP 204 ('')
+  duration: 149.8s
+  tokens: in=3,903  out=868
+  chat.completion: 27 (23 cloud + 4 local)
+  sub-agents: 1
+    - local-file-agent: in=50,541 out=10,683 title='Pension risk assessment analysis (@local-file-agent subagent'
+  new files: 3
+    - iris_classification.md (5042 B, md5=bf670246...)
+    - pension_analysis.py (14075 B, md5=d97b07f9...)
+    - pension_risk_report.md (8026 B, md5=80116904...)
+  accuracy: 0.80 (8/10 checks passed)
+    FAIL preview:district_hotspots: score=0.0
+    FAIL preview:oh13_top_district: score=0.0
+  workspace restored: deleted 1 files, preserved 2 modified files (manual recovery)
+
+============================================================
+[1] pb_csv_stations_by_elevation (pw=0.85, model=auto, prompt=1123 chars)
+============================================================
+  setup: created 1 data files: [('idaho_weather_stations.csv', 18817)]
+  session: ses_fbecacd04ffe1DFYp1ddLGNfI8
+  trigger: HTTP 204 ('')
+  duration: 46.6s
+  tokens: in=985  out=568
+  chat.completion: 9 (9 cloud + 0 local)
+  sub-agents: 1
+    - local-file-agent: in=13,156 out=2,524 title='Analyze Idaho weather stations elevation (@local-file-agent '
+  new files: 1
+    - elevation_report.md (5686 B, md5=a473257c...)
+  accuracy: 1.00 (7/7 checks passed)
+  workspace restored: deleted 2 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[2] pb_csv_stations_coverage (pw=0.85, model=auto, prompt=1266 chars)
+============================================================
+  setup: created 1 data files: [('idaho_weather_stations.csv', 18817)]
+  session: ses_fbeca16e1ffe1UWHBPsmCD7hBn
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.8s without finish=stop
+  duration: 240.8s
+  tokens: in=7,975  out=81
+  chat.completion: 26 (22 cloud + 4 local)
+  sub-agents: 1
+    - local-file-agent: in=21,149 out=11,429 title='Analyze Idaho weather stations CSV (@local-file-agent subage'
+  new files: 4
+    - analyze.py (4898 B, md5=2c81207a...)
+    - check.py (879 B, md5=11cf18e0...)
+    - coverage_report.md (10080 B, md5=49ca580b...)
+    - iris_summary.md (1913 B, md5=f8a9af33...)
+  accuracy: 1.00 (7/7 checks passed)
+  workspace restored: deleted 5 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[3] pb_csv_stations_filter (pw=0.85, model=auto, prompt=1286 chars)
+============================================================
+  setup: created 1 data files: [('idaho_weather_stations.csv', 18817)]
+  session: ses_fbec669fcffemNCUh2D0Sw6m6y
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.9s without finish=stop
+  duration: 240.9s
+  tokens: in=0  out=0
+  chat.completion: 8 (1 cloud + 7 local)
+  sub-agents: 1
+    - local-file-agent: in=0 out=0 title='Read CSV file to understand data structure (@local-file-agen'
+  new files: 1
+    - gapminder_life_expectancy.csv (14 B, md5=3be7b8b1...)
+  accuracy: 0.00 (0/7 checks passed)
+    FAIL preview:report_created: score=0.0
+    FAIL preview:nws_high_count: score=0.0
+    FAIL preview:nws_highest: score=0.0
+    FAIL preview:nrcs_custer_count: score=0.0
+    FAIL preview:nrcs_custer_top: score=0.0
+    FAIL preview:southern_filter: score=0.0
+    FAIL preview:cross_tabulation: score=0.0
+  workspace restored: deleted 2 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[4] pb_csv_stock_best_worst (pw=0.85, model=auto, prompt=1052 chars)
+============================================================
+  setup: created 1 data files: [('apple_stock_2014.csv', 5488)]
+  session: ses_fbec2bcabffehCq7ni33oc9uAt
+  trigger: HTTP 204 ('')
+  duration: 127.6s
+  tokens: in=9,188  out=702
+  chat.completion: 20 (15 cloud + 5 local)
+  sub-agents: 1
+    - local-file-agent: in=14,714 out=4,810 title='Analyze AAPL 2014 stock data (@local-file-agent subagent)'
+  new files: 3
+    - analyze.py (8921 B, md5=b4460a18...)
+    - best_worst_days_report.md (3987 B, md5=d010ab13...)
+    - iris_classification.md (5973 B, md5=57d48055...)
+  accuracy: 1.00 (9/9 checks passed)
+  workspace restored: deleted 4 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[5] pb_csv_stock_trend (pw=0.85, model=auto, prompt=965 chars)
+============================================================
+  setup: created 1 data files: [('apple_stock_2014.csv', 5488)]
+  session: ses_fbec0c9d3ffedG7q2wKIslErPY
+  trigger: HTTP 204 ('')
+  duration: 119.4s
+  tokens: in=17,231  out=3,151
+  chat.completion: 19 (15 cloud + 4 local)
+  sub-agents: 1
+    - local-file-agent: in=11,221 out=3,412 title='Analyze AAPL 2014 stock CSV (@local-file-agent subagent)'
+  new files: 4
+    - analyze.py (7666 B, md5=e0462dd9...)
+    - analyze2.py (1839 B, md5=d0270777...)
+    - pension_risk_report.md (8026 B, md5=80116904...)
+    - stock_trend_report.md (5106 B, md5=3c51b193...)
+  accuracy: 1.00 (9/9 checks passed)
+  workspace restored: deleted 4 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[6] pb_csv_stock_volatility (pw=0.85, model=auto, prompt=1141 chars)
+============================================================
+  setup: created 1 data files: [('apple_stock_2014.csv', 5488)]
+  session: ses_fbebef6faffejm4NdyI0ovFamC
+  trigger: HTTP 204 ('')
+  duration: 66.9s
+  tokens: in=9,599  out=972
+  chat.completion: 11 (9 cloud + 2 local)
+  sub-agents: 1
+    - local-file-agent: in=18,117 out=3,259 title='Analyze AAPL 2014 volatility (@local-file-agent subagent)'
+  new files: 3
+    - iris_summary.md (1913 B, md5=f8a9af33...)
+    - volatility_report.md (1819 B, md5=7527d527...)
+    - vol_analysis.py (3819 B, md5=ce86c95a...)
+  accuracy: 1.00 (8/8 checks passed)
+  workspace restored: deleted 4 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[7] pb_csv_temp_anomalies (pw=0.85, model=auto, prompt=1322 chars)
+============================================================
+  setup: created 1 data files: [('global_temperature.csv', 83924)]
+  session: ses_fbebdf191ffehB6DW8fYw6m4Xg
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 241.1s without finish=stop
+  duration: 241.1s
+  tokens: in=9,976  out=59
+  chat.completion: 12 (0 cloud + 12 local)
+  sub-agents: 0
+  new files: 1
+    - iris_summary.md (1952 B, md5=088f2e3a...)
+  accuracy: 0.00 (0/9 checks passed)
+    FAIL preview:report_created: score=0.0
+    FAIL preview:hottest_month: score=0.0
+    FAIL preview:coldest_month: score=0.0
+    FAIL preview:warmest_years: score=0.0
+    FAIL preview:coldest_years: score=0.0
+    FAIL preview:outlier_analysis: score=0.0
+    FAIL preview:top_outlier_zscore: score=0.0
+    FAIL preview:yoy_changes: score=0.0
+    FAIL preview:summary: score=0.0
+  workspace restored: deleted 2 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[8] pb_csv_temp_decades (pw=0.85, model=auto, prompt=1316 chars)
+============================================================
+  setup: created 1 data files: [('global_temperature.csv', 83924)]
+  session: ses_fbeba439affedIeV9ZwPuvWDcl
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.8s without finish=stop
+  duration: 240.8s
+  tokens: in=8,989  out=31
+  chat.completion: 11 (0 cloud + 11 local)
+  sub-agents: 0
+  new files: 1
+    - iris_summary.md (1952 B, md5=088f2e3a...)
+  accuracy: 0.00 (0/9 checks passed)
+    FAIL preview:report_created: score=0.0
+    FAIL preview:decade_table: score=0.0
+    FAIL preview:coldest_decade: score=0.0
+    FAIL preview:warmest_decade: score=0.0
+    FAIL preview:decade_changes: score=0.0
+    FAIL preview:largest_transition: score=0.0
+    FAIL preview:variability: score=0.0
+    FAIL preview:per_decade_extremes: score=0.0
+    FAIL preview:source_comparison: score=0.0
+  workspace restored: deleted 2 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[9] pb_csv_temp_trend (pw=0.85, model=auto, prompt=1268 chars)
+============================================================
+  setup: created 1 data files: [('global_temperature.csv', 83924)]
+  session: ses_fbeb696a7ffeYnh38yJt4VhlUW
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.7s without finish=stop
+  duration: 240.7s
+  tokens: in=0  out=0
+  chat.completion: 5 (0 cloud + 5 local)
+  sub-agents: 0
+  new files: 0
+  accuracy: 0.00 (0/9 checks passed)
+    FAIL preview:report_created: score=0.0
+    FAIL preview:overall_rate: score=0.0
+    FAIL preview:pre1950_rate: score=0.0
+    FAIL preview:post1950_rate: score=0.0
+    FAIL preview:acceleration: score=0.0
+    FAIL preview:first_05: score=0.0
+    FAIL preview:first_10: score=0.0
+    FAIL preview:decade_comparison: score=0.0
+    FAIL preview:summary: score=0.0
+  workspace restored: deleted 1 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[10] pb_cve_security_triage (pw=0.85, model=auto, prompt=1517 chars)
+============================================================
+  setup: created 2 data files: [('vulnerability_scan.json', 7329), ('deployment_context.md', 1399)]
+  session: ses_fbeb2e9e3ffevIRz5X2xXUMX7i
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.5s without finish=stop
+  duration: 240.5s
+  tokens: in=0  out=0
+  chat.completion: 7 (0 cloud + 7 local)
+  sub-agents: 0
+  new files: 0
+  accuracy: 0.00 (0/11 checks passed)
+    FAIL preview:triage_report_created: score=0.0
+    FAIL preview:remediation_plan_created: score=0.0
+    FAIL preview:all_cves_covered: score=0.0
+    FAIL preview:priorities_assigned: score=0.0
+    FAIL preview:express_rce_is_p0: score=0.0
+    FAIL preview:jwt_bypass_is_p0: score=0.0
+    FAIL preview:build_only_lower_priority: score=0.0
+    FAIL preview:pci_scope_mentioned: score=0.0
+    FAIL preview:deploy_windows_in_plan: score=0.0
+    FAIL preview:major_version_flagged: score=0.0
+    FAIL preview:executive_summary_exists: score=0.0
+  workspace restored: deleted 2 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[11] pb_daily_summary (pw=0.85, model=auto, prompt=298 chars)
+============================================================
+  setup: created 5 data files: [('research/market_analysis.txt', 940), ('research/competitor_intelligence.txt', 1242), ('research/customer_feedback.txt', 1270), ('research/product_updates.txt', 1123), ('research/industry_news.txt', 1210)]
+  session: ses_fbeaf3e12ffea6JGlrxMBbULPe
+  trigger: HTTP 204 ('')
+  duration: 89.0s
+  tokens: in=8,948  out=446
+  chat.completion: 10 (8 cloud + 2 local)
+  sub-agents: 1
+    - local-file-agent: in=25,768 out=5,468 title='Synthesize research files into briefing (@local-file-agent s'
+  new files: 1
+    - daily_briefing.md (10350 B, md5=8dca36fc...)
+  accuracy: UNGRADED (no checks ran; 0/0 incidental checks passed)
+  workspace restored: deleted 6 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[12] pb_dockerfile_optimization (pw=0.85, model=auto, prompt=863 chars)
+============================================================
+  setup: created 2 data files: [('Dockerfile', 597), ('requirements.txt', 75)]
+  session: ses_fbeade21affe65Jg7EOJMZLMIo
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.7s without finish=stop
+  duration: 240.7s
+  tokens: in=8,851  out=28
+  chat.completion: 14 (5 cloud + 9 local)
+  sub-agents: 0
+  new files: 1
+    - analyze_temperature.py (7731 B, md5=2909a5ae...)
+  accuracy: 0.00 (0/8 checks passed)
+    FAIL preview:file_created: score=0.0
+    FAIL preview:smaller_base_image: score=0.0
+    FAIL preview:consolidated_run: score=0.0
+    FAIL preview:removed_editors: score=0.0
+    FAIL preview:requirements_before_source: score=0.0
+    FAIL preview:cache_cleanup: score=0.0
+    FAIL preview:no_debug_env: score=0.0
+    FAIL preview:preserves_port_and_cmd: score=0.0
+  workspace restored: deleted 3 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[13] pb_earnings_analysis (pw=0.85, model=auto, prompt=331 chars)
+============================================================
+  session: ses_fbeaa353bffe3F4sKJmnNpdhmI
+  trigger: HTTP 204 ('')
+  duration: 143.8s
+  tokens: in=19,170  out=974
+  chat.completion: 13 (6 cloud + 7 local)
+  sub-agents: 0
+  new files: 2
+    - Dockerfile.optimized (194 B, md5=3aaadc35...)
+    - gitlab_margin_guidance.txt (1217 B, md5=27228ef7...)
+  accuracy: 1.00 (5/5 checks passed)
+  workspace restored: deleted 2 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[14] pb_eli5_pdf_summary (pw=0.85, model=auto, prompt=432 chars)
+============================================================
+  setup: created 1 data files: [('GPT4.pdf', 7370286)]
+  session: ses_fbea802c1ffeCbnbRWNGMPRoDr
+  trigger: HTTP 204 ('')
+  duration: 99.1s
+  tokens: in=10,151  out=951
+  chat.completion: 18 (16 cloud + 2 local)
+  sub-agents: 2
+    - local-file-agent: in=6,563 out=876 title='Summarize GPT4 paper ELI5 (@local-file-agent subagent)'
+    - local-file-agent: in=7,049 out=904 title='Summarize GPT4 paper ELI5 (@local-file-agent subagent)'
+  new files: 3
+    - eli5_summary.txt (1972 B, md5=3b8d2c65...)
+    - tmp\pdf_cache\b77fe21de54a8ca991bc1ed4aa608e49f2ea0916cb4cd22bebb9ddd7297c38aa.json (105 B, md5=460f6d57...)
+    - tmp\pdf_md\GPT4_ec3e335d707b.md (852076 B, md5=cc8e01d3...)
+  accuracy: UNGRADED (no checks ran; 0/0 incidental checks passed)
+  workspace restored: deleted 4 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[15] pb_email (pw=0.85, model=auto, prompt=109 chars)
+============================================================
+  session: ses_fbea67f30ffeaO5PhT5UymCjOl
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.8s without finish=stop
+  duration: 240.8s
+  tokens: in=8,685  out=172
+  chat.completion: 13 (0 cloud + 13 local)
+  sub-agents: 0
+  new files: 3
+    - email_draft.txt (600 B, md5=f8b071c3...)
+    - gen_report.py (5682 B, md5=6d1b0934...)
+    - iris_summary.md (1952 B, md5=088f2e3a...)
+  accuracy: UNGRADED (no checks ran; 0/0 incidental checks passed)
+  workspace restored: deleted 3 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[16] pb_email_reply_drafting (pw=0.85, model=auto, prompt=775 chars)
+============================================================
+  setup: created 5 data files: [('inbox/unread_01_vendor_security_followup.txt', 509), ('inbox/unread_02_customer_escalation.txt', 548), ('inbox/unread_03_internal_review_request.txt', 385), ('inbox/unread_04_newsletter.txt', 305), ('inbox/unread_05_partner_meeting_reschedule.txt', 430)]
+  session: ses_fbea2d253ffe4QTq9qm53I3ipw
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.7s without finish=stop
+  duration: 240.7s
+  tokens: in=8,844  out=27
+  chat.completion: 9 (0 cloud + 9 local)
+  sub-agents: 0
+  new files: 2
+    - analyze_temperature.py (8751 B, md5=3a0c0fd9...)
+    - Dockerfile.optimized (194 B, md5=3aaadc35...)
+  accuracy: UNGRADED (no checks ran; 0/0 incidental checks passed)
+  workspace restored: deleted 7 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[17] pb_email_search (pw=0.85, model=auto, prompt=773 chars)
+============================================================
+  setup: created 11 data files: [('emails/2026-01-15_project_alpha_kickoff.txt', 1199), ('emails/2026-01-22_alpha_data_pipeline.txt', 1370), ('emails/2026-02-03_alpha_budget_concern.txt', 1126), ('emails/2026-02-05_alpha_api_design.txt', 1441), ('emails/2026-02-10_alpha_security_review.txt', 1564), ('emails/2026-02-12_alpha_phase1_complete.txt', 1268), ('emails/2026-02-14_alpha_client_feedback.txt', 1905), ('emails/2026-02-18_alpha_timeline_slip.txt', 1583), ('emails/2026-02-20_unrelated_team_lunch.txt', 513), ('emails/2026-02-22_unrelated_conference.txt', 569), ('emails/2026-02-25_alpha_frontend_progress.txt', 1283)]
+  session: ses_fbe9f25d3ffeRhPP3DV6JlFx3v
+  trigger: HTTP 204 ('')
+  duration: 66.9s
+  tokens: in=11,939  out=1,885
+  chat.completion: 9 (9 cloud + 0 local)
+  sub-agents: 1
+    - local-file-agent: in=11,073 out=2,467 title='Search emails for Project Alpha (@local-file-agent subagent)'
+  new files: 1
+    - alpha_summary.md (6318 B, md5=204d1938...)
+  accuracy: 1.00 (10/10 checks passed)
+  workspace restored: deleted 12 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[18] pb_email_triage (pw=0.85, model=auto, prompt=793 chars)
+============================================================
+  setup: created 13 data files: [('inbox/email_01.txt', 565), ('inbox/email_02.txt', 495), ('inbox/email_03.txt', 505), ('inbox/email_04.txt', 665), ('inbox/email_05.txt', 741), ('inbox/email_06.txt', 391), ('inbox/email_07.txt', 657), ('inbox/email_08.txt', 668), ('inbox/email_09.txt', 587), ('inbox/email_10.txt', 799), ('inbox/email_11.txt', 490), ('inbox/email_12.txt', 745), ('inbox/email_13.txt', 686)]
+  session: ses_fbe9e1fe3ffe3CyvltGUHhBa9U
+  trigger: HTTP 204 ('')
+  duration: 32.5s
+  tokens: in=13,013  out=2,014
+  chat.completion: 5 (5 cloud + 0 local)
+  sub-agents: 0
+  new files: 1
+    - triage_report.md (5725 B, md5=a65649b0...)
+  accuracy: 0.82 (9/11 checks passed)
+    FAIL preview:spam_is_low_priority: score=0.0
+    FAIL preview:sorted_by_priority: score=0.5
+  workspace restored: deleted 14 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[19] pb_events (pw=0.85, model=auto, prompt=102 chars)
+============================================================
+  session: ses_fbe9da069ffe5GSjpDrYo5PC4d
+  trigger: HTTP 204 ('')
+  duration: 30.4s
+  tokens: in=27,783  out=846
+  chat.completion: 8 (7 cloud + 1 local)
+  sub-agents: 0
+  new files: 2
+    - events.md (922 B, md5=f347e2d6...)
+    - global_temperature.csv (5234 B, md5=eeddf287...)
+  accuracy: UNGRADED (no checks ran; 0/0 incidental checks passed)
+  workspace restored: deleted 2 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[20] pb_executive_lookup (pw=0.85, model=auto, prompt=230 chars)
+============================================================
+  session: ses_fbe9d294affeThL9Ddas2JpuuZ
+  trigger: HTTP 204 ('')
+  duration: 14.2s
+  tokens: in=26,069  out=366
+  chat.completion: 4 (4 cloud + 0 local)
+  sub-agents: 0
+  new files: 1
+    - gitlab_cfo.txt (934 B, md5=280f0601...)
+  accuracy: 1.00 (5/5 checks passed)
+  workspace restored: deleted 1 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[21] pb_financial_ratio_calculation (pw=0.85, model=auto, prompt=264 chars)
+============================================================
+  session: ses_fbe9cf180ffePHwAX8Jaog5rfG
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.7s without finish=stop
+  duration: 240.7s
+  tokens: in=8,723  out=25
+  chat.completion: 11 (0 cloud + 11 local)
+  sub-agents: 0
+  new files: 0
+  accuracy: 0.00 (0/5 checks passed)
+    FAIL preview:file_created: score=0.0
+    FAIL preview:has_inputs: score=0.0
+    FAIL preview:has_formula: score=0.0
+    FAIL preview:ratio_correct: score=0.0
+    FAIL preview:readable: score=0.0
+
+============================================================
+[22] pb_k8s_debugging (pw=0.85, model=auto, prompt=1045 chars)
+============================================================
+  setup: created 1 data files: [('deployment.yml', 1366)]
+  session: ses_fbe9944efffe3aZullugRLC5Xj
+  trigger: HTTP 204 ('')
+  duration: 18.2s
+  tokens: in=2,297  out=397
+  chat.completion: 9 (7 cloud + 2 local)
+  sub-agents: 0
+  new files: 1
+    - deployment.yml (1445 B, md5=b00006ba...)
+  accuracy: 1.00 (6/6 checks passed)
+  workspace restored: deleted 1 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[23] pb_log_apache_client_issues (pw=0.85, model=auto, prompt=797 chars)
+============================================================
+  setup: created 1 data files: [('apache_error.log', 97352)]
+  session: ses_fbe98fd42ffemmp0n5QakbN4ip
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.8s without finish=stop
+  duration: 240.8s
+  tokens: in=8,850  out=28
+  chat.completion: 11 (0 cloud + 11 local)
+  sub-agents: 0
+  new files: 1
+    - vulnerability_scan.json (4499 B, md5=b40f6bd7...)
+  accuracy: 0.00 (0/5 checks passed)
+    FAIL preview:output_created: score=0.0
+    FAIL preview:top_client_identified: score=0.0
+    FAIL preview:awstats_scanning_noted: score=0.0
+    FAIL preview:top5_accuracy: score=0.0
+    FAIL preview:invalid_method_ips: score=0.0
+  workspace restored: deleted 1 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[24] pb_log_apache_critical (pw=0.85, model=auto, prompt=1113 chars)
+============================================================
+  setup: created 1 data files: [('apache_error.log', 97352)]
+  session: ses_fbe95507cffe9ehXmbSN7lCF8J
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.6s without finish=stop
+  [check] WARN auto_checks_preview exec failed: invalid syntax (<string>, line 10)
+  duration: 240.6s
+  tokens: in=0  out=0
+  chat.completion: 13 (4 cloud + 9 local)
+  sub-agents: 0
+  new files: 2
+    - deployment_context.md (3142 B, md5=6e473991...)
+    - Dockerfile.optimized (5 B, md5=d8e8fca2...)
+  accuracy: UNGRADED (no checks ran; 0/0 incidental checks passed)
+  workspace restored: deleted 2 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[25] pb_log_apache_error_summary (pw=0.85, model=auto, prompt=936 chars)
+============================================================
+  setup: created 1 data files: [('apache_error.log', 97352)]
+  session: ses_fbe91a415ffe5tHNMFwsB1VeF9
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 241.0s without finish=stop
+  duration: 241.0s
+  tokens: in=0  out=0
+  chat.completion: 17 (7 cloud + 10 local)
+  sub-agents: 0
+  new files: 2
+    - client_issues_report.md (9408 B, md5=18e96dd8...)
+    - gen_report.py (5682 B, md5=6d1b0934...)
+  accuracy: 0.00 (0/5 checks passed)
+    FAIL preview:output_created: score=0.0
+    FAIL preview:log_level_breakdown: score=0.0
+    FAIL preview:server_config_issues: score=0.0
+    FAIL preview:security_threats_identified: score=0.0
+    FAIL preview:recommendations_provided: score=0.0
+  workspace restored: deleted 2 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[26] pb_log_apache_timeline (pw=0.85, model=auto, prompt=1082 chars)
+============================================================
+  setup: created 1 data files: [('apache_error.log', 97352)]
+  session: ses_fbe8df65fffetrREM5yw0wTj6B
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 241.0s without finish=stop
+  duration: 241.0s
+  tokens: in=7,994  out=58
+  chat.completion: 11 (4 cloud + 7 local)
+  sub-agents: 1
+    - local-file-agent: in=0 out=0 title='Analyze Apache error log (@local-file-agent subagent)'
+  new files: 1
+    - security_findings.json (11570 B, md5=59b380a6...)
+  accuracy: UNGRADED (no checks ran; 0/0 incidental checks passed)
+  workspace restored: deleted 1 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[27] pb_log_apache_top_errors (pw=0.85, model=auto, prompt=963 chars)
+============================================================
+  setup: created 1 data files: [('apache_error.log', 97352)]
+  session: ses_fbe8a48e1ffeTwBk6rPnnL511H
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.8s without finish=stop
+  [check] WARN auto_checks_preview exec failed: invalid syntax (<string>, line 10)
+  duration: 240.8s
+  tokens: in=0  out=0
+  chat.completion: 13 (2 cloud + 11 local)
+  sub-agents: 0
+  new files: 2
+    - analyze_temperature.py (13125 B, md5=2c8916ab...)
+    - global_temperature.csv (5234 B, md5=eeddf287...)
+  accuracy: UNGRADED (no checks ran; 0/0 incidental checks passed)
+  workspace restored: deleted 2 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[28] pb_log_hdfs_block_ops (pw=0.85, model=auto, prompt=1022 chars)
+============================================================
+  setup: created 1 data files: [('hdfs_datanode.log', 290677)]
+  session: ses_fbe869befffeARpwH0oCErhFe0
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.1s without finish=stop
+  duration: 240.1s
+  tokens: in=70,885  out=14,811
+  chat.completion: 49 (39 cloud + 10 local)
+  sub-agents: 0
+  new files: 2
+    - error_types_report.json (6451 B, md5=871e16cd...)
+    - hdfs_block_ops_report.md (71676 B, md5=8015a6a4...)
+  accuracy: 1.00 (5/5 checks passed)
+  workspace restored: deleted 3 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[29] pb_log_hdfs_connections (pw=0.85, model=auto, prompt=962 chars)
+============================================================
+  setup: created 1 data files: [('hdfs_datanode.log', 290677)]
+  session: ses_fbe82f191ffelc3yEd3ELOW4Fa
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.9s without finish=stop
+  duration: 240.9s
+  tokens: in=7,920  out=68
+  chat.completion: 23 (15 cloud + 8 local)
+  sub-agents: 1
+    - local-file-agent: in=0 out=0 title='Analyze HDFS log for connections report (@local-file-agent s'
+  new files: 4
+    - analyze.py (10136 B, md5=7cec5e98...)
+    - Dockerfile.optimized (194 B, md5=3aaadc35...)
+    - error_timeline.json (6560 B, md5=f6e8ab86...)
+    - hdfs_block_ops_report.md (71656 B, md5=c15c8be2...)
+  accuracy: 0.00 (0/5 checks passed)
+    FAIL preview:output_created: score=0.0
+    FAIL preview:ips_listed: score=0.0
+    FAIL preview:subnets_grouped: score=0.0
+    FAIL preview:active_nodes: score=0.0
+    FAIL preview:components_separated: score=0.0
+  workspace restored: deleted 5 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[30] pb_log_hdfs_failures (pw=0.85, model=auto, prompt=972 chars)
+============================================================
+  setup: created 1 data files: [('hdfs_datanode.log', 290677)]
+  session: ses_fbe7f4459ffewf5gNnCUCFjbrr
+  trigger: HTTP 204 ('')
+  duration: 99.4s
+  tokens: in=1,772  out=774
+  chat.completion: 20 (15 cloud + 5 local)
+  sub-agents: 1
+    - local-file-agent: in=36,093 out=9,655 title='Analyze HDFS DataNode log (@local-file-agent subagent)'
+  new files: 4
+    - global_temperature.csv (5234 B, md5=eeddf287...)
+    - hdfs_failure_report.md (9954 B, md5=26f8583e...)
+    - log_analysis.json (66063 B, md5=8d1dd24c...)
+    - parse_log.py (5900 B, md5=8e9c12fc...)
+  accuracy: 1.00 (5/5 checks passed)
+  workspace restored: deleted 5 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[31] pb_log_hdfs_slow_ops (pw=0.85, model=auto, prompt=982 chars)
+============================================================
+  setup: created 1 data files: [('hdfs_datanode.log', 290677)]
+  session: ses_fbe7dbf91ffeLJNoR7tQvM0OXA
+  trigger: HTTP 204 ('')
+  duration: 178.1s
+  tokens: in=18,533  out=5,114
+  chat.completion: 30 (24 cloud + 6 local)
+  sub-agents: 1
+    - local-file-agent: in=30,446 out=14,450 title='Analyze HDFS DataNode log (@local-file-agent subagent)'
+  new files: 3
+    - analyze.py (11648 B, md5=58a94dea...)
+    - hdfs_slow_ops_report.md (14192 B, md5=fd801d59...)
+    - us_steel_inventory_turnover.txt (1098 B, md5=0dce5060...)
+  accuracy: 0.80 (4/5 checks passed)
+    FAIL preview:size_correlation: score=0.0
+  workspace restored: deleted 4 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[32] pb_log_hdfs_storage (pw=0.85, model=auto, prompt=966 chars)
+============================================================
+  setup: created 1 data files: [('hdfs_datanode.log', 290677)]
+  session: ses_fbe7b0751ffeeL9q1M40adHr0c
+  trigger: HTTP 204 ('')
+  duration: 87.1s
+  tokens: in=14,300  out=3,765
+  chat.completion: 23 (22 cloud + 1 local)
+  sub-agents: 1
+    - local-file-agent: in=25,091 out=4,859 title='Analyze HDFS DataNode log (@local-file-agent subagent)'
+  new files: 3
+    - analyze_hdfs.py (4154 B, md5=03fa5385...)
+    - hdfs_storage_report.md (6097 B, md5=d4e2ed66...)
+    - vulnerability_scan.json (4499 B, md5=b40f6bd7...)
+  accuracy: 1.00 (5/5 checks passed)
+  workspace restored: deleted 4 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[33] pb_log_mapreduce_failures (pw=0.85, model=auto, prompt=785 chars)
+============================================================
+  setup: created 1 data files: [('mapreduce.log', 239767)]
+  session: ses_fbe79b2c8ffeDM5zE7qURKwxuW
+  trigger: HTTP 204 ('')
+  duration: 176.2s
+  tokens: in=25,784  out=7,302
+  chat.completion: 33 (24 cloud + 9 local)
+  sub-agents: 1
+    - local-file-agent: in=41,229 out=6,646 title='Analyze mapreduce.log failures (@local-file-agent subagent)'
+  new files: 2
+    - gen_report.py (5682 B, md5=6d1b0934...)
+    - mapreduce_failures.md (14783 B, md5=becb7fd0...)
+  accuracy: 1.00 (5/5 checks passed)
+  workspace restored: deleted 3 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[34] pb_log_mapreduce_jobs (pw=0.85, model=auto, prompt=836 chars)
+============================================================
+  setup: created 1 data files: [('mapreduce.log', 239767)]
+  session: ses_fbe7701efffe5683zrjEi3j1Nt
+  trigger: HTTP 204 ('')
+  duration: 42.5s
+  tokens: in=9,136  out=739
+  chat.completion: 14 (13 cloud + 1 local)
+  sub-agents: 1
+    - local-file-agent: in=22,463 out=3,570 title='Analyze MapReduce log and produce report (@local-file-agent '
+  new files: 1
+    - job_completion_report.md (7126 B, md5=c3cc4e25...)
+  accuracy: 0.80 (4/5 checks passed)
+    FAIL preview:task_counts: score=0.0
+  workspace restored: deleted 2 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[35] pb_log_mapreduce_resources (pw=0.85, model=auto, prompt=876 chars)
+============================================================
+  setup: created 1 data files: [('mapreduce.log', 239767)]
+  session: ses_fbe765b71ffe0JMYISY6iHC65n
+  trigger: HTTP 204 ('')
+  duration: 180.1s
+  tokens: in=13,279  out=8,098
+  chat.completion: 38 (31 cloud + 7 local)
+  sub-agents: 1
+    - local-file-agent: in=76,715 out=4,355 title='Analyze MapReduce log resources (@local-file-agent subagent)'
+  new files: 2
+    - global_temperature.csv (5522 B, md5=a5d3dd3d...)
+    - mapreduce_resources.md (13553 B, md5=60522713...)
+  accuracy: 1.00 (5/5 checks passed)
+  workspace restored: deleted 3 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[36] pb_log_mapreduce_slow_tasks (pw=0.85, model=auto, prompt=953 chars)
+============================================================
+  setup: created 1 data files: [('mapreduce.log', 239767)]
+  session: ses_fbe739b5dffeKbh6P8ffixROPB
+  trigger: HTTP 204 ('')
+  duration: 111.4s
+  tokens: in=9,376  out=645
+  chat.completion: 30 (24 cloud + 6 local)
+  sub-agents: 1
+    - local-file-agent: in=29,495 out=11,478 title='Analyze MapReduce log (@local-file-agent subagent)'
+  new files: 3
+    - analyze.py (21939 B, md5=b64f9fc9...)
+    - slow_tasks_report.md (18965 B, md5=725b1cbb...)
+    - us_steel_inventory_turnover.txt (1098 B, md5=0dce5060...)
+  accuracy: 1.00 (5/5 checks passed)
+  workspace restored: deleted 4 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[37] pb_log_mapreduce_timeline (pw=0.85, model=auto, prompt=1081 chars)
+============================================================
+  setup: created 1 data files: [('mapreduce.log', 239767)]
+  session: ses_fbe71e7c6ffeBuCWB5e6GrWmSQ
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 241.1s without finish=stop
+  duration: 241.1s
+  tokens: in=33,653  out=7,878
+  chat.completion: 75 (68 cloud + 7 local)
+  sub-agents: 2
+    - local-file-agent: in=35,068 out=3,228 title='Analyze MapReduce log timeline (@local-file-agent subagent)'
+    - local-file-agent: in=58,617 out=6,520 title='Analyze MapReduce log timeline (@local-file-agent subagent)'
+  new files: 9
+    - analyze_mr.py (5536 B, md5=009a4a17...)
+    - analyze_mr2.py (10395 B, md5=4c4202a1...)
+    - categorize.py (4617 B, md5=8911cad2...)
+    - create_data.py (867 B, md5=0d9a8720...)
+    - Dockerfile.optimized (194 B, md5=3aaadc35...)
+    - parse_log.py (2199 B, md5=80e26c9a...)
+    - _categorized.json (344769 B, md5=064b20b8...)
+    - _categorized_v2.json (386224 B, md5=c9376bca...)
+    - _events.json (327293 B, md5=28babe3b...)
+  accuracy: 0.00 (0/5 checks passed)
+    FAIL preview:output_created: score=0.0
+    FAIL preview:chronological_events: score=0.0
+    FAIL preview:phases_identified: score=0.0
+    FAIL preview:visual_timeline: score=0.0
+    FAIL preview:key_events_highlighted: score=0.0
+  workspace restored: deleted 10 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[38] pb_log_nginx_errors (pw=0.85, model=auto, prompt=1002 chars)
+============================================================
+  setup: created 1 data files: [('nginx_access.log', 233423)]
+  session: ses_fbe6e396effecnoBd7jXgki5Fx
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.9s without finish=stop
+  duration: 240.9s
+  tokens: in=0  out=0
+  chat.completion: 25 (19 cloud + 6 local)
+  sub-agents: 0
+  new files: 1
+    - mapreduce_timeline.md (22552 B, md5=4d13e431...)
+  accuracy: 0.00 (0/5 checks passed)
+    FAIL preview:output_created: score=0.0
+    FAIL preview:error_rate_breakdown: score=0.0
+    FAIL preview:path_analysis: score=0.0
+    FAIL preview:top_error_ips: score=0.0
+    FAIL preview:recommendations: score=0.0
+  workspace restored: deleted 2 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[39] pb_log_nginx_slow_requests (pw=0.85, model=auto, prompt=977 chars)
+============================================================
+  setup: created 1 data files: [('nginx_access.log', 233423)]
+  session: ses_fbe6a8c25ffeLx6x93xAdlujNF
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.7s without finish=stop
+  duration: 240.7s
+  tokens: in=0  out=0
+  chat.completion: 18 (9 cloud + 9 local)
+  sub-agents: 0
+  new files: 2
+    - analyze_temperature.py (8723 B, md5=b39cdb9a...)
+    - mapreduce_timeline.md (22559 B, md5=fd2fbd71...)
+  accuracy: 0.00 (0/5 checks passed)
+    FAIL preview:output_created: score=0.0
+    FAIL preview:top_responses_listed: score=0.0
+    FAIL preview:zero_byte_analysis: score=0.0
+    FAIL preview:distribution_stats: score=0.0
+    FAIL preview:paths_identified: score=0.0
+  workspace restored: deleted 3 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[40] pb_log_nginx_status_codes (pw=0.85, model=auto, prompt=893 chars)
+============================================================
+  setup: created 1 data files: [('nginx_access.log', 233423)]
+  session: ses_fbe66dfc7ffeoGeztg4wAppZVu
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.9s without finish=stop
+  duration: 240.9s
+  tokens: in=0  out=0
+  chat.completion: 9 (0 cloud + 9 local)
+  sub-agents: 0
+  new files: 2
+    - create_data.py (867 B, md5=0d9a8720...)
+    - vulnerability_scan.json (4498 B, md5=a4f206df...)
+  accuracy: 0.00 (0/5 checks passed)
+    FAIL preview:output_created: score=0.0
+    FAIL preview:total_count: score=0.0
+    FAIL preview:status_codes_listed: score=0.0
+    FAIL preview:categories_grouped: score=0.0
+    FAIL preview:top_error_ips: score=0.0
+  workspace restored: deleted 3 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[41] pb_log_nginx_traffic (pw=0.85, model=auto, prompt=795 chars)
+============================================================
+  setup: created 1 data files: [('nginx_access.log', 233423)]
+  session: ses_fbe63327cffeo6GE1813pmfqps
+  trigger: HTTP 204 ('')
+  duration: 99.2s
+  tokens: in=8,979  out=815
+  chat.completion: 17 (10 cloud + 7 local)
+  sub-agents: 1
+    - local-file-agent: in=16,832 out=8,356 title='Analyze nginx log traffic patterns (@local-file-agent subage'
+  new files: 2
+    - analyze_log.py (7615 B, md5=0795f33e...)
+    - traffic_report.md (7660 B, md5=c847258f...)
+  accuracy: 1.00 (5/5 checks passed)
+  workspace restored: deleted 3 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[42] pb_log_nginx_user_agents (pw=0.85, model=auto, prompt=937 chars)
+============================================================
+  setup: created 1 data files: [('nginx_access.log', 233423)]
+  session: ses_fbe61ae79ffe2LM670ezM6S90K
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.9s without finish=stop
+  duration: 240.9s
+  tokens: in=0  out=0
+  chat.completion: 9 (0 cloud + 9 local)
+  sub-agents: 0
+  new files: 2
+    - run_analysis.py (8723 B, md5=b39cdb9a...)
+    - us_steel_inventory_turnover.txt (1098 B, md5=0dce5060...)
+  accuracy: 0.00 (0/5 checks passed)
+    FAIL preview:output_created: score=0.0
+    FAIL preview:agents_listed: score=0.0
+    FAIL preview:agents_classified: score=0.0
+    FAIL preview:apt_dominant: score=0.0
+    FAIL preview:server_purpose: score=0.0
+  workspace restored: deleted 3 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[43] pb_log_ssh_brute_force (pw=0.85, model=auto, prompt=1516 chars)
+============================================================
+  setup: created 1 data files: [('auth.log', 168226)]
+  session: ses_fbe5e016bffetBjWOiZwKXZfrq
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.8s without finish=stop
+  [check] WARN auto_checks_preview exec failed: unindent does not match any outer indentation level (<string>, line 11)
+  duration: 240.8s
+  tokens: in=0  out=0
+  chat.completion: 11 (0 cloud + 11 local)
+  sub-agents: 0
+  new files: 4
+    - create_data.py (867 B, md5=0d9a8720...)
+    - deployment_context.md (2810 B, md5=3bbfbd2f...)
+    - Dockerfile.optimized (194 B, md5=3aaadc35...)
+    - gen_report.py (5682 B, md5=6d1b0934...)
+  accuracy: UNGRADED (no checks ran; 0/0 incidental checks passed)
+  workspace restored: deleted 5 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[44] pb_log_ssh_failed_logins (pw=0.85, model=auto, prompt=978 chars)
+============================================================
+  setup: created 1 data files: [('auth.log', 168226)]
+  session: ses_fbe5a5488ffe3FZ1dQiH2oib20
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.7s without finish=stop
+  duration: 240.7s
+  tokens: in=0  out=0
+  chat.completion: 12 (0 cloud + 12 local)
+  sub-agents: 0
+  new files: 2
+    - analyze_log.py (5258 B, md5=43c82b2e...)
+    - gen_report.py (5682 B, md5=6d1b0934...)
+  accuracy: 0.00 (0/5 checks passed)
+    FAIL preview:output_created: score=0.0
+    FAIL preview:failed_count: score=0.0
+    FAIL preview:top_ips: score=0.0
+    FAIL preview:invalid_usernames: score=0.0
+    FAIL preview:attack_assessment: score=0.0
+  workspace restored: deleted 3 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[45] pb_log_ssh_successful (pw=0.85, model=auto, prompt=980 chars)
+============================================================
+  setup: created 1 data files: [('auth.log', 168226)]
+  session: ses_fbe56a82bffeZa8zcErwvLb1Ee
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.6s without finish=stop
+  duration: 240.6s
+  tokens: in=0  out=0
+  chat.completion: 12 (0 cloud + 12 local)
+  sub-agents: 0
+  new files: 1
+    - run_analysis.py (8723 B, md5=b39cdb9a...)
+  accuracy: 0.00 (0/5 checks passed)
+    FAIL preview:output_created: score=0.0
+    FAIL preview:login_identified: score=0.0
+    FAIL preview:ratio_calculated: score=0.0
+    FAIL preview:ip_checked: score=0.0
+    FAIL preview:legitimacy_assessed: score=0.0
+  workspace restored: deleted 2 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[46] pb_log_ssh_unusual_times (pw=0.85, model=auto, prompt=852 chars)
+============================================================
+  setup: created 1 data files: [('auth.log', 168226)]
+  session: ses_fbe52fbf2ffegwr61TRH5DL5YY
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.7s without finish=stop
+  duration: 240.7s
+  tokens: in=8,873  out=27
+  chat.completion: 19 (0 cloud + 19 local)
+  sub-agents: 0
+  new files: 3
+    - create_data.py (867 B, md5=0d9a8720...)
+    - Dockerfile.optimized (194 B, md5=3aaadc35...)
+    - gen_report.py (5682 B, md5=6d1b0934...)
+  accuracy: 0.00 (0/5 checks passed)
+    FAIL preview:output_created: score=0.0
+    FAIL preview:hourly_distribution: score=0.0
+    FAIL preview:off_hours_identified: score=0.0
+    FAIL preview:successful_timing: score=0.0
+    FAIL preview:timing_patterns: score=0.0
+  workspace restored: deleted 4 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[47] pb_log_ssh_user_activity (pw=0.85, model=auto, prompt=1005 chars)
+============================================================
+  setup: created 1 data files: [('auth.log', 168226)]
+  session: ses_fbe4f4f77ffeuUgn2UQjaI4VCR
+  trigger: HTTP 204 ('')
+  duration: 99.4s
+  tokens: in=26,846  out=8,324
+  chat.completion: 17 (16 cloud + 1 local)
+  sub-agents: 0
+  new files: 1
+    - user_activity_report.md (14497 B, md5=50b9898a...)
+  accuracy: 1.00 (5/5 checks passed)
+  workspace restored: deleted 2 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[48] pb_log_syslog_anomalies (pw=0.85, model=auto, prompt=954 chars)
+============================================================
+  setup: created 1 data files: [('syslog.log', 521857)]
+  session: ses_fbe4dcac5ffeIYnnD2f5B2Ii65
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.7s without finish=stop
+  duration: 240.7s
+  tokens: in=0  out=0
+  chat.completion: 18 (0 cloud + 18 local)
+  sub-agents: 0
+  new files: 2
+    - gen_report.py (5682 B, md5=6d1b0934...)
+    - run_analysis.py (8723 B, md5=b39cdb9a...)
+  accuracy: 0.00 (0/5 checks passed)
+    FAIL preview:output_created: score=0.0
+    FAIL preview:log_overview: score=0.0
+    FAIL preview:rpc_statd_attack: score=0.0
+    FAIL preview:ftp_analysis: score=0.0
+    FAIL preview:ssh_failures: score=0.0
+  workspace restored: deleted 3 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[49] pb_log_syslog_auth_failures (pw=0.85, model=auto, prompt=953 chars)
+============================================================
+  setup: created 1 data files: [('syslog.log', 521857)]
+  session: ses_fbe4a1e28ffe41ZT8tu2f4L7Es
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.8s without finish=stop
+  duration: 240.8s
+  tokens: in=0  out=0
+  chat.completion: 21 (6 cloud + 15 local)
+  sub-agents: 0
+  new files: 4
+    - gen_report.py (5692 B, md5=b5bc2eb4...)
+    - iris_summary.md (1970 B, md5=10d90ee6...)
+    - test.txt (0 B, md5=d41d8cd9...)
+    - vulnerability_scan.json (4499 B, md5=b40f6bd7...)
+  accuracy: 0.00 (0/5 checks passed)
+    FAIL preview:output_created: score=0.0
+    FAIL preview:failures_counted: score=0.0
+    FAIL preview:by_service: score=0.0
+    FAIL preview:source_hosts: score=0.0
+    FAIL preview:recommendations: score=0.0
+  workspace restored: deleted 5 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[50] pb_log_syslog_boot (pw=0.85, model=auto, prompt=1190 chars)
+============================================================
+  setup: created 1 data files: [('linux_syslog.log', 521857)]
+  session: ses_fbe467131ffehzHT2jOYUtXppy
+  trigger: HTTP 204 ('')
+  duration: 121.4s
+  tokens: in=9,272  out=697
+  chat.completion: 31 (23 cloud + 8 local)
+  sub-agents: 1
+    - local-file-agent: in=17,870 out=6,087 title='Analyze syslog boot report (@local-file-agent subagent)'
+  new files: 3
+    - boot_report.md (10589 B, md5=132f1e19...)
+    - create_data.py (867 B, md5=0d9a8720...)
+    - Dockerfile.optimized (194 B, md5=3aaadc35...)
+  accuracy: 1.00 (10/10 checks passed)
+  workspace restored: deleted 4 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[51] pb_log_syslog_cron (pw=0.85, model=auto, prompt=865 chars)
+============================================================
+  setup: created 1 data files: [('syslog.log', 521857)]
+  session: ses_fbe449698ffe0Oj6HLXm264BLf
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.8s without finish=stop
+  duration: 240.8s
+  tokens: in=0  out=0
+  chat.completion: 13 (0 cloud + 13 local)
+  sub-agents: 0
+  new files: 2
+    - Dockerfile.optimized (194 B, md5=3aaadc35...)
+    - us_steel_inventory_turnover.txt (1097 B, md5=b49097e0...)
+  accuracy: 0.00 (0/5 checks passed)
+    FAIL preview:output_created: score=0.0
+    FAIL preview:cron_anacron: score=0.0
+    FAIL preview:logrotate: score=0.0
+    FAIL preview:su_sessions: score=0.0
+    FAIL preview:recurring_patterns: score=0.0
+  workspace restored: deleted 3 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[52] pb_log_syslog_services (pw=0.85, model=auto, prompt=889 chars)
+============================================================
+  setup: created 1 data files: [('syslog.log', 521857)]
+  session: ses_fbe40e9bcffe08eJ3Ge7dC8Tif
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.8s without finish=stop
+  duration: 240.8s
+  tokens: in=8,862  out=27
+  chat.completion: 22 (0 cloud + 22 local)
+  sub-agents: 0
+  new files: 3
+    - Dockerfile.optimized (194 B, md5=3aaadc35...)
+    - run_analysis.py (8723 B, md5=b39cdb9a...)
+    - test.txt (0 B, md5=d41d8cd9...)
+  accuracy: 0.00 (0/5 checks passed)
+    FAIL preview:output_created: score=0.0
+    FAIL preview:boots_identified: score=0.0
+    FAIL preview:services_listed: score=0.0
+    FAIL preview:cups_pattern: score=0.0
+    FAIL preview:startup_ordering: score=0.0
+  workspace restored: deleted 4 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[53] pb_meeting_advisory_acronyms (pw=0.85, model=auto, prompt=998 chars)
+============================================================
+  setup: created 1 data files: [('meeting-transcript.md', 71329)]
+  session: ses_fbe3d3c8dffeQfJCAZU9serMBn
+  trigger: HTTP 204 ('')
+  duration: 36.5s
+  tokens: in=8,732  out=325
+  chat.completion: 10 (10 cloud + 0 local)
+  sub-agents: 1
+    - local-file-agent: in=35,173 out=4,486 title='Build acronym glossary from transcript (@local-file-agent su'
+  new files: 1
+    - acronym_glossary.md (14564 B, md5=77d611dd...)
+  accuracy: 0.89 (8/9 checks passed)
+    FAIL preview:alphabetical_sort: score=0.5
+  workspace restored: deleted 1 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[54] pb_meeting_advisory_attendees (pw=0.85, model=auto, prompt=898 chars)
+============================================================
+  setup: created 1 data files: [('meeting-transcript.md', 71329)]
+  session: ses_fbe3cad8fffe4YfgTJMHpE23xm
+  trigger: HTTP 204 ('')
+  duration: 8.1s
+  tokens: in=8,019  out=400
+  chat.completion: 3 (3 cloud + 0 local)
+  sub-agents: 0
+  new files: 0
+  accuracy: 0.89 (8/9 checks passed)
+    FAIL preview:remote_attendees: score=0.5
+
+============================================================
+[55] pb_meeting_advisory_stakeholders (pw=0.85, model=auto, prompt=1081 chars)
+============================================================
+  setup: created 1 data files: [('meeting-transcript.md', 71329)]
+  session: ses_fbe3c8d6bffeBBzORx034hlUys
+  trigger: HTTP 204 ('')
+  duration: 125.5s
+  tokens: in=14,523  out=1,377
+  chat.completion: 17 (9 cloud + 8 local)
+  sub-agents: 1
+    - local-file-agent: in=29,836 out=8,481 title='Stakeholder analysis of transcript (@local-file-agent subage'
+  new files: 3
+    - analyze_log.py (5224 B, md5=bf82df7a...)
+    - create_data.py (867 B, md5=0d9a8720...)
+    - stakeholder_analysis.md (32460 B, md5=b7a93794...)
+  accuracy: 1.00 (9/9 checks passed)
+  workspace restored: deleted 3 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[56] pb_meeting_advisory_technical (pw=0.85, model=auto, prompt=1221 chars)
+============================================================
+  setup: created 1 data files: [('meeting-transcript.md', 71329)]
+  session: ses_fbe3aa2eaffeA8mWhrUkDLIVPM
+  trigger: HTTP 204 ('')
+  duration: 143.7s
+  tokens: in=8,878  out=802
+  chat.completion: 19 (9 cloud + 10 local)
+  sub-agents: 1
+    - local-file-agent: in=37,765 out=7,526 title='Extract technical discussions from CSMAC transcript (@local-'
+  new files: 3
+    - Dockerfile.optimized (194 B, md5=3aaadc35...)
+    - technical_discussions.md (33242 B, md5=16c3b430...)
+    - vulnerability_scan.json (17 B, md5=615ab004...)
+  accuracy: 1.00 (9/9 checks passed)
+  workspace restored: deleted 3 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[57] pb_meeting_advisory_timeline (pw=0.85, model=auto, prompt=942 chars)
+============================================================
+  setup: created 1 data files: [('meeting-transcript.md', 71329)]
+  session: ses_fbe387166ffeXSHz825OvZ8sIu
+  trigger: HTTP 204 ('')
+  duration: 121.4s
+  tokens: in=8,671  out=483
+  chat.completion: 10 (8 cloud + 2 local)
+  sub-agents: 1
+    - local-file-agent: in=30,500 out=6,770 title='Extract timelines from CSMAC transcript (@local-file-agent s'
+  new files: 1
+    - timeline.md (27580 B, md5=d4224725...)
+  accuracy: 1.00 (9/9 checks passed)
+  workspace restored: deleted 1 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[58] pb_meeting_blog_post (pw=0.85, model=auto, prompt=1177 chars)
+============================================================
+  setup: created 1 data files: [('meeting_transcript.md', 34747)]
+  session: ses_fbe3696aeffer4rwZRr7nldZfz
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.7s without finish=stop
+  duration: 240.7s
+  tokens: in=0  out=0
+  chat.completion: 20 (0 cloud + 20 local)
+  sub-agents: 0
+  new files: 1
+    - run_analysis.py (8723 B, md5=b39cdb9a...)
+  accuracy: 0.00 (0/8 checks passed)
+    FAIL preview:file_created: score=0.0
+    FAIL preview:has_title: score=0.0
+    FAIL preview:core_challenge: score=0.0
+    FAIL preview:strategies_present: score=0.0
+    FAIL preview:standalone_post: score=0.0
+    FAIL preview:appropriate_length: score=0.0
+    FAIL preview:target_audience: score=0.0
+    FAIL preview:professional_tone: score=0.0
+  workspace restored: deleted 2 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[59] pb_meeting_council_budget (pw=0.85, model=auto, prompt=281 chars)
+============================================================
+  setup: created 1 data files: [('transcript.md', 206047)]
+  session: ses_fbe32e9d5ffeNrs7Oe5ydMIDlP
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 241.0s without finish=stop
+  duration: 241.0s
+  tokens: in=2,154  out=1,161
+  chat.completion: 70 (54 cloud + 16 local)
+  sub-agents: 2
+    - local-file-agent: in=38,678 out=2,789 title='Extract budget discussions from transcript (@local-file-agen'
+    - local-file-agent: in=46,026 out=4,077 title='Build budget report from transcript (@local-file-agent subag'
+  new files: 2
+    - create_data.py (867 B, md5=0d9a8720...)
+    - extract_budget.py (1597 B, md5=7d4a8645...)
+  accuracy: 0.00 (0/10 checks passed)
+    FAIL preview:report_created: score=0.0
+    FAIL preview:capacity_fee_amounts: score=0.0
+    FAIL preview:three_billion: score=0.0
+    FAIL preview:annual_revenue_increase: score=0.0
+    FAIL preview:rome_yard_94m: score=0.0
+    FAIL preview:annex_34m: score=0.0
+    FAIL preview:phase1_7m: score=0.0
+    FAIL preview:gas_settlement_650k: score=0.0
+    FAIL preview:zion_8m: score=0.0
+    FAIL preview:financial_summary: score=0.0
+  workspace restored: deleted 3 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[60] pb_meeting_council_contact_info (pw=0.85, model=auto, prompt=366 chars)
+============================================================
+  setup: created 1 data files: [('transcript.md', 206047)]
+  session: ses_fbe2f3c15ffeifRgUL5R1QpIVv
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.8s without finish=stop
+  duration: 240.8s
+  tokens: in=7,784  out=31
+  chat.completion: 55 (39 cloud + 16 local)
+  sub-agents: 1
+    - protected-file-agent: in=0 out=0 title='Extract people from transcript (@protected-file-agent subage'
+  new files: 2
+    - budget_report.md (109370 B, md5=b720ed1e...)
+    - vulnerability_scan.json (4499 B, md5=b40f6bd7...)
+  accuracy: 0.00 (0/10 checks passed)
+    FAIL preview:report_created: score=0.0
+    FAIL preview:council_members: score=0.0
+    FAIL preview:shelby_attorney: score=0.0
+    FAIL preview:hamilton_raftelis: score=0.0
+    FAIL preview:bercaw_chief: score=0.0
+    FAIL preview:mcneil_officer: score=0.0
+    FAIL preview:public_speakers: score=0.0
+    FAIL preview:tpd_promotions: score=0.0
+    FAIL preview:organized_sections: score=0.0
+    FAIL preview:milo_related: score=0.0
+  workspace restored: deleted 3 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[61] pb_meeting_council_neighborhood (pw=0.85, model=auto, prompt=382 chars)
+============================================================
+  setup: created 1 data files: [('transcript.md', 206047)]
+  session: ses_fbe2b8f01ffetmp05dAjsf9EvJ
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 241.2s without finish=stop
+  duration: 241.2s
+  tokens: in=20,261  out=1,692
+  chat.completion: 64 (46 cloud + 18 local)
+  sub-agents: 2
+    - local-file-agent: in=70,947 out=1,953 title='Extract geographic locations from transcript (@local-file-ag'
+    - local-file-agent: in=41,881 out=4,506 title='Generate neighborhoods report from transcript (@local-file-a'
+  new files: 0
+  accuracy: 0.00 (0/11 checks passed)
+    FAIL preview:report_created: score=0.0
+    FAIL preview:temple_crest: score=0.0
+    FAIL preview:west_tampa: score=0.0
+    FAIL preview:south_howard: score=0.0
+    FAIL preview:east_tampa: score=0.0
+    FAIL preview:highland_pines: score=0.0
+    FAIL preview:rezoning_addresses: score=0.0
+    FAIL preview:macdill: score=0.0
+    FAIL preview:riverwalk: score=0.0
+    FAIL preview:frequency_or_crossref: score=0.0
+    FAIL preview:location_count: score=0.0
+  workspace restored: deleted 1 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[62] pb_meeting_council_public_comment (pw=0.85, model=auto, prompt=714 chars)
+============================================================
+  setup: created 1 data files: [('transcript.md', 206047)]
+  session: ses_fbe27e067ffewAuo1NoTlCSdPp
+  trigger: HTTP 204 ('')
+  duration: 178.2s
+  tokens: in=8,674  out=422
+  chat.completion: 32 (22 cloud + 10 local)
+  sub-agents: 1
+    - local-file-agent: in=34,810 out=7,288 title='Analyze public comments transcript (@local-file-agent subage'
+  new files: 3
+    - neighborhoods_report.md (25944 B, md5=e67caeb3...)
+    - public_comments_report.md (25976 B, md5=735cd676...)
+    - run_analysis.py (8723 B, md5=b39cdb9a...)
+  accuracy: 1.00 (9/9 checks passed)
+  workspace restored: deleted 4 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[63] pb_meeting_council_upcoming (pw=0.85, model=auto, prompt=344 chars)
+============================================================
+  setup: created 1 data files: [('transcript.md', 206047)]
+  session: ses_fbe252813ffeHPJvFh5cH9AQD9
+  trigger: HTTP 204 ('')
+  duration: 131.7s
+  tokens: in=6,162  out=2,236
+  chat.completion: 43 (33 cloud + 10 local)
+  sub-agents: 2
+    - local-file-agent: in=69,292 out=2,409 title='Read transcript and extract events (@local-file-agent subage'
+    - local-file-agent: in=14,575 out=2,024 title='Read remainder of transcript (@local-file-agent subagent)'
+  new files: 1
+    - upcoming_events.md (7387 B, md5=fa0a8f44...)
+  accuracy: 1.00 (10/10 checks passed)
+  workspace restored: deleted 2 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[64] pb_meeting_council_votes (pw=0.85, model=auto, prompt=727 chars)
+============================================================
+  setup: created 1 data files: [('transcript.md', 206047)]
+  session: ses_fbe2324f9ffeIv2eRZ2nzv3a1B
+  trigger: HTTP 204 ('')
+  duration: 198.9s
+  tokens: in=35,539  out=2,804
+  chat.completion: 70 (59 cloud + 11 local)
+  sub-agents: 1
+    - local-file-agent: in=34,156 out=2,895 title='Analyze transcript for votes (@local-file-agent subagent)'
+  new files: 1
+    - Dockerfile.optimized (194 B, md5=3aaadc35...)
+  accuracy: 0.00 (0/10 checks passed)
+    FAIL preview:report_created: score=0.0
+    FAIL preview:minutes_vote: score=0.0
+    FAIL preview:item12_abstain: score=0.0
+    FAIL preview:item14_15_rollcall: score=0.0
+    FAIL preview:item19_unanimous: score=0.0
+    FAIL preview:item22_continued: score=0.0
+    FAIL preview:item23_first_reading: score=0.0
+    FAIL preview:item25_carlson_no: score=0.0
+    FAIL preview:item26_28_reconsider: score=0.0
+    FAIL preview:summary_count: score=0.0
+  workspace restored: deleted 2 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[65] pb_meeting_executive_summary (pw=0.85, model=auto, prompt=785 chars)
+============================================================
+  setup: created 1 data files: [('meeting_transcript.md', 34747)]
+  session: ses_fbe201b46ffeEirG629ZDQlgzg
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.8s without finish=stop
+  duration: 240.8s
+  tokens: in=0  out=0
+  chat.completion: 20 (5 cloud + 15 local)
+  sub-agents: 1
+    - local-file-agent: in=0 out=0 title='Read meeting transcript (@local-file-agent subagent)'
+  new files: 3
+    - create_data.py (867 B, md5=0d9a8720...)
+    - Dockerfile.optimized (194 B, md5=3aaadc35...)
+    - vulnerability_scan.json (17 B, md5=615ab004...)
+  accuracy: 0.00 (0/8 checks passed)
+    FAIL preview:file_created: score=0.0
+    FAIL preview:meeting_date: score=0.0
+    FAIL preview:topics_identified: score=0.0
+    FAIL preview:events_covered: score=0.0
+    FAIL preview:announcements_covered: score=0.0
+    FAIL preview:decisions_documented: score=0.0
+    FAIL preview:action_items_present: score=0.0
+    FAIL preview:concise: score=0.0
+  workspace restored: deleted 4 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[66] pb_meeting_follow_up_email (pw=0.85, model=auto, prompt=813 chars)
+============================================================
+  setup: created 1 data files: [('meeting_transcript.md', 34747)]
+  session: ses_fbe1c6e4bffezkGwPaeF1q8vNg
+  trigger: HTTP 204 ('')
+  duration: 38.5s
+  tokens: in=2,035  out=504
+  chat.completion: 12 (8 cloud + 4 local)
+  sub-agents: 1
+    - local-file-agent: in=18,084 out=1,677 title='Draft follow-up email from transcript (@local-file-agent sub'
+  new files: 1
+    - follow_up_email.md (3662 B, md5=81ea8807...)
+  accuracy: 1.00 (9/9 checks passed)
+  workspace restored: deleted 2 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[67] pb_meeting_gov_controversy (pw=0.85, model=auto, prompt=1051 chars)
+============================================================
+  setup: created 1 data files: [('transcript.md', 264997)]
+  session: ses_fbe1bd784ffeLFTTHNlqAvsVfY
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.7s without finish=stop
+  duration: 240.7s
+  tokens: in=0  out=0
+  chat.completion: 28 (13 cloud + 15 local)
+  sub-agents: 1
+    - local-file-agent: in=86,409 out=8,247 title='Read transcript and analyze controversies (@local-file-agent'
+  new files: 1
+    - controversy_analysis.md (0 B, md5=d41d8cd9...)
+  accuracy: 0.11 (1/9 checks passed)
+    FAIL preview:harassment: score=0.0
+    FAIL preview:anomalous_pct: score=0.0
+    FAIL preview:no_et_evidence: score=0.0
+    FAIL preview:classified_tension: score=0.0
+    FAIL preview:dod_sensors: score=0.0
+    FAIL preview:debunked_case: score=0.0
+    FAIL preview:audience_perspectives: score=0.0
+    FAIL preview:tone_analysis: score=0.0
+  workspace restored: deleted 2 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[68] pb_meeting_gov_data_sources (pw=0.85, model=auto, prompt=1021 chars)
+============================================================
+  setup: created 1 data files: [('transcript.md', 264997)]
+  session: ses_fbe182ac1ffenYQVSi3cxswENr
+  trigger: HTTP 204 ('')
+  duration: 204.5s
+  tokens: in=10,878  out=1,825
+  chat.completion: 49 (33 cloud + 16 local)
+  sub-agents: 2
+    - local-file-agent: in=107,229 out=2,135 title='Extract data sources from transcript (@local-file-agent suba'
+    - local-file-agent: in=12,746 out=5,803 title='Write data_sources.md from gathered transcript info (@local-'
+  new files: 3
+    - controversy_analysis.md (51313 B, md5=df89b577...)
+    - data_sources.md (26876 B, md5=925b482c...)
+    - service_status_report.md (15611 B, md5=2ad71af9...)
+  accuracy: 1.00 (10/10 checks passed)
+  workspace restored: deleted 4 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[69] pb_meeting_gov_next_steps (pw=0.85, model=auto, prompt=953 chars)
+============================================================
+  setup: created 1 data files: [('transcript.md', 264997)]
+  session: ses_fbe150b9dffea54nbctEFGKz8s
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.4s without finish=stop
+  duration: 240.4s
+  tokens: in=155,393  out=4,461
+  chat.completion: 81 (68 cloud + 13 local)
+  sub-agents: 0
+  new files: 0
+  accuracy: 0.00 (0/10 checks passed)
+    FAIL preview:report_created: score=0.0
+    FAIL preview:final_report_timeline: score=0.0
+    FAIL preview:aaro_annual_report: score=0.0
+    FAIL preview:sensor_deployment: score=0.0
+    FAIL preview:five_eyes: score=0.0
+    FAIL preview:budget_status: score=0.0
+    FAIL preview:open_questions: score=0.0
+    FAIL preview:timeframe_org: score=0.0
+    FAIL preview:responsible_parties: score=0.0
+    FAIL preview:timeline_viz: score=0.0
+  workspace restored: deleted 1 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[70] pb_meeting_gov_qa_extract (pw=0.85, model=auto, prompt=830 chars)
+============================================================
+  setup: created 1 data files: [('transcript.md', 264997)]
+  session: ses_fbe116024ffeL5hH4w1LbD3y9A
+  trigger: HTTP 204 ('')
+  duration: 227.0s
+  tokens: in=15,711  out=1,029
+  chat.completion: 70 (52 cloud + 18 local)
+  sub-agents: 2
+    - local-file-agent: in=67,744 out=1,020 title='Extract Q&A from transcript (@local-file-agent subagent)'
+    - local-file-agent: in=99,719 out=13,675 title='Extract Q&A exchanges from transcript (@local-file-agent sub'
+  new files: 5
+    - build_qa.py (42266 B, md5=8c7eec60...)
+    - next_steps.md (21576 B, md5=275164c2...)
+    - qa_exchanges.md (33733 B, md5=60200f2d...)
+    - us_steel_inventory_turnover.txt (1098 B, md5=0dce5060...)
+    - vulnerability_scan.json (4499 B, md5=b40f6bd7...)
+  accuracy: 1.00 (9/9 checks passed)
+  workspace restored: deleted 6 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[71] pb_meeting_gov_recommendations (pw=0.85, model=auto, prompt=881 chars)
+============================================================
+  setup: created 1 data files: [('transcript.md', 264997)]
+  session: ses_fbe0de90effeOzfxE81S2a0OWi
+  trigger: HTTP 204 ('')
+  duration: 101.3s
+  tokens: in=8,657  out=548
+  chat.completion: 24 (20 cloud + 4 local)
+  sub-agents: 1
+    - local-file-agent: in=100,690 out=5,355 title='Extract UAP recommendations from transcript (@local-file-age'
+  new files: 1
+    - recommendations.md (22103 B, md5=6b5c18cc...)
+  accuracy: 1.00 (10/10 checks passed)
+  workspace restored: deleted 2 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[72] pb_meeting_gov_speaker_summary (pw=0.85, model=auto, prompt=877 chars)
+============================================================
+  setup: created 1 data files: [('transcript.md', 264997)]
+  session: ses_fbe0c5ce7ffeYYn3lcLTAUVysD
+  trigger: HTTP 204 ('')
+  duration: 67.4s
+  tokens: in=94,726  out=5,382
+  chat.completion: 21 (13 cloud + 8 local)
+  sub-agents: 0
+  new files: 1
+    - speaker_summary.md (23890 B, md5=a00b3d3c...)
+  accuracy: 0.89 (8/9 checks passed)
+    FAIL preview:nicola_fox: score=0.0
+  workspace restored: deleted 2 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[73] pb_meeting_searchable_index (pw=0.85, model=auto, prompt=1093 chars)
+============================================================
+  setup: created 1 data files: [('meeting_transcript.md', 34747)]
+  session: ses_fbe0b54efffeIxCpzCmju4nA4Z
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.9s without finish=stop
+  duration: 240.9s
+  tokens: in=396  out=33
+  chat.completion: 32 (14 cloud + 18 local)
+  sub-agents: 1
+    - local-file-agent: in=0 out=0 title='Build structured meeting index (@local-file-agent subagent)'
+  new files: 4
+    - create_data.py (1152 B, md5=0690d350...)
+    - global_temperature.csv (5587 B, md5=c51a07d7...)
+    - run_analysis.py (8745 B, md5=67184c10...)
+    - trend_report.md (2170 B, md5=1c5ca7b3...)
+  accuracy: 0.00 (0/8 checks passed)
+    FAIL preview:file_created: score=0.0
+    FAIL preview:metadata_present: score=0.0
+    FAIL preview:topic_index: score=0.0
+    FAIL preview:people_index: score=0.0
+    FAIL preview:keyword_index: score=0.0
+    FAIL preview:decisions_log: score=0.0
+    FAIL preview:action_items_log: score=0.0
+    FAIL preview:organized: score=0.0
+  workspace restored: deleted 5 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[74] pb_meeting_sentiment_analysis (pw=0.85, model=auto, prompt=914 chars)
+============================================================
+  setup: created 1 data files: [('meeting_transcript.md', 34747)]
+  session: ses_fbe07a79effeSozAlWLxNLSGGn
+  trigger: HTTP 204 ('')
+  duration: 58.7s
+  tokens: in=10,740  out=749
+  chat.completion: 13 (9 cloud + 4 local)
+  sub-agents: 1
+    - local-file-agent: in=19,027 out=1,928 title='Analyze meeting sentiment (@local-file-agent subagent)'
+  new files: 2
+    - sentiment_analysis.md (8654 B, md5=372a10ed...)
+    - _summary.md (55 B, md5=147598bf...)
+  accuracy: 0.88 (7/8 checks passed)
+    FAIL preview:overall_sentiment: score=0.0
+  workspace restored: deleted 3 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[75] pb_meeting_tech_action_items (pw=0.85, model=auto, prompt=710 chars)
+============================================================
+  setup: created 1 data files: [('meeting_transcript.md', 34747)]
+  session: ses_fbe06c1efffeTl1y5bfG9cBRv4
+  trigger: HTTP 204 ('')
+  duration: 97.2s
+  tokens: in=29,756  out=3,152
+  chat.completion: 15 (8 cloud + 7 local)
+  sub-agents: 1
+    - local-file-agent: in=18,472 out=2,169 title='Extract action items from transcript (@local-file-agent suba'
+  new files: 2
+    - action_items.md (6039 B, md5=570c90c1...)
+    - Dockerfile.optimized (194 B, md5=3aaadc35...)
+  accuracy: 0.78 (7/9 checks passed)
+    FAIL preview:competitive_actions: score=0.5
+    FAIL preview:messaging_actions: score=0.5
+  workspace restored: deleted 3 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[76] pb_meeting_tech_competitors (pw=0.85, model=auto, prompt=1023 chars)
+============================================================
+  setup: created 1 data files: [('meeting_transcript.md', 34747)]
+  session: ses_fbe0545b9ffe7Q5j4ABTCqwTt7
+  trigger: HTTP 204 ('')
+  duration: 85.1s
+  tokens: in=11,775  out=344
+  chat.completion: 14 (8 cloud + 6 local)
+  sub-agents: 1
+    - local-file-agent: in=22,447 out=6,664 title='Analyze meeting transcript for competitors (@local-file-agen'
+  new files: 2
+    - analyze_log.py (4668 B, md5=07457e6f...)
+    - competitor_analysis.md (13960 B, md5=cbb698fc...)
+  accuracy: 1.00 (9/9 checks passed)
+  workspace restored: deleted 3 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[77] pb_meeting_tech_decisions (pw=0.85, model=auto, prompt=792 chars)
+============================================================
+  setup: created 1 data files: [('meeting_transcript.md', 34747)]
+  session: ses_fbe03f8c4ffexoDNcc4mbmSZWl
+  trigger: HTTP 204 ('')
+  duration: 117.4s
+  tokens: in=15,884  out=1,300
+  chat.completion: 19 (12 cloud + 7 local)
+  sub-agents: 1
+    - local-file-agent: in=20,703 out=4,233 title='Extract decisions from meeting transcript (@local-file-agent'
+  new files: 1
+    - decisions.md (15556 B, md5=a10c62b8...)
+  accuracy: 0.89 (8/9 checks passed)
+    FAIL preview:messaging_tagline: score=0.0
+  workspace restored: deleted 2 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[78] pb_meeting_tech_messaging (pw=0.85, model=auto, prompt=841 chars)
+============================================================
+  setup: created 1 data files: [('meeting_transcript.md', 34747)]
+  session: ses_fbe022db2ffeHFBcWaVaelySgA
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.8s without finish=stop
+  duration: 240.8s
+  tokens: in=0  out=0
+  chat.completion: 21 (0 cloud + 21 local)
+  sub-agents: 0
+  new files: 0
+  accuracy: 0.00 (0/9 checks passed)
+    FAIL preview:report_created: score=0.0
+    FAIL preview:three_pillars: score=0.0
+    FAIL preview:multiple_candidates: score=0.0
+    FAIL preview:chosen_speed_tagline: score=0.0
+    FAIL preview:chosen_transparency_tagline: score=0.0
+    FAIL preview:rejected_alternatives: score=0.0
+    FAIL preview:evaluation_criteria: score=0.0
+    FAIL preview:security_subtagline: score=0.0
+    FAIL preview:finals_distinguished: score=0.0
+  workspace restored: deleted 1 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[79] pb_meeting_tech_product_features (pw=0.85, model=auto, prompt=1043 chars)
+============================================================
+  setup: created 1 data files: [('meeting_transcript.md', 34747)]
+  session: ses_fbdfe80c2ffezTpa0up8pptRmL
+  trigger: HTTP 204 ('')
+  duration: 70.8s
+  tokens: in=9,224  out=670
+  chat.completion: 10 (8 cloud + 2 local)
+  sub-agents: 1
+    - local-file-agent: in=19,863 out=3,206 title='Analyze meeting transcript for features (@local-file-agent s'
+  new files: 1
+    - feature_priorities.md (11444 B, md5=ff2eb01e...)
+  accuracy: 1.00 (10/10 checks passed)
+  workspace restored: deleted 2 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[80] pb_meeting_tldr (pw=0.85, model=auto, prompt=642 chars)
+============================================================
+  setup: created 1 data files: [('meeting_transcript.md', 34747)]
+  session: ses_fbdfd6bd2ffeSWmXpdsDQh24NM
+  trigger: HTTP 204 ('')
+  duration: 40.6s
+  tokens: in=8,520  out=244
+  chat.completion: 19 (16 cloud + 3 local)
+  sub-agents: 1
+    - local-file-agent: in=17,606 out=947 title='Summarize meeting transcript (@local-file-agent subagent)'
+  new files: 1
+    - meeting_tldr.md (1137 B, md5=ff433c46...)
+  accuracy: 0.88 (7/8 checks passed)
+    FAIL preview:word_count_ok: score=0.5
+  workspace restored: deleted 2 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[81] pb_memory (pw=0.85, model=auto, prompt=121 chars)
+============================================================
+  setup: created 1 data files: [('notes.md', 1013)]
+  session: ses_fbdfcccadffeScF6mYuxlTjr62
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.6s without finish=stop
+  duration: 240.6s
+  tokens: in=0  out=0
+  chat.completion: 30 (11 cloud + 19 local)
+  sub-agents: 0
+  new files: 1
+    - meeting_index.md (30609 B, md5=61bb28a1...)
+  accuracy: 0.00 (0/5 checks passed)
+    FAIL preview:file_created: score=0.0
+    FAIL preview:correct_date: score=0.0
+    FAIL preview:clear_answer: score=0.0
+    FAIL preview:read_notes: score=0.0
+    FAIL preview:no_hallucination: score=0.0
+  workspace restored: deleted 2 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[82] pb_multi_file_refactoring (pw=0.85, model=auto, prompt=361 chars)
+============================================================
+  setup: created 4 data files: [('utils.py', 787), ('orders.py', 775), ('reports.py', 1039), ('api.py', 1067)]
+  session: ses_fbdf92071ffeLyMMSwfxKS0ep2
+  trigger: HTTP 204 ('')
+  duration: 18.3s
+  tokens: in=10,630  out=1,117
+  chat.completion: 8 (6 cloud + 2 local)
+  sub-agents: 0
+  new files: 4
+    - api.py (1059 B, md5=8d32e090...)
+    - orders.py (765 B, md5=078fbd1d...)
+    - reports.py (1031 B, md5=37e7ab2b...)
+    - utils.py (783 B, md5=55a06298...)
+  accuracy: 1.00 (15/15 checks passed)
+  workspace restored: deleted 4 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[83] pb_pdf_to_calendar (pw=0.85, model=auto, prompt=445 chars)
+============================================================
+  setup: created 1 data files: [('school-calendar.pdf', 24506)]
+  session: ses_fbdf8d869ffeVoVzoFLAoMlBry
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.7s without finish=stop
+  duration: 240.7s
+  tokens: in=0  out=0
+  chat.completion: 22 (0 cloud + 22 local)
+  sub-agents: 0
+  new files: 0
+  accuracy: 0.00 (0/8 checks passed)
+    FAIL preview:file_created: score=0.0
+    FAIL preview:valid_ics: score=0.0
+    FAIL preview:min_events: score=0.0
+    FAIL preview:first_day_of_school: score=0.0
+    FAIL preview:last_day_of_school: score=0.0
+    FAIL preview:labor_day: score=0.0
+    FAIL preview:christmas_break: score=0.0
+    FAIL preview:spring_break: score=0.0
+  workspace restored: deleted 1 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[84] pb_pricing_research (pw=0.85, model=auto, prompt=1069 chars)
+============================================================
+  session: ses_fbdf52beeffeZEaKdHTn1UE30w
+  trigger: HTTP 204 ('')
+  duration: 109.4s
+  tokens: in=27,914  out=8,795
+  chat.completion: 19 (14 cloud + 5 local)
+  sub-agents: 0
+  new files: 2
+    - Dockerfile.optimized (194 B, md5=3aaadc35...)
+    - pricing_comparison.md (23541 B, md5=2257ded7...)
+  accuracy: UNGRADED (no checks ran; 0/0 incidental checks passed)
+  workspace restored: deleted 2 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[85] pb_readme_generation (pw=0.85, model=auto, prompt=779 chars)
+============================================================
+  setup: created 8 data files: [('src/index.ts', 784), ('src/config.ts', 383), ('src/routes/auth.ts', 910), ('src/routes/tasks.ts', 960), ('src/routes/webhooks.ts', 743), ('package.json', 802), ('prisma/schema.prisma', 704), ('.env.example', 172)]
+  session: ses_fbdf37fd6ffe3tRPsqVM6ui8qG
+  trigger: HTTP 204 ('')
+  duration: 40.6s
+  tokens: in=12,115  out=1,497
+  chat.completion: 18 (14 cloud + 4 local)
+  sub-agents: 0
+  new files: 2
+    - README.md (3628 B, md5=b8026425...)
+    - vulnerability_scan.json (16 B, md5=6fea748a...)
+  accuracy: UNGRADED (no checks ran; 0/0 incidental checks passed)
+  workspace restored: deleted 10 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[86] pb_shell_command_generator (pw=0.85, model=auto, prompt=345 chars)
+============================================================
+  session: ses_fbdf2e0f8ffeQ2D6cXYa0NoP2P
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.8s without finish=stop
+  duration: 240.8s
+  tokens: in=0  out=0
+  chat.completion: 25 (5 cloud + 20 local)
+  sub-agents: 0
+  new files: 0
+  accuracy: 0.00 (0/5 checks passed)
+    FAIL preview:file_created: score=0.0
+    FAIL preview:non_empty_command: score=0.0
+    FAIL preview:executes_successfully: score=0.0
+    FAIL preview:outputs_correct_matches: score=0.0
+    FAIL preview:shell_only_output: score=0.0
+
+============================================================
+[87] pb_spreadsheet_summary (pw=0.85, model=auto, prompt=953 chars)
+============================================================
+  setup: created 2 data files: [('quarterly_sales.csv', 1288), ('company_expenses.xlsx', 5996)]
+  session: ses_fbdef3411ffePDR0QQPjfcBwzs
+  trigger: HTTP 204 ('')
+  duration: 44.5s
+  tokens: in=11,253  out=1,648
+  chat.completion: 11 (8 cloud + 3 local)
+  sub-agents: 1
+    - local-file-agent: in=9,724 out=2,125 title='Analyze sales CSV and expenses Excel (@local-file-agent suba'
+  new files: 2
+    - data_summary.md (3397 B, md5=aff2ff4a...)
+    - Dockerfile.optimized (194 B, md5=3aaadc35...)
+  accuracy: 1.00 (9/9 checks passed)
+  workspace restored: deleted 4 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[88] pb_stock (pw=0.85, model=auto, prompt=130 chars)
+============================================================
+  session: ses_fbdee85c4ffekLYbbTTqFQf0NK
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.8s without finish=stop
+  duration: 240.8s
+  tokens: in=0  out=0
+  chat.completion: 22 (0 cloud + 22 local)
+  sub-agents: 0
+  new files: 1
+    - vulnerability_scan.json (4498 B, md5=a4f206df...)
+  accuracy: 0.00 (0/6 checks passed)
+    FAIL preview:file_created: score=0.0
+    FAIL preview:ticker_present: score=0.0
+    FAIL preview:price_present: score=0.0
+    FAIL preview:date_present: score=0.0
+    FAIL preview:summary_present: score=0.0
+    FAIL preview:well_formatted: score=0.0
+  workspace restored: deleted 1 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[89] pb_subway_navigation (pw=0.85, model=auto, prompt=609 chars)
+============================================================
+  setup: created 1 data files: [('subway_map.md', 4103)]
+  session: ses_fbdead8d4ffeaXJ3T4wylxpxfb
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.8s without finish=stop
+  duration: 240.8s
+  tokens: in=7,854  out=56
+  chat.completion: 22 (2 cloud + 20 local)
+  sub-agents: 1
+    - local-file-agent: in=0 out=0 title='Get subway directions from map (@local-file-agent subagent)'
+  new files: 0
+  accuracy: 0.00 (0/1 checks passed)
+    FAIL produced_output: agent wrote no output files
+  workspace restored: deleted 1 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[90] pb_summary (pw=0.85, model=auto, prompt=102 chars)
+============================================================
+  setup: created 1 data files: [('summary_source.txt', 4098)]
+  session: ses_fbde72bbeffeX47yfBFDxeescI
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.7s without finish=stop
+  duration: 240.7s
+  tokens: in=0  out=0
+  chat.completion: 19 (0 cloud + 19 local)
+  sub-agents: 0
+  new files: 0
+  accuracy: 0.00 (0/1 checks passed)
+    FAIL produced_output: agent wrote no output files
+  workspace restored: deleted 1 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[91] pb_test_generation (pw=0.85, model=auto, prompt=691 chars)
+============================================================
+  setup: created 1 data files: [('order_processor.py', 5062)]
+  session: ses_fbde37f01ffejbtzsrmlW2KOTp
+  trigger: HTTP 204 ('')
+  duration: 91.2s
+  tokens: in=17,311  out=7,179
+  chat.completion: 17 (8 cloud + 9 local)
+  sub-agents: 0
+  new files: 8
+    - test_order_processor.py (21818 B, md5=375837b5...)
+    - .pytest_cache\.gitignore (37 B, md5=ae07caff...)
+    - .pytest_cache\CACHEDIR.TAG (191 B, md5=f552fcc7...)
+    - .pytest_cache\README.md (302 B, md5=7cc7f8d7...)
+    - __pycache__\order_processor.cpython-312.pyc (6721 B, md5=a8d2d68f...)
+    - __pycache__\test_order_processor.cpython-312-pytest-9.1.1.pyc (87280 B, md5=d4c1db6c...)
+    - .pytest_cache\v\cache\lastfailed (2 B, md5=99914b93...)
+    - .pytest_cache\v\cache\nodeids (6400 B, md5=821386c3...)
+  accuracy: 0.92 (11/12 checks passed)
+    FAIL preview:tests_pass: score=0.0
+  workspace restored: deleted 9 files, preserved 0 modified files (manual recovery)
+
+============================================================
+[92] pb_todo_list_cleanup (pw=0.85, model=auto, prompt=1189 chars)
+============================================================
+  setup: created 1 data files: [('todos.json', 3100)]
+  session: ses_fbde219d3ffe6TpEmnOGb26Gzj
+  trigger: HTTP 204 ('')
+  [polling] hard timeout after 240.8s without finish=stop
+  [check] WARN auto_checks_preview exec failed: unterminated triple-quoted string literal (detected at line 10) (<string>, line 2)
+  duration: 240.8s
+  tokens: in=0  out=0
+  chat.completion: 22 (0 cloud + 22 local)
+  sub-agents: 0
+  new files: 0
+  accuracy: 0.00 (0/1 checks passed)
+    FAIL produced_output: agent wrote no output files
+  workspace restored: deleted 1 files, preserved 0 modified files (manual recovery)
+
+============================================================
+SUMMARY (pw=0.85)
+============================================================
+task          chat cloud local   in_tok out_tok  sub files  PII   acc   sec
+pb_csv_pension_risk    27    23     4    3,903     868    1     3    0  0.80 149.8
+pb_csv_stations_by_elevation     9     9     0      985     568    1     1    0  1.00  46.6
+pb_csv_stations_coverage    26    22     4    7,975      81    1     4    0  1.00 240.8
+pb_csv_stations_filter     8     1     7        0       0    1     1    0  0.00 240.9
+pb_csv_stock_best_worst    20    15     5    9,188     702    1     3    0  1.00 127.6
+pb_csv_stock_trend    19    15     4   17,231   3,151    1     4    0  1.00 119.4
+pb_csv_stock_volatility    11     9     2    9,599     972    1     3    0  1.00  66.9
+pb_csv_temp_anomalies    12     0    12    9,976      59    0     1    0  0.00 241.1
+pb_csv_temp_decades    11     0    11    8,989      31    0     1    0  0.00 240.8
+pb_csv_temp_trend     5     0     5        0       0    0     0    0  0.00 240.7
+pb_cve_security_triage     7     0     7        0       0    0     0    0  0.00 240.5
+pb_daily_summary    10     8     2    8,948     446    1     1    0   n/a  89.0
+pb_dockerfile_optimization    14     5     9    8,851      28    0     1    0  0.00 240.7
+pb_earnings_analysis    13     6     7   19,170     974    0     2    0  1.00 143.8
+pb_eli5_pdf_summary    18    16     2   10,151     951    2     3    0   n/a  99.1
+pb_email        13     0    13    8,685     172    0     3    0   n/a 240.8
+pb_email_reply_drafting     9     0     9    8,844      27    0     2    0   n/a 240.7
+pb_email_search     9     9     0   11,939   1,885    1     1    0  1.00  66.9
+pb_email_triage     5     5     0   13,013   2,014    0     1    0  0.82  32.5
+pb_events        8     7     1   27,783     846    0     2    0   n/a  30.4
+pb_executive_lookup     4     4     0   26,069     366    0     1    0  1.00  14.2
+pb_financial_ratio_calculation    11     0    11    8,723      25    0     0    0  0.00 240.7
+pb_k8s_debugging     9     7     2    2,297     397    0     1    0  1.00  18.2
+pb_log_apache_client_issues    11     0    11    8,850      28    0     1    0  0.00 240.8
+pb_log_apache_critical    13     4     9        0       0    0     2    0   n/a 240.6
+pb_log_apache_error_summary    17     7    10        0       0    0     2    0  0.00 241.0
+pb_log_apache_timeline    11     4     7    7,994      58    1     1    0   n/a 241.0
+pb_log_apache_top_errors    13     2    11        0       0    0     2    0   n/a 240.8
+pb_log_hdfs_block_ops    49    39    10   70,885  14,811    0     2    0  1.00 240.1
+pb_log_hdfs_connections    23    15     8    7,920      68    1     4    0  0.00 240.9
+pb_log_hdfs_failures    20    15     5    1,772     774    1     4    0  1.00  99.4
+pb_log_hdfs_slow_ops    30    24     6   18,533   5,114    1     3    0  0.80 178.1
+pb_log_hdfs_storage    23    22     1   14,300   3,765    1     3    0  1.00  87.1
+pb_log_mapreduce_failures    33    24     9   25,784   7,302    1     2    0  1.00 176.2
+pb_log_mapreduce_jobs    14    13     1    9,136     739    1     1    0  0.80  42.5
+pb_log_mapreduce_resources    38    31     7   13,279   8,098    1     2    0  1.00 180.1
+pb_log_mapreduce_slow_tasks    30    24     6    9,376     645    1     3    0  1.00 111.4
+pb_log_mapreduce_timeline    75    68     7   33,653   7,878    2     9    0  0.00 241.1
+pb_log_nginx_errors    25    19     6        0       0    0     1    0  0.00 240.9
+pb_log_nginx_slow_requests    18     9     9        0       0    0     2    0  0.00 240.7
+pb_log_nginx_status_codes     9     0     9        0       0    0     2    0  0.00 240.9
+pb_log_nginx_traffic    17    10     7    8,979     815    1     2    0  1.00  99.2
+pb_log_nginx_user_agents     9     0     9        0       0    0     2    0  0.00 240.9
+pb_log_ssh_brute_force    11     0    11        0       0    0     4    0   n/a 240.8
+pb_log_ssh_failed_logins    12     0    12        0       0    0     2    0  0.00 240.7
+pb_log_ssh_successful    12     0    12        0       0    0     1    0  0.00 240.6
+pb_log_ssh_unusual_times    19     0    19    8,873      27    0     3    0  0.00 240.7
+pb_log_ssh_user_activity    17    16     1   26,846   8,324    0     1    0  1.00  99.4
+pb_log_syslog_anomalies    18     0    18        0       0    0     2    0  0.00 240.7
+pb_log_syslog_auth_failures    21     6    15        0       0    0     4    0  0.00 240.8
+pb_log_syslog_boot    31    23     8    9,272     697    1     3    0  1.00 121.4
+pb_log_syslog_cron    13     0    13        0       0    0     2    0  0.00 240.8
+pb_log_syslog_services    22     0    22    8,862      27    0     3    0  0.00 240.8
+pb_meeting_advisory_acronyms    10    10     0    8,732     325    1     1    0  0.89  36.5
+pb_meeting_advisory_attendees     3     3     0    8,019     400    0     0    0  0.89   8.1
+pb_meeting_advisory_stakeholders    17     9     8   14,523   1,377    1     3    0  1.00 125.5
+pb_meeting_advisory_technical    19     9    10    8,878     802    1     3    0  1.00 143.7
+pb_meeting_advisory_timeline    10     8     2    8,671     483    1     1    0  1.00 121.4
+pb_meeting_blog_post    20     0    20        0       0    0     1    0  0.00 240.7
+pb_meeting_council_budget    70    54    16    2,154   1,161    2     2    0  0.00 241.0
+pb_meeting_council_contact_info    55    39    16    7,784      31    1     2    0  0.00 240.8
+pb_meeting_council_neighborhood    64    46    18   20,261   1,692    2     0    0  0.00 241.2
+pb_meeting_council_public_comment    32    22    10    8,674     422    1     3    0  1.00 178.2
+pb_meeting_council_upcoming    43    33    10    6,162   2,236    2     1    0  1.00 131.7
+pb_meeting_council_votes    70    59    11   35,539   2,804    1     1    0  0.00 198.9
+pb_meeting_executive_summary    20     5    15        0       0    1     3    0  0.00 240.8
+pb_meeting_follow_up_email    12     8     4    2,035     504    1     1    0  1.00  38.5
+pb_meeting_gov_controversy    28    13    15        0       0    1     1    0  0.11 240.7
+pb_meeting_gov_data_sources    49    33    16   10,878   1,825    2     3    0  1.00 204.5
+pb_meeting_gov_next_steps    81    68    13  155,393   4,461    0     0    0  0.00 240.4
+pb_meeting_gov_qa_extract    70    52    18   15,711   1,029    2     5    0  1.00 227.0
+pb_meeting_gov_recommendations    24    20     4    8,657     548    1     1    0  1.00 101.3
+pb_meeting_gov_speaker_summary    21    13     8   94,726   5,382    0     1    0  0.89  67.4
+pb_meeting_searchable_index    32    14    18      396      33    1     4    0  0.00 240.9
+pb_meeting_sentiment_analysis    13     9     4   10,740     749    1     2    0  0.88  58.7
+pb_meeting_tech_action_items    15     8     7   29,756   3,152    1     2    0  0.78  97.2
+pb_meeting_tech_competitors    14     8     6   11,775     344    1     2    0  1.00  85.1
+pb_meeting_tech_decisions    19    12     7   15,884   1,300    1     1    0  0.89 117.4
+pb_meeting_tech_messaging    21     0    21        0       0    0     0    0  0.00 240.8
+pb_meeting_tech_product_features    10     8     2    9,224     670    1     1    0  1.00  70.8
+pb_meeting_tldr    19    16     3    8,520     244    1     1    0  0.88  40.6
+pb_memory       30    11    19        0       0    0     1    0  0.00 240.6
+pb_multi_file_refactoring     8     6     2   10,630   1,117    0     4    0  1.00  18.3
+pb_pdf_to_calendar    22     0    22        0       0    0     0    0  0.00 240.7
+pb_pricing_research    19    14     5   27,914   8,795    0     2    0   n/a 109.4
+pb_readme_generation    18    14     4   12,115   1,497    0     2    0   n/a  40.6
+pb_shell_command_generator    25     5    20        0       0    0     0    0  0.00 240.8
+pb_spreadsheet_summary    11     8     3   11,253   1,648    1     2    0  1.00  44.5
+pb_stock        22     0    22        0       0    0     1    0  0.00 240.8
+pb_subway_navigation    22     2    20    7,854      56    1     0    0  0.00 240.8
+pb_summary      19     0    19        0       0    0     0    0  0.00 240.7
+pb_test_generation    17     8     9   17,311   7,179    0     8    0  0.92  91.2
+pb_todo_list_cleanup    22     0    22        0       0    0     0    0  0.00 240.8
+
+  accuracy: 0.50 over 82/93 gradeable (11 ungraded, excluded)
+  workspace hygiene: clean â€” every task started and ended at the pristine baseline
+
+[lh_automation] auto-backup: C:\Users\Trekker-PTL\miniforge3\python.exe C:\Users\Trekker-PTL\superclaw_benchmark\tools\backup.py --config auto --pw 0.85
+
+exit=0, elapsed=15646.6s (4.35h)
+
+=== oem116_auto_pw085.jsonl: 116 rows ===
+overall: 0.54 over 99/116 gradeable (17 ungraded, excluded)
+
+auto-graded: 99 tasks, mean 0.540
+  pb_calendar                                   0.833
+  pb_cron_organizer                             0.900
+  pb_csv_cities_density                         0.857
+  pb_csv_cities_filter                          0.667
+  pb_csv_cities_growth                          1.000
+  pb_csv_cities_ranking                         0.875
+  pb_csv_gdp_per_capita                         0.875
+  pb_csv_gdp_ranking                            0.750
+  pb_csv_gdp_regions                            0.000
+  pb_csv_iris_classify                          0.625
+  ... (89 more)
+
+ungraded (LLM-judge or no checks): 17
+  pb_access_log_anomaly
+  pb_blog
+  pb_commit_message_writer
+  pb_competitive_research
+  pb_contract_analysis
+  ... (12 more)
