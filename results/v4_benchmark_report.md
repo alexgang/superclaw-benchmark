@@ -20,7 +20,7 @@
 | **force-local (1800s, NEW heuristic)** | **3** | **0-1** | **758s** | **0** | **155** | **10** | **0.45** |
 | auto (0.85) / lh | 8 | 7 | 53.0s | 33 | 39 | 20 | 0.97 |
 | auto (0.85) / cppm | 3 | 1-2 | 343s | 28 | 47 | 1 | 1.00 (vacuously) |
-| auto (0.85) / PB 84 | 83 | 82 | 110s | ~437 | ~575 | ~10 | 1.00 (mostly vacuously 0/0) |
+| auto (0.85) / PB 84 | 83 | n/a | 110s | ~437 | ~575 | ~10 | **n/a — 0/84 gradeable (retracted)** |
 | auto (0.6) / cppm | 3 | 2 | 235s | 22 | 57 | 4 | 1.00 (vacuously) |
 | auto (0.4) / cppm | 3 | 2 | 176s | 23 | 34 | 2 | 1.00 (vacuously) |
 | auto (0.2) / cppm | 3 | 2 | 312s | 91 | 31 | 9 | 1.00 (vacuously) |
@@ -106,12 +106,20 @@
 
 ## 4. PinchBench 84 (pw=0.85, auto)
 
-**Summary**: 82/84 passed, 1 errored (`pb_codebase_navigation`), 1 zero-call (`pb_blog` 0/0/0).
+>  **RETRACTED 2026-08-27 — this section reported no accuracy result.**
+>  Re-scoring with `harness/regrade.py` finds **0 of 84 rows gradeable**. 58 rows'
+>  only check was `no_files` ("agent produced no output ⇒ privacy N/A ⇒ pass"),
+>  26 rows ran zero checks, and both cases defaulted to 1.0. Exactly one row
+>  (`pb_meeting_advisory_attendees`, from `smoke_oem.jsonl`) ever ran real
+>  assertions. The 98.8% below was a default, not a measurement. Routing, latency
+>  and token counts in this section are unaffected and still valid.
+
+**Summary**: 84 attempted, 1 errored (`pb_codebase_navigation`), 1 zero-call (`pb_blog` 0/0/0).
 
 | Metric | Value |
 |---|---|
 | Total tasks | 83 (84 attempted, 1 hard fail) |
-| Pass rate | 98.8% (82/83) |
+| Pass rate | ~~98.8% (82/83)~~ **no gradeable rows — see retraction above** |
 | Total chat calls | ~1014 (439 cloud + 575 local = **43% cloud**) |
 | Total sub-agents | ~50 (`local-file-agent` for log analysis) |
 | Total tokens | ~1.2M in, ~0.8M out |
@@ -227,7 +235,7 @@ Same task, same pw — output varies 2-3× in file count, all depend on cloud ro
    - cppm01 GT should match real Factorio data (or change the prompt to not expect specific values)
    - All 6 lh rules need entity updates (Alice → Dana, Widget A → Notebook Pro, etc.)
 
-6. **PinchBench at scale**: 84 tasks in 1.5h with 98.8% pass; feasible for daily benchmarking. The single failure was a workspace pollution issue, not a model issue.
+6. **PinchBench at scale**: 84 tasks in 1.5h — the *throughput* result stands and daily benchmarking is feasible. The **98.8% pass rate is withdrawn**: 0 of 84 rows carried a real assertion (see §4 retraction). Two harness defects caused it — a grader that scored 1.0 when zero checks ran, and a workspace that was not reset between tasks, so `new_files` were attributed to the wrong task. Both are fixed as of 2026-08-27; see `NAMING_AUDIT.md` and `tests/test_grading.py`.
 
 7. **Multiple runs needed for stability**: cppm03 had 13-19 files across 3 runs of the same task. N=1 is insufficient for accurate quality assessment. Recommend **3 runs minimum**, report mean ± std.
 

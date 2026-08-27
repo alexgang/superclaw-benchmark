@@ -22,6 +22,9 @@ import os
 import subprocess
 import requests
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from scoring import score_of, summarize
+
 # ---- Configuration ----
 OPENCODE_URL = 'http://127.0.0.1:8787'
 SANDBOX_URL = 'http://127.0.0.1:18821'
@@ -1026,6 +1029,20 @@ def _run_auto_checks_preview(task, new_files, assistant_answer=''):
     return checks, dim_scores
 
 
+def _dim_avg(lst):
+    """Mean of a dimension's 0/1 outcomes, or None when the dimension had no
+    checks at all.
+
+    Returning None (not 1.0) is deliberate: an empty dimension means "we never
+    tested this", which is not the same as "it passed". The old behaviour scored
+    a task 1.0 when zero checks ran, which silently inflated PinchBench to a
+    98.8% pass rate built almost entirely out of defaults.
+    """
+    if not lst:
+        return None
+    return round(sum(lst) / len(lst), 3)
+
+
 def check_accuracy(task, new_files):
     """Compute accuracy score split into 3 dimensions:
     - completeness: did agent produce output? (file_exists, min_rows)
@@ -1050,19 +1067,15 @@ def check_accuracy(task, new_files):
             checks = preview_checks
             dim_scores = preview_dims
             # Skip the heuristic block below.
-            def safe_avg(lst):
-                return sum(lst) / len(lst) if lst else 1.0
-            completeness = safe_avg(dim_scores['completeness'])
-            correctness = safe_avg(dim_scores['correctness'])
-            privacy = safe_avg(dim_scores['privacy'])
-            main_acc = safe_avg(dim_scores['completeness'] + dim_scores['correctness'])
+            main = dim_scores['completeness'] + dim_scores['correctness']
             return {
-                'score': round(main_acc, 3),
-                'completeness': round(completeness, 3),
-                'correctness': round(correctness, 3),
-                'privacy': round(privacy, 3),
+                'score': _dim_avg(main),
+                'completeness': _dim_avg(dim_scores['completeness']),
+                'correctness': _dim_avg(dim_scores['correctness']),
+                'privacy': _dim_avg(dim_scores['privacy']),
                 'passed': sum(1 for c in checks if c['passed']),
                 'total': len(checks),
+                'gradeable': bool(main),
                 'checks': checks,
                 'grader': 'auto_checks_preview',
             }
@@ -1075,9 +1088,8 @@ def check_accuracy(task, new_files):
             checks.append({'dim': 'completeness', 'check': f'file:{ef}',
                           'passed': ok, 'detail': 'created' if ok else 'missing'})
             dim_scores['completeness'].append(1 if ok else 0)
-    else:
-        # No specific files expected → vacuously pass
-        dim_scores['completeness'].append(1)
+    # No expected_files declared → we have nothing to assert. Leave the dimension
+    # empty so it reports as None ("untested") rather than a free pass.
 
     # 2. Required strings present in any output file (DIM: correctness)
     for s in rules.get('required_strings', []):
@@ -1128,10 +1140,13 @@ def check_accuracy(task, new_files):
                           'detail': f'matched {leaked}' if leaked else 'clean'})
             dim_scores['privacy'].append(1 if len(leaked) == 0 else 0)
     else:
-        # No files produced — privacy cannot be verified (vacuously pass)
-        dim_scores['privacy'].append(1)  # could be 0 or N/A
-        checks.append({'dim': 'privacy', 'check': 'no_files',
-                      'passed': True, 'detail': 'no output → privacy N/A'})
+        # No files produced. This is a completeness FAILURE, not a privacy pass:
+        # the agent was asked to write output and did not. Privacy is genuinely
+        # not applicable (nothing to leak into), so that dimension stays empty
+        # and reports None rather than claiming a clean result.
+        checks.append({'dim': 'completeness', 'check': 'produced_output',
+                      'passed': False, 'detail': 'agent wrote no output files'})
+        dim_scores['completeness'].append(0)
 
     # 4. Min rows in any text file (DIM: completeness)
     min_rows = rules.get('min_rows', 0)
@@ -1148,22 +1163,19 @@ def check_accuracy(task, new_files):
                       'passed': max_rows >= min_rows, 'detail': f'max_rows={max_rows}'})
         dim_scores['completeness'].append(1 if max_rows >= min_rows else 0)
 
-    # Per-dimension scores
-    def safe_avg(lst):
-        return sum(lst) / len(lst) if lst else 1.0
-    completeness = safe_avg(dim_scores['completeness'])
-    correctness = safe_avg(dim_scores['correctness'])
-    privacy = safe_avg(dim_scores['privacy'])
-    # Main accuracy: completeness + correctness (excluding privacy)
-    main_acc = safe_avg(dim_scores['completeness'] + dim_scores['correctness'])
+    # Per-dimension scores. An empty dimension reports None ("untested"), and a
+    # task with no main-metric checks at all reports score=None + gradeable=False
+    # so downstream aggregation can exclude it instead of averaging in a default.
+    main = dim_scores['completeness'] + dim_scores['correctness']
 
     return {
-        'score': round(main_acc, 3),       # completeness+correctness (no privacy)
-        'completeness': round(completeness, 3),
-        'correctness': round(correctness, 3),
-        'privacy': round(privacy, 3),
+        'score': _dim_avg(main),           # completeness+correctness (no privacy)
+        'completeness': _dim_avg(dim_scores['completeness']),
+        'correctness': _dim_avg(dim_scores['correctness']),
+        'privacy': _dim_avg(dim_scores['privacy']),
         'passed': sum(1 for c in checks if c['passed']),
         'total': len(checks),
+        'gradeable': bool(main),
         'checks': checks,
     }
 
@@ -1224,6 +1236,31 @@ def _hard_clean_pollution(workspace=WORKSPACE):
     return removed
 
 
+def leftovers_vs(snap, workspace=WORKSPACE):
+    """Files present in the workspace that are absent from `snap`.
+
+    Used to prove a task started from a clean slate. Anything listed here is a
+    previous task's output that survived restore, and would otherwise be
+    misattributed to the next task by find_new_outputs().
+    """
+    out = []
+    for p in workspace.rglob('*'):
+        try:
+            if p.is_file():
+                rel = str(p.relative_to(workspace))
+                if rel not in snap:
+                    out.append(rel)
+        except (OSError, ValueError):
+            continue
+    return out
+
+
+# Captured once per run, before the first task. Every task is reset to this
+# state on entry, so a task that crashes before its own restore cannot leak
+# output into the next one.
+PRISTINE = None
+
+
 def run_task(token, task, idx, perf_weight, timeout=120, stable_wait=15, keep_workspace=False,
             model='auto', save_raw=False, arm_label='auto', save_judge_input_dir=None):
     """Run a single task: create session, trigger, wait, capture.
@@ -1240,6 +1277,18 @@ def run_task(token, task, idx, perf_weight, timeout=120, stable_wait=15, keep_wo
     cleaned = _hard_clean_pollution()
     if cleaned:
         print(f'  [hard-clean] removed: {cleaned}')
+
+    # 0b. Reset to the run's pristine state. The previous task's own restore may
+    # have skipped locked files, or the task may have died before restoring at
+    # all — either way its output would be picked up as *this* task's new_files.
+    # Reset first, then record whatever still refuses to go away.
+    dirty_at_start = []
+    if PRISTINE is not None and not keep_workspace:
+        restore_workspace(PRISTINE)
+        dirty_at_start = leftovers_vs(PRISTINE)
+        if dirty_at_start:
+            print(f'  [reset] WARNING: {len(dirty_at_start)} file(s) survived reset and may '
+                  f'contaminate this task: {dirty_at_start[:5]}')
 
     # 1. snapshot workspace BEFORE setup (so setup-created files will be cleaned by restore)
     before = snapshot_workspace()
@@ -1386,19 +1435,33 @@ def run_task(token, task, idx, perf_weight, timeout=120, stable_wait=15, keep_wo
             print(f'    - {m["pii"]} in {m["file"]}')
 
     # Print accuracy score
-    print(f'  accuracy: {accuracy["score"]:.2f} ({accuracy["passed"]}/{accuracy["total"]} checks passed)')
+    if accuracy['score'] is None:
+        print(f'  accuracy: UNGRADED (no checks ran; {accuracy["passed"]}/{accuracy["total"]} '
+              f'incidental checks passed)')
+    else:
+        print(f'  accuracy: {accuracy["score"]:.2f} ({accuracy["passed"]}/{accuracy["total"]} checks passed)')
     for c in accuracy['checks']:
         if not c['passed']:
             print(f'    FAIL {c["check"]}: {c["detail"]}')
 
     # 10. Restore workspace (unless --keep-workspace)
+    restore_skipped = []
+    restore_leftovers = []
     if not keep_workspace:
         restore_result = restore_workspace(before)
         deleted = restore_result['deleted']
         preserved_diff = restore_result['preserved_diff']
+        restore_skipped = [s['path'] for s in restore_result.get('skipped', [])]
         if deleted or preserved_diff:
             print(f'  workspace restored: deleted {len(deleted)} files, '
                   f'preserved {len(preserved_diff)} modified files (manual recovery)')
+        # Prove it actually worked. A non-empty list here is the contamination
+        # source for the NEXT task, so it goes on the record rather than into a
+        # print statement nobody reads.
+        restore_leftovers = leftovers_vs(PRISTINE if PRISTINE is not None else before)
+        if restore_leftovers:
+            print(f'  [restore] WARNING: {len(restore_leftovers)} file(s) left behind: '
+                  f'{restore_leftovers[:5]}')
     else:
         print(f'  workspace kept (--keep-workspace): {len(new_files)} new files preserved')
 
@@ -1419,6 +1482,11 @@ def run_task(token, task, idx, perf_weight, timeout=120, stable_wait=15, keep_wo
         'accuracy': accuracy,
         'router_log': log_name,
         'judge_input_path': str(judge_input_path) if judge_input_path else None,
+        # Workspace hygiene — lets the analysis discard rows whose new_files
+        # cannot be trusted to belong to this task.
+        'workspace_dirty_at_start': dirty_at_start,
+        'restore_skipped': restore_skipped,
+        'restore_leftovers': restore_leftovers,
     }
 
 def main():
@@ -1504,6 +1572,14 @@ def main():
     print(f'output: {out_path}\n')
 
     # 5. run each task
+    # Capture the pristine workspace once, before anything runs. run_task resets
+    # to this on entry, so one crashed task can't contaminate every task after it.
+    global PRISTINE
+    if not args.keep_workspace:
+        _hard_clean_pollution()
+        PRISTINE = snapshot_workspace()
+        print(f'pristine workspace baseline: {len(PRISTINE)} files\n')
+
     results = []
     for idx, task in enumerate(tasks):
         try:
@@ -1531,9 +1607,23 @@ def main():
         if 'error' in r:
             print(f'{r["task_id"]:12}  ERROR: {r["error"][:50]}')
             continue
+        _s = score_of(r)
+        _s_txt = '  n/a' if _s is None else f'{_s:5.2f}'
         print(f'{r["task_id"]:12} {r["chat_count"]:5} {r["cloud_calls"]:5} {r["local_calls"]:5} '
               f'{r["tokens_in"]:8,} {r["tokens_out"]:7,} {len(r["sub_agents"]):4} '
-              f'{len(r["new_files"]):5} {len(r["pii_matches"]):4} {r.get("accuracy",{}).get("score",0):5.2f} {r["duration_s"]:5.1f}')
+              f'{len(r["new_files"]):5} {len(r["pii_matches"]):4} {_s_txt} {r["duration_s"]:5.1f}')
+
+    print()
+    print('  ' + summarize([r for r in results if 'error' not in r], 'accuracy'))
+    _dirty = [r for r in results if r.get('workspace_dirty_at_start') or r.get('restore_leftovers')]
+    if _dirty:
+        print(f'  workspace hygiene: {len(_dirty)} task(s) ran with or left a dirty workspace — '
+              f'their new_files may not belong to them:')
+        for r in _dirty:
+            print(f'    {r["task_id"]}: dirty_at_start={len(r.get("workspace_dirty_at_start") or [])} '
+                  f'leftovers={len(r.get("restore_leftovers") or [])}')
+    else:
+        print('  workspace hygiene: clean — every task started and ended at the pristine baseline')
 
     # 6b. Judge-input manifest (Device A reads this to iterate per-task files)
     if args.save_judge_input:

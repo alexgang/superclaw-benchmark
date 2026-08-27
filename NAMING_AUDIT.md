@@ -59,3 +59,86 @@ not a clean forced-local artifact set. The per-round dirs `auto_pw0.20`,
 - No Python script resolves any of these logs by hardcoded filename except
   `logs/_crosscheck.py` (updated); `tools/backup.py` globs `logs/baseline_*.jsonl`,
   which still matches.
+
+---
+
+# Grading audit — 2026-08-27 (same session)
+
+Follow-up to the question "of the 116 OEM cases, how many were attempted and how
+many produced a judgeable artifact?". Answering it surfaced two harness defects
+that invalidate the published PinchBench accuracy.
+
+## Coverage of the 116 OEM cases
+
+| | count |
+|---|---|
+| attempted (a run row exists with chat_count > 0) | 67 |
+| never attempted | 49 |
+| produced an artifact named in their own rubric | 6 |
+| produced files, but none matching their rubric (contamination only) | 11 |
+| produced no files at all | 50 |
+
+The 49 never attempted are concentrated in `pb_meeting_*` (27) and
+`pb_log_{ssh,syslog}_*` (10), all `routing_expectation=cloud`.
+
+## Defect 1 — the grader scored 1.0 when nothing was checked
+
+`check_accuracy()` averaged each dimension with `safe_avg(lst)` returning **1.0
+for an empty list**, and emitted `no_files` as a *passing* privacy check with the
+detail "no output → privacy N/A". Net effect across `pb_top3_pw0.85_auto_v5.jsonl`:
+
+- 58 rows whose only check was `no_files` → 1.0
+- 26 rows with `checks: []` → 1.0
+- 1 row with real assertions
+
+Reported mean 0.988. Actual gradeable rows: **0 of 84**.
+
+**Fixed:** empty dimension → `None`; no checks → `score: None, gradeable: False`;
+"no output" is now a *failing* completeness check (`produced_output`) and privacy
+reports `None` instead of a free pass. Pinned by `tests/test_grading.py` (6 tests).
+All score consumers now go through `harness/scoring.py`, which also treats legacy
+`score=1.0, total=0` rows as ungraded.
+
+## Defect 2 — the workspace was not reset between tasks
+
+`restore_workspace()` collected unlink failures into a `skipped` list that was
+printed but never recorded, and a task that raised skipped restore entirely. The
+next task's `find_new_outputs()` then attributed the survivors to itself:
+`pb_cve_security_triage` → `global_temperature.csv`, `pb_log_hdfs_connections` →
+`vulnerability_scan.json`, `pb_csv_iris_summary` → `express\lib\request.js`.
+
+**Fixed:** a `PRISTINE` baseline is captured once per run; every task resets to it
+on entry, so a crashed task cannot contaminate its successors. Each row now
+records `workspace_dirty_at_start`, `restore_skipped` and `restore_leftovers`, and
+the run summary prints a workspace-hygiene line. Pinned by
+`tests/test_workspace_isolation.py` (4 tests).
+
+## What survives re-scoring
+
+`harness/regrade.py` re-scores any existing log from its persisted `checks[]`
+without rerunning. Full output in `results/regrade_20260827.txt`.
+
+| log | rows | gradeable | old | new |
+|---|---|---|---|---|
+| `pb_top3_pw0.85_auto_v5.jsonl` | 84 | **0** | 1.000 | n/a |
+| `baseline_pw0.85_auto_lh.jsonl` | 8 | 8 | 0.600 | 0.600 |
+| `baseline_pw0.85_cloud_lh.jsonl` | 8 | 8 | 1.000 | 1.000 |
+| `baseline_pw0.85_local_lh.jsonl` | 8 | 8 | 1.000 | 1.000 |
+| `baseline_pw0.85_*_cppm.jsonl` | 3 each | **0** | 1.000 | n/a |
+| `cppm_auto_pw0{2,4,6}_rerun.jsonl` | 3 each | 3 | 0.598–0.601 | unchanged |
+| `lh_auto_pw0{2,4,6}_rerun.jsonl` | 8 each | 8 | 1.000 | unchanged |
+
+Two things to note:
+
+- **The lh arm is real and unchanged.** Its scores were never inflated, because
+  `TASK_ACCURACY` has had lh01–lh08 rules throughout. The one movement is privacy
+  in the force-local arm, 1.000 → 0.750, which the `no_files` free pass had been
+  hiding.
+- **The Aug 20/24 cppm baselines are ungradeable for a different reason** than
+  PinchBench: `TASK_ACCURACY` gained its cppm01–03 rules *after* those runs, so
+  they recorded `checks: []`. The Aug 26 pw-sweep cppm runs used the newer rules
+  and re-score identically (0.598–0.601) — that data is sound. The cppm baselines
+  need a rerun, not a re-score.
+
+The sweep data (`*_auto_pw*`) is unaffected by both defects: identical before and
+after re-scoring, and every row gradeable.

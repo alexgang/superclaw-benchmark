@@ -2,6 +2,9 @@
 import json, os, subprocess, sys, time
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from scoring import score_of, summarize
+
 ROOT = Path(r'C:\Users\Trekker-PTL\superclaw_benchmark')
 LOGS = ROOT / 'logs'
 RAW_BASE = ROOT / 'results' / 'v4_raw'
@@ -51,8 +54,7 @@ for arm in ARMS:
         if rows:
             print(f'\n{arm["label"]}:')
             for r in rows:
-                acc = r.get('accuracy', {}).get('score', 0) if isinstance(r.get('accuracy'), dict) else 0
-                print(f'  {r["task_id"]:10} acc={acc:.2f} chat={r["chat_count"]:3} cloud={r["cloud_calls"]:2} sec={r["duration_s"]:5.1f}')
-            if any(isinstance(r.get('accuracy'), dict) for r in rows):
-                avg = sum(r.get('accuracy', {}).get('score', 0) for r in rows if isinstance(r.get('accuracy'), dict)) / sum(1 for r in rows if isinstance(r.get('accuracy'), dict))
-                print(f'  avg: {avg:.2f}')
+                s_ = score_of(r)
+                acc = 'UNGRADED' if s_ is None else f'{s_:.2f}'
+                print(f'  {r["task_id"]:10} acc={acc:>8} chat={r["chat_count"]:3} cloud={r["cloud_calls"]:2} sec={r["duration_s"]:5.1f}')
+            print('  ' + summarize(rows, 'avg'))

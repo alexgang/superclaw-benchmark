@@ -4,6 +4,9 @@ Top-3 categories: log_analysis, meeting_analysis, csv_analysis = 84 tasks.
 import json, os, subprocess, sys, time
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from scoring import score_of, summarize
+
 ROOT = Path(r'C:\Users\Trekker-PTL\superclaw_benchmark')
 LOGS = ROOT / 'logs'
 RAW_BASE = ROOT / 'results' / 'v4_raw'
@@ -73,11 +76,8 @@ for arm in ARMS:
         if rows:
             print(f'\n{arm["label"]}: {len(rows)} tasks')
             for r in rows[:5]:
-                acc = r.get('accuracy', {}).get('score', 0) if isinstance(r.get('accuracy'), dict) else 0
-                print(f'  {r["task_id"]:35} acc={acc:.2f}')
+                s = score_of(r)
+                print(f'  {r["task_id"]:35} acc=' + ('UNGRADED' if s is None else f'{s:.2f}'))
             if len(rows) > 5:
                 print(f'  ... ({len(rows)-5} more)')
-            valid = [r for r in rows if isinstance(r.get('accuracy'), dict)]
-            if valid:
-                avg = sum(r.get('accuracy', {}).get('score', 0) for r in valid) / len(valid)
-                print(f'  avg: {avg:.2f} ({len(valid)} valid)')
+            print('  ' + summarize(rows, 'avg'))

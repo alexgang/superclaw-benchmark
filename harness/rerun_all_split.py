@@ -1,6 +1,9 @@
 """Re-run all 7 configs with split accuracy."""
-import json, os, shutil, subprocess, time, csv
+import json, os, shutil, subprocess, sys, time, csv
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from scoring import dim_avg, gradeable_scores
 
 ROOT = Path('C:/Users/Trekker-PTL/superclaw_benchmark')
 LOGS = ROOT / 'logs'
@@ -76,10 +79,13 @@ for cfg in CONFIGS:
     if log.exists():
         with open(log, encoding='utf-8') as f:
             rows = [json.loads(l) for l in f if l.strip()]
-        valid = [r for r in rows if isinstance(r.get('accuracy'), dict) and 'score' in r['accuracy']]
-        if valid:
-            avg = sum(r['accuracy']['score'] for r in valid) / len(valid)
-            comp = sum(r['accuracy'].get('completeness', 0) for r in valid) / len(valid)
-            corr = sum(r['accuracy'].get('correctness', 0) for r in valid) / len(valid)
-            priv = sum(r['accuracy'].get('privacy', 0) for r in valid) / len(valid)
-            print(f'  {cfg["label"]:8} pw={cfg["pw"]}: score={avg:.2f} comp={comp:.2f} corr={corr:.2f} priv={priv:.2f} ({len(valid)} tasks)')
+        scores, ungraded = gradeable_scores(rows)
+        if scores:
+            def fmt(v):
+                return 'n/a' if v is None else f'{v:.2f}'
+            avg = sum(scores) / len(scores)
+            print(f'  {cfg["label"]:8} pw={cfg["pw"]}: score={avg:.2f} '
+                  f'comp={fmt(dim_avg(rows, "completeness"))} '
+                  f'corr={fmt(dim_avg(rows, "correctness"))} '
+                  f'priv={fmt(dim_avg(rows, "privacy"))} '
+                  f'({len(scores)}/{len(rows)} gradeable, {ungraded} ungraded)')
