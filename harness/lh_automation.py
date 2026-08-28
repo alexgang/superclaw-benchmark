@@ -496,6 +496,29 @@ def get_messages(token, session_id):
         return d.get('data', []) or []
     return []
 
+def abort_session(token, session_id):
+    """Force-abort an opencode session. Returns True if abort was accepted.
+
+    Endpoint discovered via probe 2026-08-28:
+        POST /w/{ws_id}/opencode/session/{sid}/abort   -> HTTP 200 body='true'
+    All other DELETE/POST abort variants on the API surface returned 404 HTML.
+
+    This is the critical fix for the cross-task pollution bug:
+    without it, a timed-out SuperClaw agent keeps writing files into the
+    NEXT task's workspace, attributing them as its own new_files.
+    Per RETEST_PLAN.md section 3, fix #1.
+    """
+    try:
+        r = requests.post(
+            f'{OPENCODE_URL}/w/{WS_ID}/opencode/session/{session_id}/abort',
+            headers={'Authorization': f'Bearer {token}'},
+            timeout=5,
+        )
+        return r.status_code == 200 and r.text.strip() == 'true'
+    except Exception as e:
+        print(f'  [abort] POST abort failed for {session_id}: {e!r}')
+        return False
+
 def get_router_log_lines():
     """Get all chat.completion lines from the most recent router log."""
     logs = sorted(ROUTER_LOG_DIR.glob('llmrouter_manager-*.log'),
@@ -1282,13 +1305,23 @@ def run_task(token, task, idx, perf_weight, timeout=120, stable_wait=15, keep_wo
     # have skipped locked files, or the task may have died before restoring at
     # all — either way its output would be picked up as *this* task's new_files.
     # Reset first, then record whatever still refuses to go away.
+    # Per RETEST_PLAN.md section 3, fix #2: if hard-clean still leaves residue,
+    # ABORT the run rather than silently corrupt the next task.
     dirty_at_start = []
     if PRISTINE is not None and not keep_workspace:
         restore_workspace(PRISTINE)
         dirty_at_start = leftovers_vs(PRISTINE)
         if dirty_at_start:
-            print(f'  [reset] WARNING: {len(dirty_at_start)} file(s) survived reset and may '
-                  f'contaminate this task: {dirty_at_start[:5]}')
+            print(f'  [reset] WARNING: {len(dirty_at_start)} file(s) survived reset; '
+                  f'calling _hard_clean_pollution()')
+            _hard_clean_pollution()
+            dirty_at_start = leftovers_vs(PRISTINE)
+            if dirty_at_start:
+                msg = (f'PRISTINE workspace cannot be restored before task {idx} ({task["id"]}). '
+                       f'{len(dirty_at_start)} file(s) refuse to go away even after _hard_clean_pollution: '
+                       f'{dirty_at_start[:8]}. Aborting run to prevent further contamination.')
+                print(f'\n  [ABORT] {msg}\n')
+                sys.exit(2)
 
     # 1. snapshot workspace BEFORE setup (so setup-created files will be cleaned by restore)
     before = snapshot_workspace()
@@ -1348,6 +1381,11 @@ def run_task(token, task, idx, perf_weight, timeout=120, stable_wait=15, keep_wo
     elapsed = time.time() - t0
     if not finish_stop_seen:
         print(f'  [polling] hard timeout after {elapsed:.1f}s without finish=stop')
+        # Per RETEST_PLAN.md section 3, fix #1: force-abort the SuperClaw session
+        # so it can't keep writing files into the next task's workspace.
+        ok = abort_session(token, sid)
+        print(f'  [abort] session {sid} abort {"accepted" if ok else "FAILED"}; sleeping 5s for agent to wind down')
+        time.sleep(5)
     sess = get_session(token, sid)
     final_tokens = sess.get('tokens', {})
 
@@ -1462,6 +1500,17 @@ def run_task(token, task, idx, perf_weight, timeout=120, stable_wait=15, keep_wo
         if restore_leftovers:
             print(f'  [restore] WARNING: {len(restore_leftovers)} file(s) left behind: '
                   f'{restore_leftovers[:5]}')
+            # Per RETEST_PLAN.md section 3, fix #2: try hard-clean once, then
+            # ABORT the run if residue still remains (better to fail loud
+            # than to silently contaminate the next task's workspace).
+            print('  [restore] calling _hard_clean_pollution() to brute-force clean residue')
+            _hard_clean_pollution()
+            restore_leftovers = leftovers_vs(PRISTINE if PRISTINE is not None else before)
+            if restore_leftovers:
+                msg = (f'Workspace for task {idx} ({task["id"]}) cannot be cleaned after restore. '
+                       f'{len(restore_leftovers)} file(s) left: {restore_leftovers[:8]}. Aborting run.')
+                print(f'\n  [ABORT] {msg}\n')
+                sys.exit(3)
     else:
         print(f'  workspace kept (--keep-workspace): {len(new_files)} new files preserved')
 
