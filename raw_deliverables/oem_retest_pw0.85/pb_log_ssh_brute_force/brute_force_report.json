@@ -1,0 +1,133 @@
+{
+  "summary": "Detected 6 brute-force attack sources from 399 failed authentication attempts. Most aggressive attacker: 183.62.140.253 with 158 attempts.",
+  "brute_force_sources": [
+    {
+      "ip": "183.62.140.253",
+      "total_attempts": 158,
+      "first_seen": "Dec 10 10:54:27",
+      "last_seen": "Dec 10 10:59:43",
+      "usernames_tried": [
+        "123",
+        "123456",
+        "boot",
+        "dff",
+        "oracle",
+        "test",
+        "ubuntu",
+        "zhangyan"
+      ],
+      "attack_type": "dictionary",
+      "reverse_dns_warning": false
+    },
+    {
+      "ip": "187.141.143.180",
+      "total_attempts": 109,
+      "first_seen": "Dec 10 09:12:48",
+      "last_seen": "Dec 10 09:20:02",
+      "usernames_tried": [
+        "abc",
+        "bssh",
+        "butter",
+        "cyrus",
+        "deploy",
+        "eoor",
+        "ghost",
+        "ingrid",
+        "jay",
+        "magnos",
+        "nagios",
+        "nagios1",
+        "oracle",
+        "oralce",
+        "postgres",
+        "postgres1",
+        "redhat",
+        "ted",
+        "test",
+        "test1",
+        "test2",
+        "ubuntu",
+        "vnc",
+        "www"
+      ],
+      "attack_type": "dictionary",
+      "reverse_dns_warning": false
+    },
+    {
+      "ip": "103.99.0.122",
+      "total_attempts": 53,
+      "first_seen": "Dec 10 09:11:20",
+      "last_seen": "Dec 10 09:12:44",
+      "usernames_tried": [
+        "1234",
+        "Management",
+        "PlcmSpIp",
+        "admin",
+        "anonymous",
+        "cisco",
+        "ftpuser",
+        "guest",
+        "monitor",
+        "operator",
+        "pi",
+        "support",
+        "test",
+        "ubnt",
+        "user"
+      ],
+      "attack_type": "dictionary",
+      "reverse_dns_warning": false
+    },
+    {
+      "ip": "112.95.230.3",
+      "total_attempts": 28,
+      "first_seen": "Dec 10 07:27:52",
+      "last_seen": "Dec 10 07:28:51",
+      "usernames_tried": [
+        "pgadmin",
+        "utsims"
+      ],
+      "attack_type": "targeted",
+      "reverse_dns_warning": false
+    },
+    {
+      "ip": "5.188.10.180",
+      "total_attempts": 27,
+      "first_seen": "Dec 10 08:24:32",
+      "last_seen": "Dec 10 08:26:24",
+      "usernames_tried": [
+        "0",
+        "0101",
+        "1234",
+        "admin",
+        "default",
+        "guest"
+      ],
+      "attack_type": "dictionary",
+      "reverse_dns_warning": false
+    },
+    {
+      "ip": "185.190.58.151",
+      "total_attempts": 24,
+      "first_seen": "Dec 10 09:07:23",
+      "last_seen": "Dec 10 09:12:59",
+      "usernames_tried": [
+        "0",
+        "123",
+        "admin",
+        "api"
+      ],
+      "attack_type": "targeted",
+      "reverse_dns_warning": false
+    }
+  ],
+  "risk_level": "critical",
+  "recommendations": [
+    "Implement IP-based rate limiting on SSH",
+    "Enable fail2ban or similar intrusion prevention system",
+    "Configure SSH to reject repeated failed login attempts",
+    "Block IPs with reverse DNS warnings",
+    "Monitor and alert on new brute-force attempts",
+    "Consider implementing multi-factor authentication"
+  ]
+}

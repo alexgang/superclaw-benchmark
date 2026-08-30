@@ -1,0 +1,309 @@
+{
+    "generated_at":  "2026-08-30T11:27:31+08:00",
+    "purpose":  "Manual LLM-judge accuracy grading: 20 tasks whose deliverables A-side needs the file bodies for (grading_type=llm_judge or post-retest auto-checks no longer apply).",
+    "source_dirs":  {
+                        "oem_retest_pw0.85":  "results/v4_raw/oem_retest_pw0.85/\u003ctask_id\u003e/  (--save-raw output of 2026-08-30 retest)",
+                        "oem_auto_pw0.85_pw0.85":  "results/v4_raw/oem_auto_pw0.85_pw0.85/\u003ctask_id\u003e/  (--save-raw output of 2026-08-27 baseline run)"
+                    },
+    "note_path_separator":  "lh_automation.py:1438 flattens subdirectories to underscores, e.g. tmp/pdf_md/x.md becomes tmp_pdf_md_x.md",
+    "stats":  {
+                  "total_tasks":  20,
+                  "total_files":  35,
+                  "total_bytes":  1048535,
+                  "total_kb":  1024,
+                  "batches":  {
+                                  "oem_retest_pw0.85":  {
+                                                            "tasks":  10,
+                                                            "files":  17,
+                                                            "run_date":  "2026-08-30"
+                                                        },
+                                  "oem_auto_pw0.85_pw0.85":  {
+                                                                 "tasks":  10,
+                                                                 "files":  18,
+                                                                 "run_date":  "2026-08-27"
+                                                             }
+                              }
+              },
+    "files":  [
+                  {
+                      "batch":  "oem_retest_pw0.85",
+                      "run_date":  "2026-08-30",
+                      "task_id":  "pb_csv_finance_report",
+                      "file":  "compute_metrics.py",
+                      "bytes":  11470,
+                      "md5":  "47E8D84D3E6E80E083282BA8E1126926"
+                  },
+                  {
+                      "batch":  "oem_retest_pw0.85",
+                      "run_date":  "2026-08-30",
+                      "task_id":  "pb_csv_finance_report",
+                      "file":  "finance_report.md",
+                      "bytes":  13536,
+                      "md5":  "14E292F4A66F293C8FD9F0781FB1B82E"
+                  },
+                  {
+                      "batch":  "oem_retest_pw0.85",
+                      "run_date":  "2026-08-30",
+                      "task_id":  "pb_csv_finance_report",
+                      "file":  "metrics.json",
+                      "bytes":  7786,
+                      "md5":  "800D20F8A418DEC2445DF10B721AAD08"
+                  },
+                  {
+                      "batch":  "oem_retest_pw0.85",
+                      "run_date":  "2026-08-30",
+                      "task_id":  "pb_email",
+                      "file":  "email_draft.txt",
+                      "bytes":  600,
+                      "md5":  "F8B071C3EF19A17F152E71D63C309FFB"
+                  },
+                  {
+                      "batch":  "oem_retest_pw0.85",
+                      "run_date":  "2026-08-30",
+                      "task_id":  "pb_email_reply_drafting",
+                      "file":  "reply_drafts.md",
+                      "bytes":  1895,
+                      "md5":  "BD95303F37D7B74E1C60E3E1D84FFBB1"
+                  },
+                  {
+                      "batch":  "oem_retest_pw0.85",
+                      "run_date":  "2026-08-30",
+                      "task_id":  "pb_log_apache_critical",
+                      "file":  "security_findings.json",
+                      "bytes":  8746,
+                      "md5":  "2CF3CB174DA2F3E1F7AA72F0AEE82F64"
+                  },
+                  {
+                      "batch":  "oem_retest_pw0.85",
+                      "run_date":  "2026-08-30",
+                      "task_id":  "pb_log_apache_timeline",
+                      "file":  "analyze_log.py",
+                      "bytes":  8099,
+                      "md5":  "A1B65DE1EB1D20DC96C873E3A991ACE0"
+                  },
+                  {
+                      "batch":  "oem_retest_pw0.85",
+                      "run_date":  "2026-08-30",
+                      "task_id":  "pb_log_apache_timeline",
+                      "file":  "build_json.py",
+                      "bytes":  6984,
+                      "md5":  "154BDFD767DBA0D9E97D8EA4B431ABED"
+                  },
+                  {
+                      "batch":  "oem_retest_pw0.85",
+                      "run_date":  "2026-08-30",
+                      "task_id":  "pb_log_apache_timeline",
+                      "file":  "error_timeline.json",
+                      "bytes":  5183,
+                      "md5":  "2A39B7A1D07ED31ECCA8851F466AF5FC"
+                  },
+                  {
+                      "batch":  "oem_retest_pw0.85",
+                      "run_date":  "2026-08-30",
+                      "task_id":  "pb_log_apache_timeline",
+                      "file":  "peak_drill.py",
+                      "bytes":  2678,
+                      "md5":  "76FE93E7A1F14FAC10CDE0EAD3A6794D"
+                  },
+                  {
+                      "batch":  "oem_retest_pw0.85",
+                      "run_date":  "2026-08-30",
+                      "task_id":  "pb_log_apache_top_errors",
+                      "file":  "error_types_report.json",
+                      "bytes":  11049,
+                      "md5":  "9BEE4A5B1EE8F2F828253BD28CFDBEDE"
+                  },
+                  {
+                      "batch":  "oem_retest_pw0.85",
+                      "run_date":  "2026-08-30",
+                      "task_id":  "pb_log_ssh_brute_force",
+                      "file":  "analyze_auth.py",
+                      "bytes":  6535,
+                      "md5":  "1BD0AE3E4CBFA95F8770A9632621E3D3"
+                  },
+                  {
+                      "batch":  "oem_retest_pw0.85",
+                      "run_date":  "2026-08-30",
+                      "task_id":  "pb_log_ssh_brute_force",
+                      "file":  "brute_force_report.json",
+                      "bytes":  3091,
+                      "md5":  "C00B56C11139CB1DAFEAA7DC441DF7CD"
+                  },
+                  {
+                      "batch":  "oem_retest_pw0.85",
+                      "run_date":  "2026-08-30",
+                      "task_id":  "pb_subway_navigation",
+                      "file":  "subway_directions.md",
+                      "bytes":  4242,
+                      "md5":  "A7723165D7E3C7CB5E3A12744858D5CC"
+                  },
+                  {
+                      "batch":  "oem_retest_pw0.85",
+                      "run_date":  "2026-08-30",
+                      "task_id":  "pb_summary",
+                      "file":  "summary_output.txt",
+                      "bytes":  1943,
+                      "md5":  "428ED96C110A198289D71BE07C5222FE"
+                  },
+                  {
+                      "batch":  "oem_retest_pw0.85",
+                      "run_date":  "2026-08-30",
+                      "task_id":  "pb_todo_list_cleanup",
+                      "file":  "cleanup_todos.py",
+                      "bytes":  2919,
+                      "md5":  "114EF90B5ABD871EC2340517A52EBB6C"
+                  },
+                  {
+                      "batch":  "oem_retest_pw0.85",
+                      "run_date":  "2026-08-30",
+                      "task_id":  "pb_todo_list_cleanup",
+                      "file":  "todos_cleaned.json",
+                      "bytes":  3876,
+                      "md5":  "1D653D4D4D1A059B7CC9EA715974E572"
+                  },
+                  {
+                      "batch":  "oem_auto_pw0.85_pw0.85",
+                      "run_date":  "2026-08-27",
+                      "task_id":  "pb_access_log_anomaly",
+                      "file":  "analyze.py",
+                      "bytes":  5512,
+                      "md5":  "7F7F503296B48392C6CEE3BF7A847297"
+                  },
+                  {
+                      "batch":  "oem_auto_pw0.85_pw0.85",
+                      "run_date":  "2026-08-27",
+                      "task_id":  "pb_access_log_anomaly",
+                      "file":  "anomaly_report.json",
+                      "bytes":  1302,
+                      "md5":  "791884513D63D8121C0673E8AC0BCBC9"
+                  },
+                  {
+                      "batch":  "oem_auto_pw0.85_pw0.85",
+                      "run_date":  "2026-08-27",
+                      "task_id":  "pb_blog",
+                      "file":  "blog_post.md",
+                      "bytes":  6349,
+                      "md5":  "30AA4B6E02020DED5137309E401097A7"
+                  },
+                  {
+                      "batch":  "oem_auto_pw0.85_pw0.85",
+                      "run_date":  "2026-08-27",
+                      "task_id":  "pb_commit_message_writer",
+                      "file":  "commit_message.txt",
+                      "bytes":  379,
+                      "md5":  "0C6D7DB14FB7D811B62181C2C940C413"
+                  },
+                  {
+                      "batch":  "oem_auto_pw0.85_pw0.85",
+                      "run_date":  "2026-08-27",
+                      "task_id":  "pb_competitive_research",
+                      "file":  "competitive_analysis.md",
+                      "bytes":  14855,
+                      "md5":  "9C6A560A6CE29EF8EFA44E6036548193"
+                  },
+                  {
+                      "batch":  "oem_auto_pw0.85_pw0.85",
+                      "run_date":  "2026-08-27",
+                      "task_id":  "pb_contract_analysis",
+                      "file":  "contract_analysis.md",
+                      "bytes":  10849,
+                      "md5":  "6E4275B5DF177CE93830CE480C39FE3D"
+                  },
+                  {
+                      "batch":  "oem_auto_pw0.85_pw0.85",
+                      "run_date":  "2026-08-27",
+                      "task_id":  "pb_contract_analysis",
+                      "file":  "tmp_pdf_cache_7fae3e48e098fb4de1fcba1a0712831e1f7dabcd9791396490dc7e05a26eb774.json",
+                      "bytes":  114,
+                      "md5":  "2FCA39507B730C89F7087F68AD5990BE"
+                  },
+                  {
+                      "batch":  "oem_auto_pw0.85_pw0.85",
+                      "run_date":  "2026-08-27",
+                      "task_id":  "pb_contract_analysis",
+                      "file":  "tmp_pdf_md_sample_contract_92274215d9ef.md",
+                      "bytes":  10505,
+                      "md5":  "B7BE10AAC67A446449233D688160AF79"
+                  },
+                  {
+                      "batch":  "oem_auto_pw0.85_pw0.85",
+                      "run_date":  "2026-08-27",
+                      "task_id":  "pb_daily_summary",
+                      "file":  "daily_briefing.md",
+                      "bytes":  10350,
+                      "md5":  "8DCA36FCE6783C479977A55AF3508FFB"
+                  },
+                  {
+                      "batch":  "oem_auto_pw0.85_pw0.85",
+                      "run_date":  "2026-08-27",
+                      "task_id":  "pb_eli5_pdf_summary",
+                      "file":  "eli5_summary.txt",
+                      "bytes":  1972,
+                      "md5":  "3B8D2C65D7C01AE3E9274139C84540BE"
+                  },
+                  {
+                      "batch":  "oem_auto_pw0.85_pw0.85",
+                      "run_date":  "2026-08-27",
+                      "task_id":  "pb_eli5_pdf_summary",
+                      "file":  "tmp_pdf_cache_b77fe21de54a8ca991bc1ed4aa608e49f2ea0916cb4cd22bebb9ddd7297c38aa.json",
+                      "bytes":  105,
+                      "md5":  "460F6D57ABB2AEC2CCA2887A66C7220C"
+                  },
+                  {
+                      "batch":  "oem_auto_pw0.85_pw0.85",
+                      "run_date":  "2026-08-27",
+                      "task_id":  "pb_eli5_pdf_summary",
+                      "file":  "tmp_pdf_md_GPT4_ec3e335d707b.md",
+                      "bytes":  852076,
+                      "md5":  "CC8E01D351614FA086074C26C66BE844"
+                  },
+                  {
+                      "batch":  "oem_auto_pw0.85_pw0.85",
+                      "run_date":  "2026-08-27",
+                      "task_id":  "pb_events",
+                      "file":  "events.md",
+                      "bytes":  922,
+                      "md5":  "F347E2D6ACD872D866F9330545F962BA"
+                  },
+                  {
+                      "batch":  "oem_auto_pw0.85_pw0.85",
+                      "run_date":  "2026-08-27",
+                      "task_id":  "pb_events",
+                      "file":  "global_temperature.csv",
+                      "bytes":  5234,
+                      "md5":  "EEDDF287962426A802758D20003F76BA"
+                  },
+                  {
+                      "batch":  "oem_auto_pw0.85_pw0.85",
+                      "run_date":  "2026-08-27",
+                      "task_id":  "pb_pricing_research",
+                      "file":  "Dockerfile.optimized",
+                      "bytes":  194,
+                      "md5":  "3AAADC3562220C713A3C9654792A6C9F"
+                  },
+                  {
+                      "batch":  "oem_auto_pw0.85_pw0.85",
+                      "run_date":  "2026-08-27",
+                      "task_id":  "pb_pricing_research",
+                      "file":  "pricing_comparison.md",
+                      "bytes":  23541,
+                      "md5":  "2257DED7B2FF1958E408EFBDC5C5D24F"
+                  },
+                  {
+                      "batch":  "oem_auto_pw0.85_pw0.85",
+                      "run_date":  "2026-08-27",
+                      "task_id":  "pb_readme_generation",
+                      "file":  "README.md",
+                      "bytes":  3628,
+                      "md5":  "B802642505ABDD0ECD6D700DC8B4F5DB"
+                  },
+                  {
+                      "batch":  "oem_auto_pw0.85_pw0.85",
+                      "run_date":  "2026-08-27",
+                      "task_id":  "pb_readme_generation",
+                      "file":  "vulnerability_scan.json",
+                      "bytes":  16,
+                      "md5":  "6FEA748A18DE84B63635AF2C8AB89D41"
+                  }
+              ]
+}

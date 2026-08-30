@@ -1,0 +1,108 @@
+{
+  "date_range": "2005-06-09 to 2005-06-16",
+  "daily_summary": [
+    {
+      "date": "2005-06-09",
+      "day_of_week": "Thursday",
+      "error_count": 52,
+      "notable_events": [
+        "Apache start: 'Apache/2.0.49 (Fedora) configured -- resuming normal operations' at 06:07:19",
+        "mod_jk/Tomcat connector churn: 0 shutdowns, 11 workerEnv.init() notices, 2 jk2_init() errors, 3 child inits",
+        "Major attack burst from 81.199.21.119: 23 errors targeting the server",
+        "Worm/scanner signature: 23 hits on /sumthin (Code Red/Nimda-style scanner)",
+        "Peak hour: 19:00 with 28 errors"
+      ]
+    },
+    {
+      "date": "2005-06-10",
+      "day_of_week": "Friday",
+      "error_count": 81,
+      "notable_events": [
+        "Apache start: 'Apache/2.0.49 (Fedora) configured -- resuming normal operations' at 11:32:39",
+        "mod_jk/Tomcat connector churn: 0 shutdowns, 8 workerEnv.init() notices, 0 jk2_init() errors, 1 child inits",
+        "Major attack burst from 194.116.250.2: 23 errors targeting the server",
+        "Other active sources: 61.142.136.20 (13)",
+        "Directory traversal probes: 7 hits on scripts/..%5c.. (IIS unicode/dot-dot attack)",
+        "Worm/scanner signature: 23 hits on /sumthin (Code Red/Nimda-style scanner)",
+        "Peak hour: 03:00 with 25 errors"
+      ]
+    },
+    {
+      "date": "2005-06-11",
+      "day_of_week": "Saturday",
+      "error_count": 305,
+      "notable_events": [
+        "Apache shutdown: 'mod_jk2 Shutting down' at 03:03:12",
+        "mod_jk/Tomcat connector churn: 51 shutdowns, 63 workerEnv.init() notices, 35 jk2_init() errors, 35 child inits",
+        "Major attack burst from 202.133.98.6: 184 errors targeting the server",
+        "Other active sources: 212.238.198.203 (20), 218.87.132.28 (9)",
+        "Awstats vulnerability scan: 115 errors hitting awstats/cgi-bin paths (CVE-2005-0116 probe pattern)",
+        "Peak hour: 03:00 with 254 errors"
+      ]
+    },
+    {
+      "date": "2005-06-12",
+      "day_of_week": "Sunday",
+      "error_count": 88,
+      "notable_events": [
+        "Apache start: 'Apache/2.0.49 (Fedora) configured -- resuming normal operations' at 04:04:33",
+        "Apache shutdown: 'mod_jk2 Shutting down' at 04:04:15",
+        "mod_jk/Tomcat connector churn: 20 shutdowns, 8 workerEnv.init() notices, 6 jk2_init() errors, 6 child inits",
+        "Notable probing from 203.112.195.156: 13 errors",
+        "Other active sources: 24.163.159.161 (13), 68.251.32.120 (13)",
+        "Directory traversal probes: 9 hits on scripts/..%5c.. (IIS unicode/dot-dot attack)",
+        "Directory index forbidden warnings: 21 from 21 distinct clients",
+        "Peak hour: 04:00 with 28 errors"
+      ]
+    },
+    {
+      "date": "2005-06-13",
+      "day_of_week": "Monday",
+      "error_count": 111,
+      "notable_events": [
+        "mod_jk/Tomcat connector churn: 0 shutdowns, 8 workerEnv.init() notices, 5 jk2_init() errors, 6 child inits",
+        "Major attack burst from 195.23.79.241: 22 errors targeting the server",
+        "Other active sources: 219.133.246.207 (15), 218.82.188.130 (13)",
+        "Directory traversal probes: 3 hits on scripts/..%5c.. (IIS unicode/dot-dot attack)",
+        "Directory index forbidden warnings: 86 from 20 distinct clients",
+        "Peak hour: 04:00 with 28 errors"
+      ]
+    },
+    {
+      "date": "2005-06-14",
+      "day_of_week": "Tuesday",
+      "error_count": 72,
+      "notable_events": [
+        "Major attack burst from 81.214.165.213: 23 errors targeting the server",
+        "Other active sources: 60.191.134.226 (19), 85.226.115.57 (13)",
+        "FrontPage probe: 24 hits on /_vti_bin paths",
+        "Directory traversal probes: 5 hits on scripts/..%5c.. (IIS unicode/dot-dot attack)",
+        "Directory index forbidden warnings: 33 from 15 distinct clients",
+        "Peak hour: 15:00 with 23 errors"
+      ]
+    },
+    {
+      "date": "2005-06-15",
+      "day_of_week": "Wednesday",
+      "error_count": 42,
+      "notable_events": [
+        "Notable probing from 219.133.247.159: 18 errors",
+        "Directory index forbidden warnings: 35 from 18 distinct clients",
+        "Peak hour: 08:00 with 22 errors"
+      ]
+    },
+    {
+      "date": "2005-06-16",
+      "day_of_week": "Thursday",
+      "error_count": 2,
+      "notable_events": []
+    }
+  ],
+  "peak_burst": {
+    "start_time": "2005-06-11 03:03:03",
+    "end_time": "2005-06-11 03:03:14",
+    "duration_seconds": 11,
+    "error_count": 254,
+    "description": "Single-IP awstats vulnerability scan/worm probe from 202.133.98.6 firing ~23 errors/sec for 11 seconds (254 errors total, peak 54 errors in a single second at 03:03:09). 184 errors are client-side 'File does not exist' / 'script not found' hits against awstats paths (/cgi-bin/awstats, /cgi-bin/awstats.pl, /cgi-bin/stats, /awstats/awstats.pl, /awstats.pl) \u2014 the canonical signature of the AWStats configdir RCE exploit (CVE-2005-0116) probing for vulnerable installs. The remaining 70 errors are server-side fallout: Apache spawning many child processes under the request flood produced jk2_init() 'Can't find child N in scoreboard' and 'mod_jk child init' warnings."
+  }
+}

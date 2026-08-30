@@ -1,0 +1,179 @@
+{
+  "projects": {
+    "backend": [
+      {
+        "id": 1,
+        "title": "Write unit tests for authentication module",
+        "project": "backend",
+        "due_date": "2026-03-15",
+        "status": "pending",
+        "tags": [
+          "testing",
+          "auth"
+        ],
+        "overdue": true
+      },
+      {
+        "id": 4,
+        "title": "Write unit tests for auth module",
+        "project": "backend",
+        "due_date": "2026-03-25",
+        "status": "completed",
+        "tags": [
+          "testing"
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Review pull request #42",
+        "project": "backend",
+        "due_date": "2026-03-18",
+        "status": "pending",
+        "tags": [
+          "code-review"
+        ],
+        "overdue": true
+      },
+      {
+        "id": 12,
+        "title": "Optimize database queries for reports",
+        "project": "backend",
+        "due_date": "2026-03-28",
+        "status": "pending",
+        "tags": [
+          "performance",
+          "database"
+        ],
+        "overdue": true
+      },
+      {
+        "id": 15,
+        "title": "Migrate database to PostgreSQL",
+        "project": "backend",
+        "due_date": "2026-04-20",
+        "status": "pending",
+        "tags": [
+          "database",
+          "migration"
+        ]
+      }
+    ],
+    "docs": [
+      {
+        "id": 2,
+        "title": "Update README with setup instructions",
+        "project": "docs",
+        "due_date": "2026-03-20",
+        "status": "pending",
+        "tags": [
+          "documentation"
+        ],
+        "overdue": true
+      },
+      {
+        "id": 7,
+        "title": "Update the README with setup steps",
+        "project": "docs",
+        "due_date": "2026-03-22",
+        "status": "completed",
+        "tags": [
+          "documentation"
+        ]
+      },
+      {
+        "id": 11,
+        "title": "Write API documentation",
+        "project": "docs",
+        "due_date": "2026-04-10",
+        "status": "pending",
+        "tags": [
+          "documentation",
+          "api"
+        ]
+      }
+    ],
+    "frontend": [
+      {
+        "id": 3,
+        "title": "Fix login bug on mobile",
+        "project": "frontend",
+        "due_date": "2026-03-10",
+        "status": "pending",
+        "tags": [
+          "bug",
+          "mobile"
+        ],
+        "overdue": true
+      },
+      {
+        "id": 9,
+        "title": "Design new dashboard UI",
+        "project": "frontend",
+        "due_date": "2026-04-01",
+        "status": "pending",
+        "tags": [
+          "design",
+          "ui"
+        ],
+        "overdue": true
+      },
+      {
+        "id": 10,
+        "title": "Fix the mobile login bug",
+        "project": "frontend",
+        "due_date": "2026-03-12",
+        "status": "completed",
+        "tags": [
+          "bug"
+        ]
+      }
+    ],
+    "devops": [
+      {
+        "id": 5,
+        "title": "Deploy staging environment",
+        "project": "devops",
+        "due_date": "2026-04-15",
+        "status": "pending",
+        "tags": [
+          "deployment"
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Set up CI/CD pipeline",
+        "project": "devops",
+        "due_date": "2026-03-05",
+        "status": "pending",
+        "tags": [
+          "ci-cd"
+        ],
+        "overdue": true
+      },
+      {
+        "id": 13,
+        "title": "Set up continuous integration pipeline",
+        "project": "devops",
+        "due_date": "2026-03-08",
+        "status": "completed",
+        "tags": [
+          "ci-cd"
+        ]
+      }
+    ],
+    "research": [
+      {
+        "id": 14,
+        "title": "Conduct user research interviews",
+        "project": "research",
+        "due_date": "2026-03-14",
+        "status": "pending",
+        "tags": [
+          "ux",
+          "research"
+        ],
+        "overdue": true
+      }
+    ]
+  }
+}

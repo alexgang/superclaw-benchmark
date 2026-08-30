@@ -1,0 +1,32 @@
+[
+  {
+    "badge_id": "2371",
+    "anomaly_type": "after_hours_restricted",
+    "description": "Badge 2371 granted access to D-HQ-SRV-01 (server room) at 2026-03-10 02:17:44 outside business hours"
+  },
+  {
+    "badge_id": "1042",
+    "anomaly_type": "impossible_travel",
+    "description": "Badge 1042 scanned at HQ Building at 2026-03-10 08:05:33 and at Annex Building at 2026-03-10 08:05:58 (0 min apart)"
+  },
+  {
+    "badge_id": "3819",
+    "anomaly_type": "repeated_denials",
+    "description": "Badge 3819 had 4 DENIED scans at D-HQ-MAIN-01 between 2026-03-10 14:22:11 and 2026-03-10 14:23:32; event at 2026-03-10 14:22:11"
+  },
+  {
+    "badge_id": "3819",
+    "anomaly_type": "repeated_denials",
+    "description": "Badge 3819 had 4 DENIED scans at D-HQ-MAIN-01 between 2026-03-10 14:22:11 and 2026-03-10 14:23:32; event at 2026-03-10 14:22:38"
+  },
+  {
+    "badge_id": "3819",
+    "anomaly_type": "repeated_denials",
+    "description": "Badge 3819 had 4 DENIED scans at D-HQ-MAIN-01 between 2026-03-10 14:22:11 and 2026-03-10 14:23:32; event at 2026-03-10 14:23:05"
+  },
+  {
+    "badge_id": "3819",
+    "anomaly_type": "repeated_denials",
+    "description": "Badge 3819 had 4 DENIED scans at D-HQ-MAIN-01 between 2026-03-10 14:22:11 and 2026-03-10 14:23:32; event at 2026-03-10 14:23:32"
+  }
+]

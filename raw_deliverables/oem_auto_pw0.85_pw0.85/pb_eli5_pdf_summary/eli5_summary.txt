@@ -1,0 +1,13 @@
+Imagine you have a very clever friend who lives inside a computer. That friend has read almost every book, story, website, and word ever written. That friend is called GPT-4. It is made by a group of grown-ups called OpenAI.
+
+GPT-4 is like a super-smart parrot that learned to talk. A normal parrot copies what it hears. But this "parrot" read so many words that it learned how to put ideas together in new ways. So when you ask it a question, it doesn't just copy. It thinks and writes back to you, just like a person would.
+
+You can talk to it in normal words. You can say, "Tell me a story about a dragon," or "Help me with my math homework." It can write poems, draw pictures using special computer words, solve tricky puzzles, and even help write computer code. It can talk about feelings, science, history, and almost anything else you can think of.
+
+The smart people who wrote this paper tested GPT-4 on lots of hard jobs. It passed a fake test to be a lawyer. It solved hard math problems. It wrote computer programs. It even drew a unicorn using tiny computer instructions. The grown-ups were so surprised that they said GPT-4 might be a baby step toward something called AGI, which means a machine that can think about many things, not just one thing.
+
+But GPT-4 is not perfect. Sometimes it makes mistakes, like saying something that isn't true. And it doesn't really "feel" things the way you do. It is just very good with words.
+
+Why does this matter? Because computers are getting smarter. GPT-4 shows us that one day, computers might help people in really big ways, like doctors, teachers, and scientists. It's a little like the first time someone taught a computer to play chess. Nobody knew how far computers could go, but it changed the world. GPT-4 might be one of those big moments too.
+
+So in short: GPT-4 is a very smart computer helper that loves words, can do many kinds of jobs, and is teaching us what computers might be able to do in the future.

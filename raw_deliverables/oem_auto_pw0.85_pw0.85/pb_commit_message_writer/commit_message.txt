@@ -1,0 +1,6 @@
+feat(auth): add rememberMe option and session refresh functionality
+
+Add a rememberMe parameter to createSession that extends session TTL to 24 days
+when set to true. Also add a new refreshSession function that can extend
+session TTL when it's approaching expiration. This improves user experience
+by allowing users to keep their sessions alive longer without re-authenticating.
