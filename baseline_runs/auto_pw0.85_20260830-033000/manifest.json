@@ -1,0 +1,62 @@
+{
+    "round_id":  "auto_pw0.85_20260830-033000",
+    "captured_at_utc":  "2026-08-30T03:31:43+00:00",
+    "config":  "auto",
+    "perf_weight":  0.85,
+    "files":  [
+                  {
+                      "src":  "logs/baseline_pw0.85_auto_cppm.jsonl",
+                      "size":  4201,
+                      "sha256":  "440FBC18C91163E0153F02EAD0893121F085626E87F4F090D0C6FB4965803A89",
+                      "mtime_utc":  "2026-08-20T08:02:03+00:00"
+                  },
+                  {
+                      "src":  "logs/baseline_pw0.85_auto_lh.jsonl",
+                      "size":  11342,
+                      "sha256":  "3312D9401E24606B039FA3CE6C3CB4B3C64161EDACD561E6BCA46ECDA07311E0",
+                      "mtime_utc":  "2026-08-20T07:52:29+00:00"
+                  },
+                  {
+                      "src":  "logs/baseline_pw0.85_cloud_all11.jsonl",
+                      "size":  17985,
+                      "sha256":  "B57D86891BCF400C48F7B04078E56CC3937FE0DEB182AAFA9A078C0614C507EA",
+                      "mtime_utc":  "2026-08-24T00:57:59+00:00"
+                  },
+                  {
+                      "src":  "logs/baseline_pw0.85_cloud_lh.jsonl",
+                      "size":  13974,
+                      "sha256":  "3249E7D3D016FAE2249E4F2AE32E67DEA15C2E6927EF535BBDD8EF8D8E4349B5",
+                      "mtime_utc":  "2026-08-24T00:50:17+00:00"
+                  },
+                  {
+                      "src":  "logs/baseline_pw0.85_local_cppm.jsonl",
+                      "size":  2834,
+                      "sha256":  "684D1E537EEF2104C8A0D8AEC66165F37AABA2C3CB823660EE31A1FDDA0FF75A",
+                      "mtime_utc":  "2026-08-24T01:39:55+00:00"
+                  },
+                  {
+                      "src":  "logs/baseline_pw0.85_local_lh.jsonl",
+                      "size":  13003,
+                      "sha256":  "4530B1F50332F8A0B94CD29632DBB518112A3C5E2F594B360E59CA331F579942",
+                      "mtime_utc":  "2026-08-24T01:09:42+00:00"
+                  },
+                  {
+                      "src":  "results/v4_benchmark_aggregated.json",
+                      "size":  3164,
+                      "sha256":  "94B8D18F45C0D10163E96E9C812871DB53404ED0B99845B2A1138914E06BFFB4",
+                      "mtime_utc":  "2026-08-26T07:17:57+00:00"
+                  },
+                  {
+                      "src":  "results/v4_benchmark_report.md",
+                      "size":  15099,
+                      "sha256":  "800DA0806EE110533F483845A7DFFA6DDCF4097018608A139747AEF88E5CC2C7",
+                      "mtime_utc":  "2026-08-27T02:02:06+00:00"
+                  },
+                  {
+                      "src":  "results/QUARANTINE_MANIFEST.json",
+                      "size":  3567,
+                      "sha256":  "597568B47FEAB960830F912F72283EE0E550170F6396A1555F6DC07BDE892AA8",
+                      "mtime_utc":  "2026-08-27T01:16:24+00:00"
+                  }
+              ]
+}
