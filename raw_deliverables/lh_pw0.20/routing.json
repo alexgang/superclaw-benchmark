@@ -1,0 +1,74 @@
+{
+  "hybrid_pw0.20": {
+    "tasks": 8,
+    "tasks_touching_cloud": 3,
+    "local_retention_rate": 0.625,
+    "routing_match_rate": 1.0,
+    "per_task": [
+      {
+        "task_id": "lh01",
+        "expected": "mixed",
+        "used_cloud": false,
+        "trace": [
+          "local"
+        ]
+      },
+      {
+        "task_id": "lh02",
+        "expected": "mixed",
+        "used_cloud": true,
+        "trace": [
+          "cloud"
+        ]
+      },
+      {
+        "task_id": "lh03",
+        "expected": "mixed",
+        "used_cloud": false,
+        "trace": [
+          "local"
+        ]
+      },
+      {
+        "task_id": "lh04",
+        "expected": "mixed",
+        "used_cloud": false,
+        "trace": [
+          "local"
+        ]
+      },
+      {
+        "task_id": "lh05",
+        "expected": "cloud",
+        "used_cloud": true,
+        "trace": [
+          "cloud"
+        ]
+      },
+      {
+        "task_id": "lh06",
+        "expected": "local",
+        "used_cloud": false,
+        "trace": [
+          "local"
+        ]
+      },
+      {
+        "task_id": "lh07",
+        "expected": "cloud",
+        "used_cloud": true,
+        "trace": [
+          "cloud"
+        ]
+      },
+      {
+        "task_id": "lh08",
+        "expected": "local",
+        "used_cloud": false,
+        "trace": [
+          "local"
+        ]
+      }
+    ]
+  }
+}
