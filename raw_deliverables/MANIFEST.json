@@ -1,309 +1,886 @@
 {
-    "generated_at":  "2026-08-30T11:27:31+08:00",
-    "purpose":  "Manual LLM-judge accuracy grading: 20 tasks whose deliverables A-side needs the file bodies for (grading_type=llm_judge or post-retest auto-checks no longer apply).",
-    "source_dirs":  {
-                        "oem_retest_pw0.85":  "results/v4_raw/oem_retest_pw0.85/\u003ctask_id\u003e/  (--save-raw output of 2026-08-30 retest)",
-                        "oem_auto_pw0.85_pw0.85":  "results/v4_raw/oem_auto_pw0.85_pw0.85/\u003ctask_id\u003e/  (--save-raw output of 2026-08-27 baseline run)"
-                    },
-    "note_path_separator":  "lh_automation.py:1438 flattens subdirectories to underscores, e.g. tmp/pdf_md/x.md becomes tmp_pdf_md_x.md",
-    "stats":  {
-                  "total_tasks":  20,
-                  "total_files":  35,
-                  "total_bytes":  1048535,
-                  "total_kb":  1024,
-                  "batches":  {
-                                  "oem_retest_pw0.85":  {
-                                                            "tasks":  10,
-                                                            "files":  17,
-                                                            "run_date":  "2026-08-30"
-                                                        },
-                                  "oem_auto_pw0.85_pw0.85":  {
-                                                                 "tasks":  10,
-                                                                 "files":  18,
-                                                                 "run_date":  "2026-08-27"
-                                                             }
-                              }
-              },
-    "files":  [
-                  {
-                      "batch":  "oem_retest_pw0.85",
-                      "run_date":  "2026-08-30",
-                      "task_id":  "pb_csv_finance_report",
-                      "file":  "compute_metrics.py",
-                      "bytes":  11470,
-                      "md5":  "47E8D84D3E6E80E083282BA8E1126926"
-                  },
-                  {
-                      "batch":  "oem_retest_pw0.85",
-                      "run_date":  "2026-08-30",
-                      "task_id":  "pb_csv_finance_report",
-                      "file":  "finance_report.md",
-                      "bytes":  13536,
-                      "md5":  "14E292F4A66F293C8FD9F0781FB1B82E"
-                  },
-                  {
-                      "batch":  "oem_retest_pw0.85",
-                      "run_date":  "2026-08-30",
-                      "task_id":  "pb_csv_finance_report",
-                      "file":  "metrics.json",
-                      "bytes":  7786,
-                      "md5":  "800D20F8A418DEC2445DF10B721AAD08"
-                  },
-                  {
-                      "batch":  "oem_retest_pw0.85",
-                      "run_date":  "2026-08-30",
-                      "task_id":  "pb_email",
-                      "file":  "email_draft.txt",
-                      "bytes":  600,
-                      "md5":  "F8B071C3EF19A17F152E71D63C309FFB"
-                  },
-                  {
-                      "batch":  "oem_retest_pw0.85",
-                      "run_date":  "2026-08-30",
-                      "task_id":  "pb_email_reply_drafting",
-                      "file":  "reply_drafts.md",
-                      "bytes":  1895,
-                      "md5":  "BD95303F37D7B74E1C60E3E1D84FFBB1"
-                  },
-                  {
-                      "batch":  "oem_retest_pw0.85",
-                      "run_date":  "2026-08-30",
-                      "task_id":  "pb_log_apache_critical",
-                      "file":  "security_findings.json",
-                      "bytes":  8746,
-                      "md5":  "2CF3CB174DA2F3E1F7AA72F0AEE82F64"
-                  },
-                  {
-                      "batch":  "oem_retest_pw0.85",
-                      "run_date":  "2026-08-30",
-                      "task_id":  "pb_log_apache_timeline",
-                      "file":  "analyze_log.py",
-                      "bytes":  8099,
-                      "md5":  "A1B65DE1EB1D20DC96C873E3A991ACE0"
-                  },
-                  {
-                      "batch":  "oem_retest_pw0.85",
-                      "run_date":  "2026-08-30",
-                      "task_id":  "pb_log_apache_timeline",
-                      "file":  "build_json.py",
-                      "bytes":  6984,
-                      "md5":  "154BDFD767DBA0D9E97D8EA4B431ABED"
-                  },
-                  {
-                      "batch":  "oem_retest_pw0.85",
-                      "run_date":  "2026-08-30",
-                      "task_id":  "pb_log_apache_timeline",
-                      "file":  "error_timeline.json",
-                      "bytes":  5183,
-                      "md5":  "2A39B7A1D07ED31ECCA8851F466AF5FC"
-                  },
-                  {
-                      "batch":  "oem_retest_pw0.85",
-                      "run_date":  "2026-08-30",
-                      "task_id":  "pb_log_apache_timeline",
-                      "file":  "peak_drill.py",
-                      "bytes":  2678,
-                      "md5":  "76FE93E7A1F14FAC10CDE0EAD3A6794D"
-                  },
-                  {
-                      "batch":  "oem_retest_pw0.85",
-                      "run_date":  "2026-08-30",
-                      "task_id":  "pb_log_apache_top_errors",
-                      "file":  "error_types_report.json",
-                      "bytes":  11049,
-                      "md5":  "9BEE4A5B1EE8F2F828253BD28CFDBEDE"
-                  },
-                  {
-                      "batch":  "oem_retest_pw0.85",
-                      "run_date":  "2026-08-30",
-                      "task_id":  "pb_log_ssh_brute_force",
-                      "file":  "analyze_auth.py",
-                      "bytes":  6535,
-                      "md5":  "1BD0AE3E4CBFA95F8770A9632621E3D3"
-                  },
-                  {
-                      "batch":  "oem_retest_pw0.85",
-                      "run_date":  "2026-08-30",
-                      "task_id":  "pb_log_ssh_brute_force",
-                      "file":  "brute_force_report.json",
-                      "bytes":  3091,
-                      "md5":  "C00B56C11139CB1DAFEAA7DC441DF7CD"
-                  },
-                  {
-                      "batch":  "oem_retest_pw0.85",
-                      "run_date":  "2026-08-30",
-                      "task_id":  "pb_subway_navigation",
-                      "file":  "subway_directions.md",
-                      "bytes":  4242,
-                      "md5":  "A7723165D7E3C7CB5E3A12744858D5CC"
-                  },
-                  {
-                      "batch":  "oem_retest_pw0.85",
-                      "run_date":  "2026-08-30",
-                      "task_id":  "pb_summary",
-                      "file":  "summary_output.txt",
-                      "bytes":  1943,
-                      "md5":  "428ED96C110A198289D71BE07C5222FE"
-                  },
-                  {
-                      "batch":  "oem_retest_pw0.85",
-                      "run_date":  "2026-08-30",
-                      "task_id":  "pb_todo_list_cleanup",
-                      "file":  "cleanup_todos.py",
-                      "bytes":  2919,
-                      "md5":  "114EF90B5ABD871EC2340517A52EBB6C"
-                  },
-                  {
-                      "batch":  "oem_retest_pw0.85",
-                      "run_date":  "2026-08-30",
-                      "task_id":  "pb_todo_list_cleanup",
-                      "file":  "todos_cleaned.json",
-                      "bytes":  3876,
-                      "md5":  "1D653D4D4D1A059B7CC9EA715974E572"
-                  },
-                  {
-                      "batch":  "oem_auto_pw0.85_pw0.85",
-                      "run_date":  "2026-08-27",
-                      "task_id":  "pb_access_log_anomaly",
-                      "file":  "analyze.py",
-                      "bytes":  5512,
-                      "md5":  "7F7F503296B48392C6CEE3BF7A847297"
-                  },
-                  {
-                      "batch":  "oem_auto_pw0.85_pw0.85",
-                      "run_date":  "2026-08-27",
-                      "task_id":  "pb_access_log_anomaly",
-                      "file":  "anomaly_report.json",
-                      "bytes":  1302,
-                      "md5":  "791884513D63D8121C0673E8AC0BCBC9"
-                  },
-                  {
-                      "batch":  "oem_auto_pw0.85_pw0.85",
-                      "run_date":  "2026-08-27",
-                      "task_id":  "pb_blog",
-                      "file":  "blog_post.md",
-                      "bytes":  6349,
-                      "md5":  "30AA4B6E02020DED5137309E401097A7"
-                  },
-                  {
-                      "batch":  "oem_auto_pw0.85_pw0.85",
-                      "run_date":  "2026-08-27",
-                      "task_id":  "pb_commit_message_writer",
-                      "file":  "commit_message.txt",
-                      "bytes":  379,
-                      "md5":  "0C6D7DB14FB7D811B62181C2C940C413"
-                  },
-                  {
-                      "batch":  "oem_auto_pw0.85_pw0.85",
-                      "run_date":  "2026-08-27",
-                      "task_id":  "pb_competitive_research",
-                      "file":  "competitive_analysis.md",
-                      "bytes":  14855,
-                      "md5":  "9C6A560A6CE29EF8EFA44E6036548193"
-                  },
-                  {
-                      "batch":  "oem_auto_pw0.85_pw0.85",
-                      "run_date":  "2026-08-27",
-                      "task_id":  "pb_contract_analysis",
-                      "file":  "contract_analysis.md",
-                      "bytes":  10849,
-                      "md5":  "6E4275B5DF177CE93830CE480C39FE3D"
-                  },
-                  {
-                      "batch":  "oem_auto_pw0.85_pw0.85",
-                      "run_date":  "2026-08-27",
-                      "task_id":  "pb_contract_analysis",
-                      "file":  "tmp_pdf_cache_7fae3e48e098fb4de1fcba1a0712831e1f7dabcd9791396490dc7e05a26eb774.json",
-                      "bytes":  114,
-                      "md5":  "2FCA39507B730C89F7087F68AD5990BE"
-                  },
-                  {
-                      "batch":  "oem_auto_pw0.85_pw0.85",
-                      "run_date":  "2026-08-27",
-                      "task_id":  "pb_contract_analysis",
-                      "file":  "tmp_pdf_md_sample_contract_92274215d9ef.md",
-                      "bytes":  10505,
-                      "md5":  "B7BE10AAC67A446449233D688160AF79"
-                  },
-                  {
-                      "batch":  "oem_auto_pw0.85_pw0.85",
-                      "run_date":  "2026-08-27",
-                      "task_id":  "pb_daily_summary",
-                      "file":  "daily_briefing.md",
-                      "bytes":  10350,
-                      "md5":  "8DCA36FCE6783C479977A55AF3508FFB"
-                  },
-                  {
-                      "batch":  "oem_auto_pw0.85_pw0.85",
-                      "run_date":  "2026-08-27",
-                      "task_id":  "pb_eli5_pdf_summary",
-                      "file":  "eli5_summary.txt",
-                      "bytes":  1972,
-                      "md5":  "3B8D2C65D7C01AE3E9274139C84540BE"
-                  },
-                  {
-                      "batch":  "oem_auto_pw0.85_pw0.85",
-                      "run_date":  "2026-08-27",
-                      "task_id":  "pb_eli5_pdf_summary",
-                      "file":  "tmp_pdf_cache_b77fe21de54a8ca991bc1ed4aa608e49f2ea0916cb4cd22bebb9ddd7297c38aa.json",
-                      "bytes":  105,
-                      "md5":  "460F6D57ABB2AEC2CCA2887A66C7220C"
-                  },
-                  {
-                      "batch":  "oem_auto_pw0.85_pw0.85",
-                      "run_date":  "2026-08-27",
-                      "task_id":  "pb_eli5_pdf_summary",
-                      "file":  "tmp_pdf_md_GPT4_ec3e335d707b.md",
-                      "bytes":  852076,
-                      "md5":  "CC8E01D351614FA086074C26C66BE844"
-                  },
-                  {
-                      "batch":  "oem_auto_pw0.85_pw0.85",
-                      "run_date":  "2026-08-27",
-                      "task_id":  "pb_events",
-                      "file":  "events.md",
-                      "bytes":  922,
-                      "md5":  "F347E2D6ACD872D866F9330545F962BA"
-                  },
-                  {
-                      "batch":  "oem_auto_pw0.85_pw0.85",
-                      "run_date":  "2026-08-27",
-                      "task_id":  "pb_events",
-                      "file":  "global_temperature.csv",
-                      "bytes":  5234,
-                      "md5":  "EEDDF287962426A802758D20003F76BA"
-                  },
-                  {
-                      "batch":  "oem_auto_pw0.85_pw0.85",
-                      "run_date":  "2026-08-27",
-                      "task_id":  "pb_pricing_research",
-                      "file":  "Dockerfile.optimized",
-                      "bytes":  194,
-                      "md5":  "3AAADC3562220C713A3C9654792A6C9F"
-                  },
-                  {
-                      "batch":  "oem_auto_pw0.85_pw0.85",
-                      "run_date":  "2026-08-27",
-                      "task_id":  "pb_pricing_research",
-                      "file":  "pricing_comparison.md",
-                      "bytes":  23541,
-                      "md5":  "2257DED7B2FF1958E408EFBDC5C5D24F"
-                  },
-                  {
-                      "batch":  "oem_auto_pw0.85_pw0.85",
-                      "run_date":  "2026-08-27",
-                      "task_id":  "pb_readme_generation",
-                      "file":  "README.md",
-                      "bytes":  3628,
-                      "md5":  "B802642505ABDD0ECD6D700DC8B4F5DB"
-                  },
-                  {
-                      "batch":  "oem_auto_pw0.85_pw0.85",
-                      "run_date":  "2026-08-27",
-                      "task_id":  "pb_readme_generation",
-                      "file":  "vulnerability_scan.json",
-                      "bytes":  16,
-                      "md5":  "6FEA748A18DE84B63635AF2C8AB89D41"
-                  }
-              ]
+  "generated_at": "2026-08-31T11:10:23+08:00",
+  "purpose": "Manual LLM-judge accuracy grading: 20 tasks whose deliverables A-side needs the file bodies for (grading_type=llm_judge or post-retest auto-checks no longer apply).",
+  "source_dirs": {
+    "oem_retest_pw0.85": "results/v4_raw/oem_retest_pw0.85/<task_id>/  (--save-raw output of 2026-08-30 retest)",
+    "oem_auto_pw0.85_pw0.85": "results/v4_raw/oem_auto_pw0.85_pw0.85/<task_id>/  (--save-raw output of 2026-08-27 baseline run)"
+  },
+  "note_path_separator": "lh_automation.py:1438 flattens subdirectories to underscores, e.g. tmp/pdf_md/x.md becomes tmp_pdf_md_x.md",
+  "stats": {
+    "total_tasks": 31,
+    "total_files": 90,
+    "total_bytes": 1527079,
+    "total_kb": 1491.3,
+    "batches": {
+      "oem_retest_pw0.85": {
+        "tasks": 10,
+        "files": 17,
+        "run_date": "2026-08-30"
+      },
+      "oem_auto_pw0.85_pw0.85": {
+        "tasks": 10,
+        "files": 18,
+        "run_date": "2026-08-27"
+      },
+      "cppm3_pw0.60": {
+        "tasks": 2,
+        "files": 2,
+        "run_date": "2026-08-31"
+      },
+      "cppm3_rerun1_pw0.60": {
+        "tasks": 3,
+        "files": 15,
+        "run_date": "2026-08-31"
+      },
+      "cppm3_pw0.40": {
+        "tasks": 3,
+        "files": 18,
+        "run_date": "2026-08-31"
+      },
+      "cppm3_pw0.20": {
+        "tasks": 3,
+        "files": 20,
+        "run_date": "2026-08-31"
+      }
+    }
+  },
+  "files": [
+    {
+      "batch": "oem_retest_pw0.85",
+      "run_date": "2026-08-30",
+      "task_id": "pb_csv_finance_report",
+      "file": "compute_metrics.py",
+      "bytes": 11470,
+      "md5": "47E8D84D3E6E80E083282BA8E1126926"
+    },
+    {
+      "batch": "oem_retest_pw0.85",
+      "run_date": "2026-08-30",
+      "task_id": "pb_csv_finance_report",
+      "file": "finance_report.md",
+      "bytes": 13536,
+      "md5": "14E292F4A66F293C8FD9F0781FB1B82E"
+    },
+    {
+      "batch": "oem_retest_pw0.85",
+      "run_date": "2026-08-30",
+      "task_id": "pb_csv_finance_report",
+      "file": "metrics.json",
+      "bytes": 7786,
+      "md5": "800D20F8A418DEC2445DF10B721AAD08"
+    },
+    {
+      "batch": "oem_retest_pw0.85",
+      "run_date": "2026-08-30",
+      "task_id": "pb_email",
+      "file": "email_draft.txt",
+      "bytes": 600,
+      "md5": "F8B071C3EF19A17F152E71D63C309FFB"
+    },
+    {
+      "batch": "oem_retest_pw0.85",
+      "run_date": "2026-08-30",
+      "task_id": "pb_email_reply_drafting",
+      "file": "reply_drafts.md",
+      "bytes": 1895,
+      "md5": "BD95303F37D7B74E1C60E3E1D84FFBB1"
+    },
+    {
+      "batch": "oem_retest_pw0.85",
+      "run_date": "2026-08-30",
+      "task_id": "pb_log_apache_critical",
+      "file": "security_findings.json",
+      "bytes": 8746,
+      "md5": "2CF3CB174DA2F3E1F7AA72F0AEE82F64"
+    },
+    {
+      "batch": "oem_retest_pw0.85",
+      "run_date": "2026-08-30",
+      "task_id": "pb_log_apache_timeline",
+      "file": "analyze_log.py",
+      "bytes": 8099,
+      "md5": "A1B65DE1EB1D20DC96C873E3A991ACE0"
+    },
+    {
+      "batch": "oem_retest_pw0.85",
+      "run_date": "2026-08-30",
+      "task_id": "pb_log_apache_timeline",
+      "file": "build_json.py",
+      "bytes": 6984,
+      "md5": "154BDFD767DBA0D9E97D8EA4B431ABED"
+    },
+    {
+      "batch": "oem_retest_pw0.85",
+      "run_date": "2026-08-30",
+      "task_id": "pb_log_apache_timeline",
+      "file": "error_timeline.json",
+      "bytes": 5183,
+      "md5": "2A39B7A1D07ED31ECCA8851F466AF5FC"
+    },
+    {
+      "batch": "oem_retest_pw0.85",
+      "run_date": "2026-08-30",
+      "task_id": "pb_log_apache_timeline",
+      "file": "peak_drill.py",
+      "bytes": 2678,
+      "md5": "76FE93E7A1F14FAC10CDE0EAD3A6794D"
+    },
+    {
+      "batch": "oem_retest_pw0.85",
+      "run_date": "2026-08-30",
+      "task_id": "pb_log_apache_top_errors",
+      "file": "error_types_report.json",
+      "bytes": 11049,
+      "md5": "9BEE4A5B1EE8F2F828253BD28CFDBEDE"
+    },
+    {
+      "batch": "oem_retest_pw0.85",
+      "run_date": "2026-08-30",
+      "task_id": "pb_log_ssh_brute_force",
+      "file": "analyze_auth.py",
+      "bytes": 6535,
+      "md5": "1BD0AE3E4CBFA95F8770A9632621E3D3"
+    },
+    {
+      "batch": "oem_retest_pw0.85",
+      "run_date": "2026-08-30",
+      "task_id": "pb_log_ssh_brute_force",
+      "file": "brute_force_report.json",
+      "bytes": 3091,
+      "md5": "C00B56C11139CB1DAFEAA7DC441DF7CD"
+    },
+    {
+      "batch": "oem_retest_pw0.85",
+      "run_date": "2026-08-30",
+      "task_id": "pb_subway_navigation",
+      "file": "subway_directions.md",
+      "bytes": 4242,
+      "md5": "A7723165D7E3C7CB5E3A12744858D5CC"
+    },
+    {
+      "batch": "oem_retest_pw0.85",
+      "run_date": "2026-08-30",
+      "task_id": "pb_summary",
+      "file": "summary_output.txt",
+      "bytes": 1943,
+      "md5": "428ED96C110A198289D71BE07C5222FE"
+    },
+    {
+      "batch": "oem_retest_pw0.85",
+      "run_date": "2026-08-30",
+      "task_id": "pb_todo_list_cleanup",
+      "file": "cleanup_todos.py",
+      "bytes": 2919,
+      "md5": "114EF90B5ABD871EC2340517A52EBB6C"
+    },
+    {
+      "batch": "oem_retest_pw0.85",
+      "run_date": "2026-08-30",
+      "task_id": "pb_todo_list_cleanup",
+      "file": "todos_cleaned.json",
+      "bytes": 3876,
+      "md5": "1D653D4D4D1A059B7CC9EA715974E572"
+    },
+    {
+      "batch": "oem_auto_pw0.85_pw0.85",
+      "run_date": "2026-08-27",
+      "task_id": "pb_access_log_anomaly",
+      "file": "analyze.py",
+      "bytes": 5512,
+      "md5": "7F7F503296B48392C6CEE3BF7A847297"
+    },
+    {
+      "batch": "oem_auto_pw0.85_pw0.85",
+      "run_date": "2026-08-27",
+      "task_id": "pb_access_log_anomaly",
+      "file": "anomaly_report.json",
+      "bytes": 1302,
+      "md5": "791884513D63D8121C0673E8AC0BCBC9"
+    },
+    {
+      "batch": "oem_auto_pw0.85_pw0.85",
+      "run_date": "2026-08-27",
+      "task_id": "pb_blog",
+      "file": "blog_post.md",
+      "bytes": 6349,
+      "md5": "30AA4B6E02020DED5137309E401097A7"
+    },
+    {
+      "batch": "oem_auto_pw0.85_pw0.85",
+      "run_date": "2026-08-27",
+      "task_id": "pb_commit_message_writer",
+      "file": "commit_message.txt",
+      "bytes": 379,
+      "md5": "0C6D7DB14FB7D811B62181C2C940C413"
+    },
+    {
+      "batch": "oem_auto_pw0.85_pw0.85",
+      "run_date": "2026-08-27",
+      "task_id": "pb_competitive_research",
+      "file": "competitive_analysis.md",
+      "bytes": 14855,
+      "md5": "9C6A560A6CE29EF8EFA44E6036548193"
+    },
+    {
+      "batch": "oem_auto_pw0.85_pw0.85",
+      "run_date": "2026-08-27",
+      "task_id": "pb_contract_analysis",
+      "file": "contract_analysis.md",
+      "bytes": 10849,
+      "md5": "6E4275B5DF177CE93830CE480C39FE3D"
+    },
+    {
+      "batch": "oem_auto_pw0.85_pw0.85",
+      "run_date": "2026-08-27",
+      "task_id": "pb_contract_analysis",
+      "file": "tmp_pdf_cache_7fae3e48e098fb4de1fcba1a0712831e1f7dabcd9791396490dc7e05a26eb774.json",
+      "bytes": 114,
+      "md5": "2FCA39507B730C89F7087F68AD5990BE"
+    },
+    {
+      "batch": "oem_auto_pw0.85_pw0.85",
+      "run_date": "2026-08-27",
+      "task_id": "pb_contract_analysis",
+      "file": "tmp_pdf_md_sample_contract_92274215d9ef.md",
+      "bytes": 10505,
+      "md5": "B7BE10AAC67A446449233D688160AF79"
+    },
+    {
+      "batch": "oem_auto_pw0.85_pw0.85",
+      "run_date": "2026-08-27",
+      "task_id": "pb_daily_summary",
+      "file": "daily_briefing.md",
+      "bytes": 10350,
+      "md5": "8DCA36FCE6783C479977A55AF3508FFB"
+    },
+    {
+      "batch": "oem_auto_pw0.85_pw0.85",
+      "run_date": "2026-08-27",
+      "task_id": "pb_eli5_pdf_summary",
+      "file": "eli5_summary.txt",
+      "bytes": 1972,
+      "md5": "3B8D2C65D7C01AE3E9274139C84540BE"
+    },
+    {
+      "batch": "oem_auto_pw0.85_pw0.85",
+      "run_date": "2026-08-27",
+      "task_id": "pb_eli5_pdf_summary",
+      "file": "tmp_pdf_cache_b77fe21de54a8ca991bc1ed4aa608e49f2ea0916cb4cd22bebb9ddd7297c38aa.json",
+      "bytes": 105,
+      "md5": "460F6D57ABB2AEC2CCA2887A66C7220C"
+    },
+    {
+      "batch": "oem_auto_pw0.85_pw0.85",
+      "run_date": "2026-08-27",
+      "task_id": "pb_eli5_pdf_summary",
+      "file": "tmp_pdf_md_GPT4_ec3e335d707b.md",
+      "bytes": 852076,
+      "md5": "CC8E01D351614FA086074C26C66BE844"
+    },
+    {
+      "batch": "oem_auto_pw0.85_pw0.85",
+      "run_date": "2026-08-27",
+      "task_id": "pb_events",
+      "file": "events.md",
+      "bytes": 922,
+      "md5": "F347E2D6ACD872D866F9330545F962BA"
+    },
+    {
+      "batch": "oem_auto_pw0.85_pw0.85",
+      "run_date": "2026-08-27",
+      "task_id": "pb_events",
+      "file": "global_temperature.csv",
+      "bytes": 5234,
+      "md5": "EEDDF287962426A802758D20003F76BA"
+    },
+    {
+      "batch": "oem_auto_pw0.85_pw0.85",
+      "run_date": "2026-08-27",
+      "task_id": "pb_pricing_research",
+      "file": "Dockerfile.optimized",
+      "bytes": 194,
+      "md5": "3AAADC3562220C713A3C9654792A6C9F"
+    },
+    {
+      "batch": "oem_auto_pw0.85_pw0.85",
+      "run_date": "2026-08-27",
+      "task_id": "pb_pricing_research",
+      "file": "pricing_comparison.md",
+      "bytes": 23541,
+      "md5": "2257DED7B2FF1958E408EFBDC5C5D24F"
+    },
+    {
+      "batch": "oem_auto_pw0.85_pw0.85",
+      "run_date": "2026-08-27",
+      "task_id": "pb_readme_generation",
+      "file": "README.md",
+      "bytes": 3628,
+      "md5": "B802642505ABDD0ECD6D700DC8B4F5DB"
+    },
+    {
+      "batch": "oem_auto_pw0.85_pw0.85",
+      "run_date": "2026-08-27",
+      "task_id": "pb_readme_generation",
+      "file": "vulnerability_scan.json",
+      "bytes": 16,
+      "md5": "6FEA748A18DE84B63635AF2C8AB89D41"
+    },
+    {
+      "batch": "cppm3_pw0.60",
+      "run_date": "2026-08-31",
+      "task_id": "cppm01",
+      "file": "Documents_Agent_Test_factorio_power_comparison.md",
+      "bytes": 8578,
+      "md5": "56F4C278C96BFF8E177A295445423909",
+      "auto_accuracy": 0.818,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.60",
+      "run_date": "2026-08-31",
+      "task_id": "cppm02",
+      "file": "agent_test_sales_data.csv",
+      "bytes": 930,
+      "md5": "E5995D04AE5507A264A54E385A5836D6",
+      "auto_accuracy": 0.308,
+      "note": null
+    },
+    {
+      "batch": "cppm3_rerun1_pw0.60",
+      "run_date": "2026-08-31",
+      "task_id": "cppm01",
+      "file": "Documents_Agent_Test_factorio_power_comparison.md",
+      "bytes": 7324,
+      "md5": "7DDC63AE29D3B92F1B7EF97FD326460C",
+      "auto_accuracy": 0.818,
+      "note": null
+    },
+    {
+      "batch": "cppm3_rerun1_pw0.60",
+      "run_date": "2026-08-31",
+      "task_id": "cppm02",
+      "file": "generate_sales_data.py",
+      "bytes": 2490,
+      "md5": "835159E14B02FCF84608B9C07D59F2F0",
+      "auto_accuracy": 0.308,
+      "note": null
+    },
+    {
+      "batch": "cppm3_rerun1_pw0.60",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "Agent_Test_hermes-toolkit_.gitignore",
+      "bytes": 752,
+      "md5": "29B8F196CD55BD76439F3F3044C9CC96",
+      "auto_accuracy": 0.375,
+      "note": null
+    },
+    {
+      "batch": "cppm3_rerun1_pw0.60",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "Agent_Test_hermes-toolkit_docs_api.md",
+      "bytes": 2929,
+      "md5": "6889CA4BF4ACD4D023B5FE4F42A4E5DD",
+      "auto_accuracy": 0.375,
+      "note": null
+    },
+    {
+      "batch": "cppm3_rerun1_pw0.60",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "Agent_Test_hermes-toolkit_docs_usage.md",
+      "bytes": 3143,
+      "md5": "11B3636B48B33B4D9553BFA44AF99965",
+      "auto_accuracy": 0.375,
+      "note": null
+    },
+    {
+      "batch": "cppm3_rerun1_pw0.60",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "Agent_Test_hermes-toolkit_INIT_REPORT.md",
+      "bytes": 3447,
+      "md5": "FFA5ADEF2EAD901A3C1DDE3DAFD99BF1",
+      "auto_accuracy": 0.375,
+      "note": null
+    },
+    {
+      "batch": "cppm3_rerun1_pw0.60",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "Agent_Test_hermes-toolkit_LICENSE",
+      "bytes": 1082,
+      "md5": "665EBBF579A8BFDA3041B64E5F0BAC5E",
+      "auto_accuracy": 0.375,
+      "note": null
+    },
+    {
+      "batch": "cppm3_rerun1_pw0.60",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "Agent_Test_hermes-toolkit_README.md",
+      "bytes": 3312,
+      "md5": "1BBDAF5F63B8E3B7BA7606ECB3865D32",
+      "auto_accuracy": 0.375,
+      "note": null
+    },
+    {
+      "batch": "cppm3_rerun1_pw0.60",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "Agent_Test_hermes-toolkit_requirements.txt",
+      "bytes": 200,
+      "md5": "0C7596671F504AF0E419BECAFF749743",
+      "auto_accuracy": 0.375,
+      "note": null
+    },
+    {
+      "batch": "cppm3_rerun1_pw0.60",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "Agent_Test_hermes-toolkit_src___init__.py",
+      "bytes": 116,
+      "md5": "CE024C86CED6C0D778A18E1FEC8C899F",
+      "auto_accuracy": 0.375,
+      "note": null
+    },
+    {
+      "batch": "cppm3_rerun1_pw0.60",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "Agent_Test_hermes-toolkit_src___pycache_____init__.cpython-312.pyc",
+      "bytes": 244,
+      "md5": "A86BAC9D7EDE16B8D517E87C9D7F8602",
+      "auto_accuracy": 0.375,
+      "note": null
+    },
+    {
+      "batch": "cppm3_rerun1_pw0.60",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "Agent_Test_hermes-toolkit_src___pycache___cli.cpython-312.pyc",
+      "bytes": 4505,
+      "md5": "549978B2D5110B9D13B3D89C45FB4E59",
+      "auto_accuracy": 0.375,
+      "note": null
+    },
+    {
+      "batch": "cppm3_rerun1_pw0.60",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "Agent_Test_hermes-toolkit_src_cli.py",
+      "bytes": 4138,
+      "md5": "D62BFAABC26B79E365EBDD71AA38FEC2",
+      "auto_accuracy": 0.375,
+      "note": null
+    },
+    {
+      "batch": "cppm3_rerun1_pw0.60",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "Agent_Test_hermes-toolkit_tests___pycache___test_cli.cpython-312.pyc",
+      "bytes": 3378,
+      "md5": "B1950F861B673BBA06EADAD562EC7002",
+      "auto_accuracy": 0.375,
+      "note": null
+    },
+    {
+      "batch": "cppm3_rerun1_pw0.60",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "Agent_Test_hermes-toolkit_tests_test_cli.py",
+      "bytes": 1819,
+      "md5": "9A4C45C68E5FEB38FCCE9C7CDD93CFA7",
+      "auto_accuracy": 0.375,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.40",
+      "run_date": "2026-08-31",
+      "task_id": "cppm01",
+      "file": "Documents_Agent_Test_factorio_power_comparison.md",
+      "bytes": 7878,
+      "md5": "0CA0F96BE8AD681F520AA8ACD7E3E6AE",
+      "auto_accuracy": 0.818,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.40",
+      "run_date": "2026-08-31",
+      "task_id": "cppm02",
+      "file": "agent_test_channel_pie.png",
+      "bytes": 65509,
+      "md5": "F963DCD6D7A84B113F13EB27409F7DE9",
+      "auto_accuracy": 0.462,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.40",
+      "run_date": "2026-08-31",
+      "task_id": "cppm02",
+      "file": "agent_test_monthly_trend.png",
+      "bytes": 111087,
+      "md5": "73DA8D391A6518DCE350EA1E8A2C299B",
+      "auto_accuracy": 0.462,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.40",
+      "run_date": "2026-08-31",
+      "task_id": "cppm02",
+      "file": "agent_test_sales_analysis.py",
+      "bytes": 6067,
+      "md5": "52482596014B2320BE3774FD1DA398A4",
+      "auto_accuracy": 0.462,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.40",
+      "run_date": "2026-08-31",
+      "task_id": "cppm02",
+      "file": "agent_test_sales_data.csv",
+      "bytes": 797,
+      "md5": "3B2B948A8E6975A0F98432FFDF663A6E",
+      "auto_accuracy": 0.462,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.40",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "Documents_Agent_Test_hermes-toolkit_.gitignore",
+      "bytes": 467,
+      "md5": "0A1FAA4CD28744F896BF85E43EF9477B",
+      "auto_accuracy": 0.375,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.40",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "Documents_Agent_Test_hermes-toolkit_docs_api.md",
+      "bytes": 1156,
+      "md5": "FCA7E79DC57D178B92C54D5A7C9CB133",
+      "auto_accuracy": 0.375,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.40",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "Documents_Agent_Test_hermes-toolkit_docs_usage.md",
+      "bytes": 1391,
+      "md5": "255B78D1C3840A8E834FB4CE96765664",
+      "auto_accuracy": 0.375,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.40",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "Documents_Agent_Test_hermes-toolkit_INIT_REPORT.md",
+      "bytes": 2947,
+      "md5": "B29A166C6EB149F9E7583179836DC82B",
+      "auto_accuracy": 0.375,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.40",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "Documents_Agent_Test_hermes-toolkit_LICENSE",
+      "bytes": 1083,
+      "md5": "8BD638BF09499E80B918915C8CDDED84",
+      "auto_accuracy": 0.375,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.40",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "Documents_Agent_Test_hermes-toolkit_README.md",
+      "bytes": 1910,
+      "md5": "2AED1F7B24501775B74DA2EFF3C5A588",
+      "auto_accuracy": 0.375,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.40",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "Documents_Agent_Test_hermes-toolkit_requirements.txt",
+      "bytes": 104,
+      "md5": "AAF051AE93A67B3F61BA519980BD81FF",
+      "auto_accuracy": 0.375,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.40",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "Documents_Agent_Test_hermes-toolkit_src___init__.py",
+      "bytes": 79,
+      "md5": "5495C160AF42EA95582B5D1875A33B8A",
+      "auto_accuracy": 0.375,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.40",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "Documents_Agent_Test_hermes-toolkit_src___pycache_____init__.cpython-312.pyc",
+      "bytes": 253,
+      "md5": "D2C967DE58175774C03EDADB56090064",
+      "auto_accuracy": 0.375,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.40",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "Documents_Agent_Test_hermes-toolkit_src___pycache___cli.cpython-312.pyc",
+      "bytes": 2538,
+      "md5": "36FC7AE2D6A2D68FF19C1F5E8838C1D7",
+      "auto_accuracy": 0.375,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.40",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "Documents_Agent_Test_hermes-toolkit_src_cli.py",
+      "bytes": 1718,
+      "md5": "2857022741F764722B24AF2E90800F2E",
+      "auto_accuracy": 0.375,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.40",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "Documents_Agent_Test_hermes-toolkit_tests___pycache___test_cli.cpython-312.pyc",
+      "bytes": 2963,
+      "md5": "CED108E1466C2A3AA812FD8705DE1333",
+      "auto_accuracy": 0.375,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.40",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "Documents_Agent_Test_hermes-toolkit_tests_test_cli.py",
+      "bytes": 1164,
+      "md5": "9BF466B80EF6E08FA9380D83738F396F",
+      "auto_accuracy": 0.375,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.20",
+      "run_date": "2026-08-31",
+      "task_id": "cppm01",
+      "file": "Documents_Agent_Test_factorio_power_comparison.md",
+      "bytes": 6741,
+      "md5": "E0D74CAA0DF50D84D5E3F3DAC9C3A217",
+      "auto_accuracy": 0.818,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.20",
+      "run_date": "2026-08-31",
+      "task_id": "cppm02",
+      "file": "agent_test_channel_pie.png",
+      "bytes": 54741,
+      "md5": "4BEAB96FB82CFCE2F15F3FC6D46BF61B",
+      "auto_accuracy": 0.538,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.20",
+      "run_date": "2026-08-31",
+      "task_id": "cppm02",
+      "file": "agent_test_monthly_trend.png",
+      "bytes": 122307,
+      "md5": "90BE2C8F7DF59C21E842C6656E7D3FAD",
+      "auto_accuracy": 0.538,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.20",
+      "run_date": "2026-08-31",
+      "task_id": "cppm02",
+      "file": "agent_test_sales_analysis.py",
+      "bytes": 7384,
+      "md5": "052949F6397223CEC9BDE9881F972F6E",
+      "auto_accuracy": 0.538,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.20",
+      "run_date": "2026-08-31",
+      "task_id": "cppm02",
+      "file": "agent_test_sales_data.csv",
+      "bytes": 792,
+      "md5": "51C5FC5787BE9C043535D33352E0EEDD",
+      "auto_accuracy": 0.538,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.20",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "hermes-toolkit_.gitignore",
+      "bytes": 1325,
+      "md5": "BFFE67DCDFE04F5FDCEEE35A50B1A067",
+      "auto_accuracy": 1.0,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.20",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "hermes-toolkit_docs_api.md",
+      "bytes": 2572,
+      "md5": "5C38DD8D03BC94A87CAD7957023BBAFD",
+      "auto_accuracy": 1.0,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.20",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "hermes-toolkit_docs_usage.md",
+      "bytes": 2321,
+      "md5": "8C9AA10611F2FC15735D2B7B1E1CF99C",
+      "auto_accuracy": 1.0,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.20",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "hermes-toolkit_INIT_REPORT.md",
+      "bytes": 3801,
+      "md5": "E04C2976D8635BE96883550148011D3F",
+      "auto_accuracy": 1.0,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.20",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "hermes-toolkit_LICENSE",
+      "bytes": 1084,
+      "md5": "56D74774739364BBCAC4AE06D10BCFF3",
+      "auto_accuracy": 1.0,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.20",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "hermes-toolkit_README.md",
+      "bytes": 2611,
+      "md5": "0D1334B12444DF07F06ED7918550CF00",
+      "auto_accuracy": 1.0,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.20",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "hermes-toolkit_requirements.txt",
+      "bytes": 200,
+      "md5": "B1DC74012B171F3B39447DD5BF72F9A0",
+      "auto_accuracy": 1.0,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.20",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "hermes-toolkit_src___init__.py",
+      "bytes": 75,
+      "md5": "D57C4CFE0B009EF6B4B36591C42D136D",
+      "auto_accuracy": 1.0,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.20",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "hermes-toolkit_src___pycache_____init__.cpython-312.pyc",
+      "bytes": 227,
+      "md5": "CEF2A72268A27A482B593162E6878D02",
+      "auto_accuracy": 1.0,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.20",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "hermes-toolkit_src___pycache___cli.cpython-312.pyc",
+      "bytes": 3599,
+      "md5": "08FF2572D089F8CC86E338AB4F29890B",
+      "auto_accuracy": 1.0,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.20",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "hermes-toolkit_src_cli.py",
+      "bytes": 3057,
+      "md5": "08161D90B996854A33D826D2B1D875C2",
+      "auto_accuracy": 1.0,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.20",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "hermes-toolkit_tests___init__.py",
+      "bytes": 38,
+      "md5": "62B3B8C788623BE46D3BFD345A00D86E",
+      "auto_accuracy": 1.0,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.20",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "hermes-toolkit_tests___pycache_____init__.cpython-312.pyc",
+      "bytes": 187,
+      "md5": "28DEAA1556454DCB21EE86466C649DC8",
+      "auto_accuracy": 1.0,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.20",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "hermes-toolkit_tests___pycache___test_cli.cpython-312.pyc",
+      "bytes": 5431,
+      "md5": "29FA3485186197F0A0EA5153261900E8",
+      "auto_accuracy": 1.0,
+      "note": null
+    },
+    {
+      "batch": "cppm3_pw0.20",
+      "run_date": "2026-08-31",
+      "task_id": "cppm03",
+      "file": "hermes-toolkit_tests_test_cli.py",
+      "bytes": 2553,
+      "md5": "2FBEC837DA33B0BF70EB15650C2C0F9B",
+      "auto_accuracy": 1.0,
+      "note": null
+    }
+  ],
+  "cppm_notes": {
+    "cppm3_pw0.60": "cppm3_pw0.60 first run -- 1800s timeout, contaminated by 5 polluted extract_factorio_data2*.py residue (pre-cleared before rerun1)",
+    "cppm3_rerun1_pw0.60": "cppm3_pw0.60 rerun1 -- pristine workspace, valid comparison baseline",
+    "cppm3_pw0.40": "cppm3_pw0.40 -- 1800s timeout, best mean of 0.6/0.4",
+    "cppm3_pw0.20": "cppm3_pw0.20 -- 1800s timeout, best mean 0.785, cppm03=1.0 clean (no path bug)"
+  },
+  "last_added": "cppm3_pw sweep (0.6, 0.6 rerun1, 0.4, 0.2) on 2026-08-31"
 }

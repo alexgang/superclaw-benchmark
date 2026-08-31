@@ -1,0 +1,3 @@
+# Runtime dependencies for hermes-toolkit
+# Keep this list minimal; only direct, hard dependencies belong here.
+# Dev/test dependencies (pytest, black, ruff, etc.) should live in requirements-dev.txt.

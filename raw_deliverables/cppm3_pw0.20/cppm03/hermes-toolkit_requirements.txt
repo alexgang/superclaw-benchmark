@@ -1,0 +1,6 @@
+# Runtime dependencies
+# hermes-toolkit intentionally has no runtime dependencies beyond the Python
+# standard library (argparse, sys, typing, etc.).
+
+# Development / testing dependencies
+pytest>=7.0
