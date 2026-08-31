@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-08-26T15:30:00",
+  "machine": "Core Ultra 7 356H + RTX 5050, 32 GB",
+  "local_model": "qwen3.5-4b (Q4_K_M)",
+  "cloud_model": "MiniMax-M3",
+  "router": "http://127.0.0.1:18321",
+  "runs": [
+    {"arm_label": "force-cloud", "arm": "cloud", "pw": "0.85", "task_set": "lh", "n": 8, "pass": 8, "err": 0, "dur_total": 261, "dur_mean": 32.6, "cloud": 70, "local": 0, "chat_total": 74, "subs": 6, "in_t": 80071, "out_t": 7534, "acc_mean": 1.0, "files_total": 19},
+    {"arm_label": "force-cloud", "arm": "cloud", "pw": "0.85", "task_set": "cppm", "n": 3, "pass": 3, "err": 0, "dur_total": 230, "dur_mean": 76.9, "cloud": 57, "local": 0, "chat_total": 57, "subs": 1, "in_t": 92754, "out_t": 14369, "acc_mean": 1.0, "files_total": 16},
+    {"arm_label": "force-local", "arm": "local", "pw": "0.85", "task_set": "lh", "n": 8, "pass": 8, "err": 0, "dur_total": 549, "dur_mean": 68.6, "cloud": 0, "local": 66, "chat_total": 66, "subs": 1, "in_t": 92058, "out_t": 12275, "acc_mean": 1.0, "files_total": 28},
+    {"arm_label": "force-local", "arm": "local", "pw": "0.85", "task_set": "cppm", "n": 3, "pass": 0, "err": 0, "dur_total": 1803, "dur_mean": 601.0, "cloud": 0, "local": 68, "chat_total": 68, "subs": 5, "in_t": 81569, "out_t": 1554, "acc_mean": 1.0, "files_total": 1},
+    {"arm_label": "force-local-1800s", "arm": "local", "pw": "0.85", "task_set": "cppm-new", "n": 3, "pass": 0, "err": 0, "dur_total": 2276, "dur_mean": 758.7, "cloud": 0, "local": 155, "chat_total": 155, "subs": 8, "in_t": 154752, "out_t": 6712, "acc_mean": 0.30, "files_total": 10},
+    {"arm_label": "auto", "arm": "auto", "pw": "0.85", "task_set": "lh", "n": 8, "pass": 5, "err": 0, "dur_total": 660, "dur_mean": 82.5, "cloud": 33, "local": 39, "chat_total": 62, "subs": 2, "in_t": 98078, "out_t": 7968, "acc_mean": 0.73, "files_total": 22},
+    {"arm_label": "auto", "arm": "auto", "pw": "0.85", "task_set": "cppm", "n": 3, "pass": 0, "err": 0, "dur_total": 525, "dur_mean": 175.0, "cloud": 23, "local": 36, "chat_total": 59, "subs": 2, "in_t": 92754, "out_t": 14369, "acc_mean": 1.0, "files_total": 16},
+    {"arm_label": "auto", "arm": "auto", "pw": "0.85", "task_set": "pb", "n": 83, "pass": 82, "err": 1, "dur_total": 9130, "dur_mean": 110, "cloud": 437, "local": 575, "chat_total": 1012, "subs": 50, "in_t": 1200000, "out_t": 800000, "acc_mean": 0.99, "files_total": 10},
+    {"arm_label": "auto", "arm": "auto", "pw": "0.6", "task_set": "cppm", "n": 3, "pass": 0, "err": 0, "dur_total": 704, "dur_mean": 234.7, "cloud": 22, "local": 57, "chat_total": 79, "subs": 1, "in_t": 84214, "out_t": 22255, "acc_mean": 1.0, "files_total": 8},
+    {"arm_label": "auto", "arm": "auto", "pw": "0.4", "task_set": "cppm", "n": 3, "pass": 0, "err": 0, "dur_total": 528, "dur_mean": 176.0, "cloud": 23, "local": 34, "chat_total": 57, "subs": 4, "in_t": 76293, "out_t": 10807, "acc_mean": 1.0, "files_total": 11},
+    {"arm_label": "auto", "arm": "auto", "pw": "0.2", "task_set": "cppm", "n": 3, "pass": 0, "err": 0, "dur_total": 935, "dur_mean": 311.7, "cloud": 91, "local": 31, "chat_total": 122, "subs": 1, "in_t": 78282, "out_t": 33581, "acc_mean": 1.0, "files_total": 10}
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "round_id": "auto_pw0.2_20260831-024254",
+  "captured_at_utc": "2026-08-31T02:42:54+00:00",
+  "config": "auto",
+  "perf_weight": 0.2,
+  "files": [
+    {
+      "src": "logs/baseline_pw0.85_auto_cppm.jsonl",
+      "size": 4201,
+      "sha256": "440fbc18c91163e0153f02ead0893121f085626e87f4f090d0c6fb4965803a89",
+      "mtime_utc": "2026-08-20T08:02:03+00:00"
+    },
+    {
+      "src": "logs/baseline_pw0.85_auto_lh.jsonl",
+      "size": 11342,
+      "sha256": "3312d9401e24606b039fa3ce6c3cb4b3c64161edacd561e6bca46ecda07311e0",
+      "mtime_utc": "2026-08-20T07:52:29+00:00"
+    },
+    {
+      "src": "logs/baseline_pw0.85_cloud_all11.jsonl",
+      "size": 17985,
+      "sha256": "b57d86891bcf400c48f7b04078e56cc3937fe0deb182aafa9a078c0614c507ea",
+      "mtime_utc": "2026-08-24T00:57:59+00:00"
+    },
+    {
+      "src": "logs/baseline_pw0.85_cloud_lh.jsonl",
+      "size": 13974,
+      "sha256": "3249e7d3d016fae2249e4f2ae32e67dea15c2e6927ef535bbdd8ef8d8e4349b5",
+      "mtime_utc": "2026-08-24T00:50:17+00:00"
+    },
+    {
+      "src": "logs/baseline_pw0.85_local_cppm.jsonl",
+      "size": 2834,
+      "sha256": "684d1e537eef2104c8a0d8aec66165f37aaba2c3cb823660ee31a1fdda0ff75a",
+      "mtime_utc": "2026-08-24T01:39:55+00:00"
+    },
+    {
+      "src": "logs/baseline_pw0.85_local_lh.jsonl",
+      "size": 13003,
+      "sha256": "4530b1f50332f8a0b94cd29632dbb518112a3c5e2f594b360e59ca331f579942",
+      "mtime_utc": "2026-08-24T01:09:42+00:00"
+    },
+    {
+      "src": "results/v4_benchmark_aggregated.json",
+      "size": 3164,
+      "sha256": "94b8d18f45c0d10163e96e9c812871db53404ed0b99845b2a1138914e06bffb4",
+      "mtime_utc": "2026-08-26T07:17:57+00:00"
+    },
+    {
+      "src": "results/v4_benchmark_report.md",
+      "size": 15099,
+      "sha256": "800da0806ee110533f483845a7dffa6ddcf4097018608a139747aef88e5cc2c7",
+      "mtime_utc": "2026-08-27T02:02:06+00:00"
+    },
+    {
+      "src": "results/QUARANTINE_MANIFEST.json",
+      "size": 3567,
+      "sha256": "597568b47feab960830f912f72283ee0e550170f6396a1555f6dc07bde892aa8",
+      "mtime_utc": "2026-08-27T01:16:24+00:00"
+    }
+  ]
+}
