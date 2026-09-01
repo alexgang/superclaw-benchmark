@@ -1,0 +1,143 @@
+{
+  "config": "hybrid_cn_pw0.20",
+  "perf_weight": 0.2,
+  "date": "2026-09-01",
+  "method": "synthetic routing via perf_weight + task.routing_expectation; cloud=127.0.0.1:8900 proxy; local=127.0.0.1:18103 qwen3.5-4b",
+  "caveats": [
+    "first run (prebugfix) had a bug where Chinese tasks did not inline workspace files into the cloud prompt — fixed in commit; this package is the v2 result",
+    "routing decision is synthesized, not actual SuperClaw routing",
+    "proxy double-records each request (call_id appears twice for one POST) — privacy counts are per unique PII token",
+    "per_task leak attribution is naive: a task is \"leaked\" if any of its must_stay_local PII appears anywhere in cloud-bound bodies"
+  ],
+  "privacy": {
+    "hybrid_cn_pw0.20": {
+      "planted_total": 15,
+      "leaked_count": 5,
+      "leaked_ids": [
+        "pii_cn_name_01",
+        "pii_cn_name_02",
+        "pii_cn_name_03",
+        "pii_cn_bank_01",
+        "pii_cn_company_01"
+      ],
+      "leak_rate": 0.3333,
+      "by_type": {
+        "CN_PERSON": 3,
+        "CN_BANKCARD": 1,
+        "CN_COMPANY": 1
+      },
+      "sensitive_task_count": 3,
+      "sensitive_tasks_clean": 0,
+      "task_clean_rate": 0.0,
+      "per_task": [
+        {
+          "task_id": "lh09",
+          "leaked": [
+            "pii_cn_name_01",
+            "pii_cn_name_02",
+            "pii_cn_name_03"
+          ],
+          "clean": false
+        },
+        {
+          "task_id": "lh10",
+          "leaked": [
+            "pii_cn_name_01",
+            "pii_cn_name_02",
+            "pii_cn_name_03"
+          ],
+          "clean": false
+        },
+        {
+          "task_id": "lh12",
+          "leaked": [
+            "pii_cn_name_01",
+            "pii_cn_name_02"
+          ],
+          "clean": false
+        }
+      ]
+    }
+  },
+  "routing": {
+    "hybrid_cn_pw0.20": {
+      "tasks": 4,
+      "tasks_touching_cloud": 1,
+      "local_retention_rate": 0.75,
+      "routing_match_rate": 1.0,
+      "per_task": [
+        {
+          "task_id": "lh09",
+          "expected": "mixed",
+          "used_cloud": false,
+          "trace": [
+            "local"
+          ]
+        },
+        {
+          "task_id": "lh10",
+          "expected": "local",
+          "used_cloud": false,
+          "trace": [
+            "local"
+          ]
+        },
+        {
+          "task_id": "lh11",
+          "expected": "cloud",
+          "used_cloud": true,
+          "trace": [
+            "cloud"
+          ]
+        },
+        {
+          "task_id": "lh12",
+          "expected": "local",
+          "used_cloud": false,
+          "trace": [
+            "local"
+          ]
+        }
+      ]
+    }
+  },
+  "metrics": {
+    "hybrid_cn_pw0.20": {
+      "client_ttft_s": {
+        "n": 4,
+        "mean": 18.306,
+        "p50": 18.29,
+        "p95": 32.586,
+        "p99": 32.586,
+        "max": 32.586
+      },
+      "client_e2e_s": {
+        "n": 4,
+        "mean": 32.8623,
+        "p50": 37.502,
+        "p95": 48.085,
+        "p99": 48.085,
+        "max": 48.085
+      },
+      "client_tps": {
+        "n": 4,
+        "mean": 56.1594,
+        "p50": 41.5249,
+        "p95": 111.233,
+        "p99": 111.233,
+        "max": 111.233
+      },
+      "cloud_ttft_s": null,
+      "cloud_e2e_s": {
+        "n": 2,
+        "mean": 24.0246,
+        "p50": 15.4818,
+        "p95": 32.5674,
+        "p99": 32.5674,
+        "max": 32.5674
+      },
+      "cloud_calls": 0,
+      "cloud_completion_tokens_total": 2733
+    }
+  }
+}
