@@ -1,0 +1,166 @@
+{
+  "config": "hybrid_pw0.60",
+  "perf_weight": 0.6,
+  "date": "2026-09-01",
+  "method": "synthetic routing via perf_weight + task.routing_expectation; cloud=127.0.0.1:8900 proxy; local=127.0.0.1:18103 qwen3.5-4b",
+  "caveats": [
+    "routing decision is synthesized, not actual SuperClaw routing (cloud URL hardcoded in llmrouter_manager.exe, no admin path to redirect)",
+    "proxy double-records each request (call_id appears twice for one POST) — privacy counts are per unique PII token, not per request",
+    "per_task leak attribution is naive: a task is \"leaked\" if any of its must_stay_local PII appears anywhere in cloud-bound bodies, even if that PII came from a different task that legitimately routed to cloud"
+  ],
+  "privacy": {
+    "hybrid_pw0.60": {
+      "planted_total": 15,
+      "leaked_count": 2,
+      "leaked_ids": [
+        "pii_name_01",
+        "pii_name_02"
+      ],
+      "leak_rate": 0.1333,
+      "by_type": {
+        "PERSON": 2
+      },
+      "sensitive_task_count": 4,
+      "sensitive_tasks_clean": 3,
+      "task_clean_rate": 0.75,
+      "per_task": [
+        {
+          "task_id": "lh01",
+          "leaked": [
+            "pii_name_01",
+            "pii_name_02"
+          ],
+          "clean": false
+        },
+        {
+          "task_id": "lh02",
+          "leaked": [],
+          "clean": true
+        },
+        {
+          "task_id": "lh06",
+          "leaked": [],
+          "clean": true
+        },
+        {
+          "task_id": "lh08",
+          "leaked": [],
+          "clean": true
+        }
+      ]
+    }
+  },
+  "routing": {
+    "hybrid_pw0.60": {
+      "tasks": 8,
+      "tasks_touching_cloud": 5,
+      "local_retention_rate": 0.375,
+      "routing_match_rate": 1.0,
+      "per_task": [
+        {
+          "task_id": "lh01",
+          "expected": "mixed",
+          "used_cloud": false,
+          "trace": [
+            "local"
+          ]
+        },
+        {
+          "task_id": "lh02",
+          "expected": "mixed",
+          "used_cloud": true,
+          "trace": [
+            "cloud"
+          ]
+        },
+        {
+          "task_id": "lh03",
+          "expected": "mixed",
+          "used_cloud": true,
+          "trace": [
+            "cloud"
+          ]
+        },
+        {
+          "task_id": "lh04",
+          "expected": "mixed",
+          "used_cloud": true,
+          "trace": [
+            "cloud"
+          ]
+        },
+        {
+          "task_id": "lh05",
+          "expected": "cloud",
+          "used_cloud": true,
+          "trace": [
+            "cloud"
+          ]
+        },
+        {
+          "task_id": "lh06",
+          "expected": "local",
+          "used_cloud": false,
+          "trace": [
+            "local"
+          ]
+        },
+        {
+          "task_id": "lh07",
+          "expected": "cloud",
+          "used_cloud": true,
+          "trace": [
+            "cloud"
+          ]
+        },
+        {
+          "task_id": "lh08",
+          "expected": "local",
+          "used_cloud": false,
+          "trace": [
+            "local"
+          ]
+        }
+      ]
+    }
+  },
+  "metrics": {
+    "hybrid_pw0.60": {
+      "client_ttft_s": {
+        "n": 8,
+        "mean": 14.6171,
+        "p50": 15.017,
+        "p95": 30.637,
+        "p99": 30.637,
+        "max": 30.637
+      },
+      "client_e2e_s": {
+        "n": 8,
+        "mean": 29.0505,
+        "p50": 28.357,
+        "p95": 67.34,
+        "p99": 67.34,
+        "max": 67.34
+      },
+      "client_tps": {
+        "n": 8,
+        "mean": 66.3283,
+        "p50": 76.0617,
+        "p95": 109.176,
+        "p99": 109.176,
+        "max": 109.176
+      },
+      "cloud_ttft_s": null,
+      "cloud_e2e_s": {
+        "n": 10,
+        "mean": 19.8726,
+        "p50": 15.8197,
+        "p95": 36.6877,
+        "p99": 36.6877,
+        "max": 36.6877
+      },
+      "cloud_calls": 0,
+      "cloud_completion_tokens_total": 14282
+    }
+  }
+}
