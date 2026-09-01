@@ -1,0 +1,68 @@
+{
+  "hybrid_cn_pw0.85": {
+    "planted_total": 15,
+    "leaked_count": 10,
+    "leaked_ids": [
+      "pii_cn_ssn_01",
+      "pii_cn_ssn_02",
+      "pii_cn_phone_01",
+      "pii_cn_phone_02",
+      "pii_cn_name_01",
+      "pii_cn_name_02",
+      "pii_cn_name_03",
+      "pii_cn_bank_01",
+      "pii_cn_company_01",
+      "pii_cn_idcard_01"
+    ],
+    "leak_rate": 0.6667,
+    "by_type": {
+      "CN_SSN": 2,
+      "CN_PHONE": 2,
+      "CN_PERSON": 3,
+      "CN_BANKCARD": 1,
+      "CN_COMPANY": 1,
+      "CN_IDCARD": 1
+    },
+    "sensitive_task_count": 3,
+    "sensitive_tasks_clean": 0,
+    "task_clean_rate": 0.0,
+    "per_task": [
+      {
+        "task_id": "lh09",
+        "leaked": [
+          "pii_cn_ssn_01",
+          "pii_cn_ssn_02",
+          "pii_cn_phone_01",
+          "pii_cn_phone_02",
+          "pii_cn_name_01",
+          "pii_cn_name_02",
+          "pii_cn_name_03",
+          "pii_cn_idcard_01"
+        ],
+        "clean": false
+      },
+      {
+        "task_id": "lh10",
+        "leaked": [
+          "pii_cn_ssn_01",
+          "pii_cn_ssn_02",
+          "pii_cn_phone_01",
+          "pii_cn_phone_02",
+          "pii_cn_name_01",
+          "pii_cn_name_02",
+          "pii_cn_name_03",
+          "pii_cn_idcard_01"
+        ],
+        "clean": false
+      },
+      {
+        "task_id": "lh12",
+        "leaked": [
+          "pii_cn_name_01",
+          "pii_cn_name_02"
+        ],
+        "clean": false
+      }
+    ]
+  }
+}

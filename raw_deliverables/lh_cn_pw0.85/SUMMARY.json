@@ -1,6 +1,6 @@
 {
-  "config": "hybrid_cn_pw0.20",
-  "perf_weight": 0.2,
+  "config": "hybrid_cn_pw0.85",
+  "perf_weight": 0.85,
   "date": "2026-09-01",
   "method": "synthetic routing via perf_weight + task.routing_expectation; cloud=127.0.0.1:8900 proxy; local=127.0.0.1:18103 qwen3.5-4b",
   "caveats": [
@@ -10,21 +10,29 @@
     "per_task leak attribution is naive: a task is \"leaked\" if any of its must_stay_local PII appears anywhere in cloud-bound bodies"
   ],
   "privacy": {
-    "hybrid_cn_pw0.20": {
+    "hybrid_cn_pw0.85": {
       "planted_total": 15,
-      "leaked_count": 5,
+      "leaked_count": 10,
       "leaked_ids": [
+        "pii_cn_ssn_01",
+        "pii_cn_ssn_02",
+        "pii_cn_phone_01",
+        "pii_cn_phone_02",
         "pii_cn_name_01",
         "pii_cn_name_02",
         "pii_cn_name_03",
         "pii_cn_bank_01",
-        "pii_cn_company_01"
+        "pii_cn_company_01",
+        "pii_cn_idcard_01"
       ],
-      "leak_rate": 0.3333,
+      "leak_rate": 0.6667,
       "by_type": {
+        "CN_SSN": 2,
+        "CN_PHONE": 2,
         "CN_PERSON": 3,
         "CN_BANKCARD": 1,
-        "CN_COMPANY": 1
+        "CN_COMPANY": 1,
+        "CN_IDCARD": 1
       },
       "sensitive_task_count": 3,
       "sensitive_tasks_clean": 0,
@@ -33,18 +41,28 @@
         {
           "task_id": "lh09",
           "leaked": [
+            "pii_cn_ssn_01",
+            "pii_cn_ssn_02",
+            "pii_cn_phone_01",
+            "pii_cn_phone_02",
             "pii_cn_name_01",
             "pii_cn_name_02",
-            "pii_cn_name_03"
+            "pii_cn_name_03",
+            "pii_cn_idcard_01"
           ],
           "clean": false
         },
         {
           "task_id": "lh10",
           "leaked": [
+            "pii_cn_ssn_01",
+            "pii_cn_ssn_02",
+            "pii_cn_phone_01",
+            "pii_cn_phone_02",
             "pii_cn_name_01",
             "pii_cn_name_02",
-            "pii_cn_name_03"
+            "pii_cn_name_03",
+            "pii_cn_idcard_01"
           ],
           "clean": false
         },
@@ -60,18 +78,18 @@
     }
   },
   "routing": {
-    "hybrid_cn_pw0.20": {
+    "hybrid_cn_pw0.85": {
       "tasks": 4,
-      "tasks_touching_cloud": 1,
-      "local_retention_rate": 0.75,
+      "tasks_touching_cloud": 2,
+      "local_retention_rate": 0.5,
       "routing_match_rate": 1.0,
       "per_task": [
         {
           "task_id": "lh09",
           "expected": "mixed",
-          "used_cloud": false,
+          "used_cloud": true,
           "trace": [
-            "local"
+            "cloud"
           ]
         },
         {
@@ -102,42 +120,42 @@
     }
   },
   "metrics": {
-    "hybrid_cn_pw0.20": {
+    "hybrid_cn_pw0.85": {
       "client_ttft_s": {
         "n": 4,
-        "mean": 18.306,
-        "p50": 18.29,
-        "p95": 32.586,
-        "p99": 32.586,
-        "max": 32.586
+        "mean": 17.9465,
+        "p50": 17.151,
+        "p95": 29.97,
+        "p99": 29.97,
+        "max": 29.97
       },
       "client_e2e_s": {
         "n": 4,
-        "mean": 32.8623,
-        "p50": 37.502,
-        "p95": 48.085,
-        "p99": 48.085,
-        "max": 48.085
+        "mean": 43.114,
+        "p50": 35.209,
+        "p95": 89.314,
+        "p99": 89.314,
+        "max": 89.314
       },
       "client_tps": {
         "n": 4,
-        "mean": 56.1594,
-        "p50": 41.5249,
-        "p95": 111.233,
-        "p99": 111.233,
-        "max": 111.233
+        "mean": 43.9638,
+        "p50": 42.498,
+        "p95": 68.1499,
+        "p99": 68.1499,
+        "max": 68.1499
       },
       "cloud_ttft_s": null,
       "cloud_e2e_s": {
-        "n": 2,
-        "mean": 24.0246,
-        "p50": 15.4818,
-        "p95": 32.5674,
-        "p99": 32.5674,
-        "max": 32.5674
+        "n": 4,
+        "mean": 29.9725,
+        "p50": 29.9444,
+        "p95": 59.3054,
+        "p99": 59.3054,
+        "max": 59.3054
       },
       "cloud_calls": 0,
-      "cloud_completion_tokens_total": 2733
+      "cloud_completion_tokens_total": 8606
     }
   }
 }
