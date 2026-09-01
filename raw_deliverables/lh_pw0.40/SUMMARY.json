@@ -1,6 +1,6 @@
 {
-  "config": "hybrid_pw0.20",
-  "perf_weight": 0.2,
+  "config": "hybrid_pw0.40",
+  "perf_weight": 0.4,
   "date": "2026-09-01",
   "method": "synthetic routing via perf_weight + task.routing_expectation; cloud=127.0.0.1:8900 proxy; local=127.0.0.1:18103 qwen3.5-4b",
   "caveats": [
@@ -9,7 +9,7 @@
     "per_task leak attribution is naive: a task is \"leaked\" if any of its must_stay_local PII appears anywhere in cloud-bound bodies, even if that PII came from a different task that legitimately routed to cloud"
   ],
   "privacy": {
-    "hybrid_pw0.20": {
+    "hybrid_pw0.40": {
       "planted_total": 15,
       "leaked_count": 2,
       "leaked_ids": [
@@ -51,10 +51,10 @@
     }
   },
   "routing": {
-    "hybrid_pw0.20": {
+    "hybrid_pw0.40": {
       "tasks": 8,
-      "tasks_touching_cloud": 3,
-      "local_retention_rate": 0.625,
+      "tasks_touching_cloud": 5,
+      "local_retention_rate": 0.375,
       "routing_match_rate": 1.0,
       "per_task": [
         {
@@ -76,17 +76,17 @@
         {
           "task_id": "lh03",
           "expected": "mixed",
-          "used_cloud": false,
+          "used_cloud": true,
           "trace": [
-            "local"
+            "cloud"
           ]
         },
         {
           "task_id": "lh04",
           "expected": "mixed",
-          "used_cloud": false,
+          "used_cloud": true,
           "trace": [
-            "local"
+            "cloud"
           ]
         },
         {
@@ -125,42 +125,42 @@
     }
   },
   "metrics": {
-    "hybrid_pw0.20": {
+    "hybrid_pw0.40": {
       "client_ttft_s": {
         "n": 8,
-        "mean": 10.169,
-        "p50": 9.103,
-        "p95": 20.222,
-        "p99": 20.222,
-        "max": 20.222
+        "mean": 13.6444,
+        "p50": 12.145,
+        "p95": 30.712,
+        "p99": 30.712,
+        "max": 30.712
       },
       "client_e2e_s": {
         "n": 8,
-        "mean": 21.2782,
-        "p50": 18.529,
-        "p95": 39.833,
-        "p99": 39.833,
-        "max": 39.833
+        "mean": 27.4597,
+        "p50": 20.242,
+        "p95": 59.31,
+        "p99": 59.31,
+        "max": 59.31
       },
       "client_tps": {
         "n": 8,
-        "mean": 55.546,
-        "p50": 38.3936,
-        "p95": 111.0631,
-        "p99": 111.0631,
-        "max": 111.0631
+        "mean": 78.6293,
+        "p50": 70.1968,
+        "p95": 169.322,
+        "p99": 169.322,
+        "max": 169.322
       },
       "cloud_ttft_s": null,
       "cloud_e2e_s": {
-        "n": 6,
-        "mean": 12.5476,
-        "p50": 9.2527,
-        "p95": 20.2038,
-        "p99": 20.2038,
-        "max": 20.2038
+        "n": 10,
+        "mean": 18.4994,
+        "p50": 18.806,
+        "p95": 30.6981,
+        "p99": 30.6981,
+        "max": 30.6981
       },
       "cloud_calls": 0,
-      "cloud_completion_tokens_total": 7472
+      "cloud_completion_tokens_total": 15614
     }
   }
 }
