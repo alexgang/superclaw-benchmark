@@ -1,0 +1,42 @@
+{
+  "hybrid_cn_pw0.40": {
+    "tasks": 4,
+    "tasks_touching_cloud": 1,
+    "local_retention_rate": 0.75,
+    "routing_match_rate": 1.0,
+    "per_task": [
+      {
+        "task_id": "lh09",
+        "expected": "mixed",
+        "used_cloud": false,
+        "trace": [
+          "local"
+        ]
+      },
+      {
+        "task_id": "lh10",
+        "expected": "local",
+        "used_cloud": false,
+        "trace": [
+          "local"
+        ]
+      },
+      {
+        "task_id": "lh11",
+        "expected": "cloud",
+        "used_cloud": true,
+        "trace": [
+          "cloud"
+        ]
+      },
+      {
+        "task_id": "lh12",
+        "expected": "local",
+        "used_cloud": false,
+        "trace": [
+          "local"
+        ]
+      }
+    ]
+  }
+}
