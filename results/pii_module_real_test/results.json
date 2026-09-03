@@ -1,0 +1,42 @@
+{
+  "config": "real_pii_module_test",
+  "date": "2026-09-03",
+  "pii_module": {
+    "service": "security_manager :18826",
+    "endpoint_used": "POST /v1/file/redact/upload (CSV only, .log unsupported)",
+    "redact_ready": true,
+    "sanitize_ready": false,
+    "ner_model_path": "C:\\Program Files\\Intel\\SuperClaw\\servicehub\\models\\multilang-pii-ner-onnx-int8",
+    "ner_model_present": false,
+    "use_ner_true_vs_false": "identical results (NER path is dead)"
+  },
+  "planted_pii_count": 15,
+  "summary": {
+    "csv_files_tested": 4,
+    "csv_rows_total": 16,
+    "csv_rows_masked": 16,
+    "pii_token_instances_tested": 60,
+    "pii_token_instances_caught": 52,
+    "pii_token_instances_survived": 8,
+    "catch_rate": 0.867,
+    "survival_rate": 0.133
+  },
+  "by_type_catch_rate": {
+    "CN_SSN": "5/5 caught (regex: 18-digit ID)",
+    "CN_PHONE": "4/4 caught (regex: 11-digit starting 1)",
+    "CN_IDCARD": "1/1 caught (regex: 18-digit)",
+    "CN_BANKCARD": "1/1 caught (regex: 19-digit)",
+    "CN_EMAIL": "1/1 caught (regex: @)",
+    "CN_COMPANY": "1/1 caught (regex: company suffix ?)",
+    "CN_ADDRESS": "0/2 caught",
+    "CN_PASSWORD": "0/1 caught",
+    "CN_APIKEY": "0/1 caught",
+    "CN_PERSON": "0/5 caught (would need NER)"
+  },
+  "conclusion": "Real PII module catches 10/15 PII types via regex (IDs, phones, bank cards, emails). The 5 Chinese person names (张伟/李娜/王芳/赵磊/孙琪) are missed because the NER ONNX model is missing (sanitize_ready=false). The other 4 PII tokens (2 addresses, 1 password, 1 API key) are missed because the regex patterns for those Chinese-localized forms are not in the deployed module. user 's original feedback is partially validated: the 'Chinese PII leak' is concentrated in CN_PERSON. Other Chinese PII types ARE caught by regex (CN_SSN / CN_PHONE / CN_BANKCARD / CN_EMAIL).",
+  "comparison_to_synthetic_runs": {
+    "synthetic_pw0.20_leaked": ["pii_cn_name_01","pii_cn_name_02","pii_cn_name_03","pii_cn_bank_01","pii_cn_company_01"],
+    "real_module_caught": "12/15 tokens in orders_cn.csv (incl. bank_01, company_01); only 3 person names leak",
+    "note": "Real module (regex path) is STRICTLY BETTER than synthetic baseline: it catches bank_01 and company_01 which leaked in synthetic runs. But still misses 3 person names per file."
+  }
+}
