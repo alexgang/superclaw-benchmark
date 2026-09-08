@@ -1,0 +1,150 @@
+openvino OK
+Inputs:  ['input_ids', 'attention_mask']
+Outputs: ['logits']
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+using transformers AutoTokenizer
+
+==============================================================================
+NER inference (35 labels, XLM-RoBERTa base, OpenVINO IR)
+==============================================================================
+
+[CN_PERSON_only]  我的名字是张伟。
+  tokens: ['<s>', '▁我', '的名字', '是', '张', '伟', '。', '</s>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>']
+  entities:
+    B-GIVENNAME               '张'
+    B-GIVENNAME               '伟'
+
+[CN_PERSON_in_sentence]  客户张伟打电话给李娜说他的订单有问题。
+  tokens: ['<s>', '▁', '客户', '张', '伟', '打电话', '给', '李', '娜', '说', '他的', '订单', '有', '问题', '。', '</s>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>']
+  entities:
+    B-GIVENNAME               '张'
+    B-SURNAME                 '伟'
+    B-GIVENNAME               '李'
+    B-GIVENNAME               '娜'
+
+[CN_ADDRESS]  请把文件寄到北京市朝阳区建国路88号。
+  tokens: ['<s>', '▁', '请', '把', '文件', '寄', '到', '北京市', '朝', '阳', '区', '建', '国', '路', '88', '号', '。', '</s>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>']
+  entities:
+    B-CITY                    '北京市'
+    B-STREET                  '朝'
+    I-STREET                  '阳'
+    I-STREET                  '区'
+    B-STREET                  '建'
+    B-STREET                  '国'
+    I-STREET                  '路'
+    B-BUILDINGNUM             '88'
+    B-BUILDINGNUM             '号'
+
+[CN_IDCARD]  他的身份证号是110101199003078239。
+  tokens: ['<s>', '▁', '他的', '身份证', '号', '是', '110', '101', '1990', '030', '78', '2', '39', '。', '</s>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>']
+  entities:
+    B-CREDITCARDNUMBER        '110'
+    B-CREDITCARDNUMBER        '101'
+    B-CREDITCARDNUMBER        '1990'
+    B-PASSPORTNUM             '030'
+    B-PASSPORTNUM             '78'
+    I-TAXNUM                  '2'
+    I-TAXNUM                  '39'
+
+[CN_BANKCARD]  银行卡号6222021234567890123。
+  tokens: ['<s>', '▁', '银行', '卡', '号', '622', '202', '1234', '567', '890', '123', '。', '</s>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>']
+  entities:
+    B-CREDITCARDNUMBER        '号'
+    B-CREDITCARDNUMBER        '622'
+    B-CREDITCARDNUMBER        '202'
+    B-CREDITCARDNUMBER        '1234'
+
+[CN_COMPANY]  上海华联科技公司的李娜是法人代表。
+  tokens: ['<s>', '▁', '上海', '华', '联', '科技', '公司的', '李', '娜', '是', '法人', '代表', '。', '</s>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>']
+  entities:
+    B-CITY                    '上海'
+    B-GIVENNAME               '李'
+    B-GIVENNAME               '娜'
+
+[CN_EMAIL]  邮箱是zhangwei@example.cn。
+  tokens: ['<s>', '▁', '邮箱', '是', 'z', 'hang', 'wei', '@', 'ex', 'a', 'mple', '.', 'cn', '。', '</s>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>']
+  entities:
+    B-GIVENNAME               '是'
+    B-GIVENNAME               'z'
+    B-GIVENNAME               'hang'
+    B-GIVENNAME               'wei'
+
+[CN_PASSWORD]  密码是Wx@2024cn#secure。
+  tokens: ['<s>', '▁', '密码', '是', 'W', 'x', '@', '20', '24', 'cn', '#', 'se', 'cure', '。', '</s>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>']
+  entities:
+    B-ZIPCODE                 'W'
+    B-ZIPCODE                 '20'
+
+[CN_APIKEY]  API key是sk-cn-9f3a71bd42ee4c0e8be1770c9d2f5a6b。
+  tokens: ['<s>', '▁API', '▁key', '是', 'sk', '-', 'cn', '-9', 'f', '3', 'a', '71', 'bd', '42', 'ee', '4', 'c', '0', 'e', '8', 'be', '17', '70', 'c', '9', 'd', '2', 'f', '5', 'a', '6', 'b', '。', '</s>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>']
+  entities:
+    B-DRIVERLICENSENUM        '是'
+    B-SOCIALNUM               'sk'
+    B-DRIVERLICENSENUM        '-'
+    B-SOCIALNUM               'cn'
+    B-SOCIALNUM               '-9'
+    B-DRIVERLICENSENUM        'f'
+    B-DRIVERLICENSENUM        '3'
+    B-DRIVERLICENSENUM        'a'
+    B-SOCIALNUM               '71'
+    B-DRIVERLICENSENUM        'bd'
+    B-SOCIALNUM               '42'
+    B-DRIVERLICENSENUM        'ee'
+    B-SOCIALNUM               '4'
+    B-DRIVERLICENSENUM        'c'
+    B-SOCIALNUM               '0'
+    B-DRIVERLICENSENUM        'e'
+    B-SOCIALNUM               '8'
+    B-DRIVERLICENSENUM        'be'
+    B-SOCIALNUM               '17'
+    B-DRIVERLICENSENUM        '70'
+    B-DRIVERLICENSENUM        'c'
+    B-DRIVERLICENSENUM        '9'
+    B-DRIVERLICENSENUM        'd'
+    B-DRIVERLICENSENUM        '2'
+    B-DRIVERLICENSENUM        'f'
+    I-DRIVERLICENSENUM        '5'
+    I-DRIVERLICENSENUM        'a'
+    I-DRIVERLICENSENUM        '6'
+
+[ZH_MIXED]  客户张伟(110101199003078239)电话13800138001住北京市朝阳区建国路88号。
+  tokens: ['<s>', '▁', '客户', '张', '伟', '(', '110', '101', '1990', '030', '78', '2', '39)', '电话', '13', '800', '138', '001', '住', '北京市', '朝', '阳', '区', '建', '国', '路', '88', '号', '。', '</s>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>']
+  entities:
+    B-CREDITCARDNUMBER        '('
+    B-CREDITCARDNUMBER        '110'
+    B-CREDITCARDNUMBER        '101'
+    B-CREDITCARDNUMBER        '1990'
+    B-PASSPORTNUM             '030'
+    B-ZIPCODE                 '78'
+    I-TELEPHONENUM            '2'
+    I-TELEPHONENUM            '39)'
+    B-TAXNUM                  '13'
+    B-CITY                    '北京市'
+    B-STREET                  '建'
+    B-STREET                  '国'
+    I-STREET                  '路'
+    B-BUILDINGNUM             '88'
+
+[EN_PERSON]  My name is Dana Whitfield and I live in Bellevue.
+  tokens: ['<s>', '▁My', '▁name', '▁is', '▁Dana', '▁Whit', 'field', '▁and', '▁I', '▁live', '▁in', '▁Belle', 'vu', 'e', '.', '</s>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>']
+  entities:
+    B-SURNAME                 'field'
+    I-CITY                    'vu'
+    I-CITY                    'e'
+
+[EN_SSN]  SSN is 412-55-8921.
+  tokens: ['<s>', '▁S', 'SN', '▁is', '▁4', '12', '-55', '-', '89', '21', '.', '</s>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>']
+  entities:
+    B-SOCIALNUM               '12'
+    I-TELEPHONENUM            '-55'
+    I-TELEPHONENUM            '-'
+    I-TELEPHONENUM            '89'
+    I-TELEPHONENUM            '21'
+
+[EN_MIXED]  Dana Whitfield SSN 412-55-8921 lives at 1487 Cedar Hollow Rd.
+  tokens: ['<s>', '▁Dana', '▁Whit', 'field', '▁S', 'SN', '▁4', '12', '-55', '-', '89', '21', '▁lives', '▁at', '▁14', '87', '▁Ce', 'dar', '▁Ho', 'llow', '▁R', 'd', '.', '</s>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>', '<pad>']
+  entities:
+    B-BUILDINGNUM             '87'
+    I-STREET                  'dar'
+    I-STREET                  'llow'
+    I-STREET                  'd'
